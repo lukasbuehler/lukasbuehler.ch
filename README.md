@@ -1,5 +1,4 @@
-# [MyWebsite](lukasbuehler.ch)
-/play bueller
+# [MyWebsite](http://lukasbuehler.ch)
 This repo holds all the code for my personal website. 
 That way anyone can use my website and copy some things if they'd like to.
 
