@@ -1,0 +1,14 @@
+{
+    "files": [
+        "./src/**/*.ts",
+        "typings/index.d.ts"
+    ],
+    "compilerOptions": {
+        "strict": false,//true,
+        "checkJs": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "locale": "en"
+    }
+    
+}

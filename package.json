@@ -27,10 +27,15 @@
     "gulp-flatten": "^0.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "jquery": "^3.2.1",
+    "moment": "^2.20.1",
     "sass": "^1.0.0-beta.4",
     "tsify": "^3.0.4",
     "typescript": "^2.6.2",
     "vinyl-source-stream": "^2.0.0",
     "yargs": "^10.1.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.2.17"
   }
 }

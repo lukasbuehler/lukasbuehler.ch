@@ -113,7 +113,7 @@ gulp.task('clean-dest', function ()
 gulp.task("copy-media", ["clean-dest"], function ()
 {
     return gulp.src(paths.src+"resources/**/*")
-        .pipe(gulp.dest(destination + "resources/"));
+        .pipe(gulp.dest(destination));
 });
 
 
