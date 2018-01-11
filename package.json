@@ -17,8 +17,19 @@
   },
   "homepage": "https://github.com/Luky66/MyWebsite#readme",
   "dependencies": {
+    "browser-sync": "^2.23.5",
     "browserify": "^15.1.0",
+    "del": "^3.0.0",
+    "event-stream": "^3.3.4",
+    "fs": "0.0.1-security",
+    "glob": "^7.1.2",
     "gulp": "^3.9.1",
-    "tsify": "^3.0.4"
+    "gulp-flatten": "^0.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "sass": "^1.0.0-beta.4",
+    "tsify": "^3.0.4",
+    "vinyl-source-stream": "^2.0.0",
+    "yargs": "^10.1.1"
   }
 }
