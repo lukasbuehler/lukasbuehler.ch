@@ -119,7 +119,7 @@ gulp.task("copy-media", ["clean-dest"], function ()
 
 gulp.task("scripts", ["clean-dest"], function (done)
 {
-    glob(paths.entry, function (err, files)
+    glob(paths.src+paths.entry, function (err, files)
     {
         if (err) done(err);
 
