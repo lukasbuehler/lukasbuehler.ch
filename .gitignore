@@ -1,3 +1,3 @@
-page/images/
-
 *.sh
+
+node_modules/
