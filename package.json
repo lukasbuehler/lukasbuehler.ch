@@ -4,7 +4,8 @@
   "description": "Lukas Buehlers personal website",
   "main": "bundle.js",
   "scripts": {
-    "test": "gulp"
+    "test": "gulp",
+    "prod": "gulp --prod; ./commit_website.sh"
   },
   "repository": {
     "type": "git",

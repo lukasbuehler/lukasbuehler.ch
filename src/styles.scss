@@ -16,8 +16,8 @@ h1
     color: $primaryColor;
 }
 h2 {
+    @extend .caps;
     font-size: 24px;
-    text-transform: uppercase;
     color: #303030;
     font-weight: 600;
     margin-bottom: 30px;
@@ -29,6 +29,10 @@ h4 {
     font-weight: 400;
     margin-bottom: 30px;
 }  
+.caps
+{
+    text-transform: uppercase;
+}
 .jumbotron {
     background-color: $darkGrey;
     color: $white;
@@ -76,11 +80,40 @@ h4 {
 .shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+img.ios-app-icon
+{
+    border-radius: 20%;
+}
+div.icon-links
+{
+    font-size: 32px;
+
+    a
+    {
+        color: inherit;
+        margin: 5px;
+    }
+    a:hover
+    {
+        color: $primaryColor;
+    }
+    a:active
+    {
+        color: $blue;
+    }
+}
 .social-media-box, .social-media-box>*
 {
-    height: 500px;
+    height: 550px;
     max-height: 100%;
-
+    text-align: center;
+    iframe
+    {
+        max-width: 100% !important;
+        max-height: 100%;
+        width: auto !important;
+        display: inline !important;
+    }
 }
 .carousel-control.right, .carousel-control.left {
     background-image: none;
@@ -141,6 +174,7 @@ h4 {
     color: #fff;
 }
 .navbar {
+    @extend .caps;
     margin-bottom: 0;
     background-color: $primaryColor;
     z-index: 9999;

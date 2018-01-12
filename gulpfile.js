@@ -41,6 +41,7 @@ if (argv.prod && !argv.test)
     console.log("--- PRODUCTION BUILD ---");
     productionBuild = true;
     watchDest = false;
+    openBrowser = false;
     destination = paths.prodDest;
 }
 

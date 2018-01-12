@@ -9,7 +9,6 @@ h1 {
 
 h2 {
   font-size: 24px;
-  text-transform: uppercase;
   color: #303030;
   font-weight: 600;
   margin-bottom: 30px; }
@@ -20,6 +19,9 @@ h4 {
   color: #303030;
   font-weight: 400;
   margin-bottom: 30px; }
+
+.caps, h2, .navbar {
+  text-transform: uppercase; }
 
 .jumbotron {
   background-color: #393d3f;
@@ -64,9 +66,28 @@ h4 {
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
+img.ios-app-icon {
+  border-radius: 20%; }
+
+div.icon-links {
+  font-size: 32px; }
+  div.icon-links a {
+    color: inherit;
+    margin: 5px; }
+  div.icon-links a:hover {
+    color: #00dd00; }
+  div.icon-links a:active {
+    color: #3c91e6; }
+
 .social-media-box, .social-media-box > * {
-  height: 500px;
-  max-height: 100%; }
+  height: 550px;
+  max-height: 100%;
+  text-align: center; }
+  .social-media-box iframe, .social-media-box > * iframe {
+    max-width: 100% !important;
+    max-height: 100%;
+    width: auto !important;
+    display: inline !important; }
 
 .carousel-control.right, .carousel-control.left {
   background-image: none;
