@@ -25,6 +25,8 @@
 import * as moment from "moment";
 import * as $ from "jquery";
 
+// TODO Optimize! And Typescriptify!
+
 var people =
     {
         /*
@@ -53,7 +55,7 @@ var variables =
     }
 
 
-export function start()
+export function setupPeopleScript()
 {
     // Check for moment.js
     if (typeof moment === "undefined")
