@@ -38,6 +38,7 @@ var openBrowser = true;
 
 if (argv.prod && !argv.test)
 {
+    console.log("--- PRODUCTION BUILD ---");
     productionBuild = true;
     watchDest = false;
     destination = paths.prodDest;
@@ -104,6 +105,10 @@ gulp.task('clean-dest', function ()
         if (!reimportMedia)
         {
             arr.push(String("!" + destination + "resources/**/*"));
+
+            // For production
+            arr.push(String("!"+paths.prodDest+"**/.git"));
+            arr.push(String("!"+paths.prodDest+"**/README.md"));
         }
         cleanedDest = true;
     }
