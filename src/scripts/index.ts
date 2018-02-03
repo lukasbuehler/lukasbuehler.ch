@@ -2,6 +2,9 @@
 
 import { setupPeopleScript } from "./people";
 import { smoothScrollSetup } from "./smoothScroll";
+import { Xmlify } from "./xmlify";
 
 setupPeopleScript();
 smoothScrollSetup();
+
+var xmlifyIndex = new Xmlify("index");

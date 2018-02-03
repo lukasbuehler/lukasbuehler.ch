@@ -17,6 +17,7 @@ var fs = require('fs');
 // All the important paths
 var paths = {
     baseDir: ".",
+    htmlBaseName: "index",
     endHtml: "*.html",
     endScripts: "*.ts",
     endScss: "*.scss",
@@ -44,11 +45,22 @@ if (argv.prod && !argv.test)
     openBrowser = false;
     destination = paths.prodDest;
 }
+else
+{
+    console.log("~~~ TEST BUILD ~~~");
+}
 
 gulp.task("copy-html", ["clean-dest"], function ()
 {
-    return gulp.src(paths.src+paths.endHtml)
-        .pipe(flatten())
+    return gulp.src(paths.src+"markup/**/"+paths.endHtml)
+        .pipe(rename(function (path) {
+            path.dirname = path.dirname.substring("markup".length, path.dirname.length);
+            if(path.basename !== paths.htmlBaseName)
+            {
+                path.dirname += "/"+path.basename;
+                path.basename = "index";
+            }
+        }))
         .pipe(gulp.dest(destination))
         .pipe(browserSync.reload({ stream: true })); // Reload browser
 });

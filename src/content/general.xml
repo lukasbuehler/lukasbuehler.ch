@@ -1,0 +1,20 @@
+<general>
+    <navbar>
+        <about>
+            <text lang="en">About Me</text>
+            <text lang="de">Über mich</text>
+        </about>
+        <development>
+            <text lang="en">Development</text>
+            <text lang="de">Entwicklung</text>
+        </development>
+        <social>
+            <text lang="en">Social Media</text>
+            <text lang="de">Soziale Medien</text>
+        </social>
+        <contact>
+            <text lang="en">Contact</text>
+            <text lang="de">Kontakt</text>
+        </contact>
+    </navbar>
+</general>
