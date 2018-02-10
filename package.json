@@ -5,6 +5,7 @@
   "main": "bundle.js",
   "scripts": {
     "test": "gulp",
+    "test-full": "gulp --full",
     "prod": "gulp --prod; ./commit_website.sh"
   },
   "repository": {

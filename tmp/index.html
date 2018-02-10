@@ -53,17 +53,17 @@
     </nav>
 
     <!-- Welcome container  -->
-    <div class="jumbotron text-center">
+    <div id="welcome" class="jumbotron text-center">
         <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 80%; max-width: 250px;">
-        <h1>Lukas Bühler</h1>
-        <p>Welcome to my website.</p>
+        <h1 class="name">Lukas Bühler</h1>
+        <p class="subtitile">Welcome to my website.</p>
     </div>
 
     <!-- Spotlight container -->
     <div id="spotlight" class="container-fluid text-center bg-grey">
-        <h2>Spotlight</h2>
+        <h2 class>Spotlight</h2>
         <div class="row text-center">
-            <div class="col-sm-4">
+            <div class="col-sm-4 cardslot">
                 <div class="card-view shadow">
                     <img src="resources/images/hudis_logo.png" alt="Hudis?" class="ios-app-icon">
                     <h4>
@@ -73,7 +73,7 @@
                     <p>In development</p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 cardslot">
                 <div class="card-view shadow">
                     <img src="" alt="Insta">
                     <p>
@@ -215,31 +215,23 @@
     <div id="contact" class="container-fluid bg-grey">
         <h2 class="text-center">CONTACT</h2>
         <div class="row">
-            <div class="col-sm-5">
-                <p>Feel free to contact me via E-Mail or this contact form.</p>
-                <p>I'll get back to you as fast as I can.</p>
-                <p>
-                    <a href="mailto:mail@lukasbuehler.ch" title="Send an E-Mail">
-                        <span class="glyphicon glyphicon-envelope"></span> mail@lukasbuehler.ch</a>
-                </p>
-            </div>
-            <div class="col-sm-7">
-                <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                    </div>
-                    <div class="col-sm-6 form-group">
-                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                    </div>
-                </div>
-                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-                <br>
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-                        <button class="btn btn-default pull-right" type="submit">Send</button>
-                    </div>
-                </div>
-            </div>
+            <p>Feel free to contact me via E-Mail or this contact form.</p>
+            <p>
+                I'll get back to you as fast as I can.
+                <br/>
+                <a href="mailto:mail@lukasbuehler.ch" title="Send an E-Mail">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    mail@lukasbuehler.ch
+                </a>
+            </p>
+            <p>
+                You may also send me packages for free via the Swiss military Feldpost.
+                <br/>
+                <a href="mailto:mail@lukasbuehler.ch" title="Send an E-Mail">
+                    <span class="fa fa-package"></span>
+                    How to send me packages during my military service.
+                </a>
+            </p>
         </div>
     </div>
 

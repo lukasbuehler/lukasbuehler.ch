@@ -3,6 +3,5 @@
 node_modules/
 
 # Builds:
-tmp/
 dist
 dist/
