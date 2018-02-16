@@ -1,0 +1,13 @@
+{
+    "navbar": 
+    {
+        "about": "About Me",
+        "development": "Development",
+        "social-media": "Social Media",
+        "contact": "Contact"
+    },
+    "buttons":
+    {
+        "read-more": "Read more"
+    }
+}

@@ -19,7 +19,7 @@ var paths = {
     baseDir: ".",
     htmlBaseName: "index",
     endHtml: "*.html",
-    endXml: "*.xml",
+    endJson: "*.json",
     endScripts: "*.ts",
     endScss: "*.scss",
     prodDest: "./dist/",
@@ -71,9 +71,9 @@ gulp.task("copy-html", ["clean-dest"], function ()
         .pipe(browserSync.reload({ stream: true })); // Reload browser
 });
 
-gulp.task("copy-xml", ["clean-dest"], function ()
+gulp.task("copy-lang-files", ["clean-dest"], function ()
 {
-    return gulp.src(paths.src+"content/**/"+paths.endXml)
+    return gulp.src(paths.src+"content/**/"+paths.endJson)
         .pipe(gulp.dest(destination))
         .pipe(browserSync.reload({ stream: true })); // Reload browser
 });
@@ -175,4 +175,4 @@ gulp.task("scripts", ["clean-dest"], function (done)
     })
 });
 
-gulp.task("default", ["scripts", "sass", "copy-html", "copy-xml", "clean-dest", "copy-media", "browser-sync", "watch"]);
+gulp.task("default", ["scripts", "sass", "copy-html", "copy-lang-files", "clean-dest", "copy-media", "browser-sync", "watch"]);
