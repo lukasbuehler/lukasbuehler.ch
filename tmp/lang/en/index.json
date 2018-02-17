@@ -1,0 +1,31 @@
+{
+    "welcome": 
+    {
+        "intro": "Welcome to my website"
+    },
+    "spotlight":
+    {
+        "title": "Spotlight"
+    },
+    "about me": 
+    {
+        "title": "About Me",
+        "intro": "",
+        "text1": "",
+        "text2": ""
+
+    },
+    "development": {
+        "title": "Development",
+        "my-projects": "My projects"
+    },
+    "social-media": {
+        "title": "Social Media"
+    },
+    "contact":
+    {
+        "title": "Contact",
+        "text": ""
+
+    }
+}

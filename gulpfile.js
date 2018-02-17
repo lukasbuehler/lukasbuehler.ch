@@ -38,7 +38,7 @@ var productionBuild = false;
 var destination = paths.testDest; // the standard
 var openBrowser = true;
 
-if(argv.full || argv.media)
+if(argv.full || argv.media || argv.clean)
 {
     reimportMedia = true;
 }
@@ -49,6 +49,7 @@ if (argv.prod && !argv.test)
     productionBuild = true;
     watchDest = false;
     openBrowser = false;
+    reimportMedia = true;
     destination = paths.prodDest;
 }
 else
@@ -73,7 +74,15 @@ gulp.task("copy-html", ["clean-dest"], function ()
 
 gulp.task("copy-lang-files", ["clean-dest"], function ()
 {
-    return gulp.src(paths.src+"content/**/"+paths.endJson)
+    return gulp.src(paths.src+"lang/**/"+paths.endJson)
+        .pipe(gulp.dest(destination))
+        .pipe(browserSync.reload({ stream: true })); // Reload browser
+});
+
+gulp.task("copy-php", ["clean-dest"], function()
+{
+    return gulp.src(paths.src+"*.php")
+    .pipe(flatten())
         .pipe(gulp.dest(destination))
         .pipe(browserSync.reload({ stream: true })); // Reload browser
 });
@@ -173,6 +182,7 @@ gulp.task("scripts", ["clean-dest"], function (done)
         });
         es.merge(tasks).on('end', done);
     })
+
 });
 
-gulp.task("default", ["scripts", "sass", "copy-html", "copy-lang-files", "clean-dest", "copy-media", "browser-sync", "watch"]);
+gulp.task("default", ["scripts", "sass", "copy-html", "copy-php", "copy-lang-files", "clean-dest", "copy-media", "browser-sync", "watch"]);

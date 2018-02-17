@@ -2,6 +2,8 @@
 
 import { setupPeopleScript } from "./people";
 import { smoothScrollSetup } from "./smoothScroll";
+import { loadCards } from "./cards";
 
 setupPeopleScript();
 smoothScrollSetup();
+loadCards();
