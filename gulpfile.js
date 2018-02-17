@@ -49,7 +49,6 @@ if (argv.prod && !argv.test)
     productionBuild = true;
     watchDest = false;
     openBrowser = false;
-    reimportMedia = true;
     destination = paths.prodDest;
 }
 else
@@ -141,10 +140,15 @@ gulp.task('clean-dest', function ()
         {
             arr.push(String("!" + destination + "resources/**/*"));
 
+            
+        }
+        if(productionBuild)
+        {
             // For production
             arr.push(String("!"+paths.prodDest+"**/.git"));
             arr.push(String("!"+paths.prodDest+"**/README.md"));
         }
+        
         cleanedDest = true;
     }
     return del(arr);
