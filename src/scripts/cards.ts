@@ -60,21 +60,23 @@ function parseCardJson(cardJson: CardJson): Card
 export function loadCards()
 {
     console.log("Started getting cards");
-    $.getJSON('/loadCards.php', function(data) {
-        console.log("Finally an answer.")
-        /*
-            $.each(data, function(fieldName, fieldValue) {
-                $("#" + fieldName).val(fieldValue);
-            });
-        */
-        console.log(data);
-    })
-    .done(function( json ) {
-        console.log( "JSON Data: " + json );
-      })
-    .fail(function( jqxhr, textStatus, error ) {
-        var err = textStatus + ", " + error;
-        console.log( "Request Failed: " + err );
-        console.log("Response Text: "+jqxhr.responseText)
+
+    $.ajax({
+        url: "https://lukasbuehler.ch"+'/loadCards.php',
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);      
+        },
+        error: function( data, status, error ) { 
+            console.log(data);
+            console.log(status);
+            console.log(error);
+        }
     });
+
+    /*
+        $.each(data, function(fieldName, fieldValue) {
+            $("#" + fieldName).val(fieldValue);
+        });
+    */
 }
