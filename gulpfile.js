@@ -22,6 +22,7 @@ var paths = {
     endJson: "*.json",
     endScripts: "*.ts",
     endScss: "*.scss",
+    endPhp: "*.php",
     prodDest: "./dist/",
     testDest: "./tmp/",
     outputScript: "bundle.js",
@@ -103,6 +104,7 @@ gulp.task('watch', ["clean-dest"], function ()
         gulp.watch(paths.src+paths.endScss, ['sass']); // Watch sass files
         gulp.watch(paths.src+paths.endScripts, ['scripts']); // Watch .ts files
         gulp.watch(paths.src+paths.endHtml, ['copy-html']); // Watch html files
+        gulp.watch(paths.src+"*.php", ['copy-php']); // Watch php files
         // There is no watch function for images and fonts at the moment, it is not considered necessairy
     }
 });

@@ -1,4 +1,5 @@
 import { MultilangResource, LanguageAnswer, makeMultilangResource } from "./multi_lang";
+import * as $ from "jquery"; 
 
 enum State
 {
@@ -60,11 +61,20 @@ export function loadCards()
 {
     console.log("Started getting cards");
     $.getJSON('/loadCards.php', function(data) {
+        console.log("Finally an answer.")
         /*
             $.each(data, function(fieldName, fieldValue) {
                 $("#" + fieldName).val(fieldValue);
             });
         */
         console.log(data);
+    })
+    .done(function( json ) {
+        console.log( "JSON Data: " + json );
+      })
+    .fail(function( jqxhr, textStatus, error ) {
+        var err = textStatus + ", " + error;
+        console.log( "Request Failed: " + err );
+        console.log("Response Text: "+jqxhr.responseText)
     });
 }

@@ -1,9 +1,32 @@
-$sql  = 'SELECT TOP 3 * FROM Customers WHERE Country='Mexico' ORDER BY Address;';
+<?php
 
-$result = mysql_query($sql);
-$to_encode = array();
 
-while($row = mysql_fetch_assoc($result)) {
-  $to_encode[] = $row;
+$servername = "lukasbuehler.ch:3306";
+$username = "web";
+$password = "hello_friend";
+$dbname = "Cards";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-echo json_encode($to_encode);
+
+$sql = 'SELECT * FROM `cards`';
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    $to_encode = array();
+    while($row = $result->fetch_assoc()) {
+        $to_encode[] = $row;
+    }
+    header('Content-type: application/json');
+    echo html_entity_decode(json_encode($to_encode));
+
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
