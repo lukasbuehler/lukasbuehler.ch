@@ -1,4 +1,4 @@
-import { MultilangResource, LanguageAnswer, makeMultilangResource } from "./multi_lang";
+import { MultilangResource, makeMultilangResource } from "./multi_lang";
 import * as $ from "jquery"; 
 
 enum State
@@ -15,7 +15,8 @@ interface CardJson
 {
     id: number,
     title: string,
-    text?: LanguageAnswer,
+    text_en?: string,
+    text_de?: string,
     imageSrc?: string, 
     visibleDateString: string,
     expirationDateString?: string,
@@ -45,9 +46,9 @@ function parseCardJson(cardJson: CardJson): Card
     let card: Card = 
         {
             id: cardJson.id,
-            title: cardJson.title,
-            text: makeMultilangResource(cardJson.text),
-            imageSrc: cardJson.imageSrc,
+            title: cardJson.title || "",
+            text: makeMultilangResource(cardJson.text_en || "", cardJson.text_de || ""),
+            imageSrc: cardJson.imageSrc || "",
             visibleDate: new Date(cardJson.visibleDateString),
             expirationDate: expirationDate,
             state: State[cardJson.state],
@@ -65,18 +66,27 @@ export function loadCards()
         url: "https://lukasbuehler.ch"+'/loadCards.php',
         dataType: 'json',
         success: function(data) {
-            console.log(data);      
+            console.log(data);
+
+            var cards: Card[] = [];
+
+            for(let cardData of JSON.parse(data))
+            {
+                // loop through returned data and make cards
+
+                cards.push(parseCardJson(cardData));
+            }
+            console.log(cards);
         },
         error: function( data, status, error ) { 
-            console.log(data);
-            console.log(status);
-            console.log(error);
+            console.log("Data: "+data);
+            console.log("Status: "+status);
+            console.log("Error: "+error);
         }
     });
 
-    /*
-        $.each(data, function(fieldName, fieldValue) {
-            $("#" + fieldName).val(fieldValue);
-        });
-    */
+    function instantiateCards()
+    {
+
+    }
 }

@@ -15,20 +15,20 @@ if ($conn->connect_error) {
 }
 
 $sql = 'SELECT * FROM `cards`';
+$rows = array();
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-    echo "Found some rows yay";
-    $to_encode = array();
+
     while($row = $result->fetch_assoc()) {
-        array_push($to_encode, $row)
+        array_push($rows, json_encode($row));
     }
-    
-    echo html_entity_decode(json_encode($to_encode));
+
+    echo "{" . join(",", $rows) . "}";
 
 } else {
     echo "{error: '0 results'}";
 }
-$conn->close();
+
 ?>

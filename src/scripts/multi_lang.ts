@@ -1,11 +1,6 @@
 
 import i18next from "i18next";
 
-export interface LanguageAnswer
-{
-    en: string,
-    de: string
-}
 
 export interface MultilangResource
 {
@@ -19,7 +14,7 @@ export interface MultilangResource
     }
 };
 
-export function makeMultilangResource(object: LanguageAnswer): MultilangResource
+export function makeMultilangResource(text_en: string, text_de: string): MultilangResource
 {
     let resource =
     {
@@ -27,14 +22,14 @@ export function makeMultilangResource(object: LanguageAnswer): MultilangResource
         {
             translation: 
             {
-                key: object.en
+                key: text_en
             }
         },
         de:
         {
             translation: 
             {
-                key: object.de
+                key: text_de
             }
         }
     };
