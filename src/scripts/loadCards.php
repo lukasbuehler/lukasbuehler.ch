@@ -22,7 +22,10 @@ if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-        $rows[] = json_encode(utf8_encode($row));
+        $row["text_en"] = utf8_encode($row["text_en"]);
+        $row["text_de"] = utf8_encode($row["text_de"]);
+
+        $rows[] = json_encode($row);
     }
 
     echo "[" . join(",", $rows) . "]";
