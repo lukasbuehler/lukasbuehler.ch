@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/json');
+header('Content-type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 
 $servername = "lukasbuehler.ch:3306";
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("{error: 'Connection failed: " . $conn->connect_error+"'}");
 }
 
-$sql = 'SELECT * FROM `cards`';
+$sql = 'SELECT * FROM cards';
 $rows = array();
 $result = $conn->query($sql);
 
@@ -22,10 +22,13 @@ if ($result->num_rows > 0) {
     // output data of each row
 
     while($row = $result->fetch_assoc()) {
-        array_push($rows, json_encode($row));
+        $row["text_en"] = utf8_encode($row["text_en"]);
+        $row["text_de"] = utf8_encode($row["text_de"]);
+
+        $rows[] = json_encode($row);
     }
 
-    echo "{" . join(",", $rows) . "}";
+    echo "[" . join(",", $rows) . "]";
 
 } else {
     echo "{error: '0 results'}";

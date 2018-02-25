@@ -17,11 +17,11 @@ interface CardJson
     title: string,
     text_en?: string,
     text_de?: string,
-    imageSrc?: string, 
-    visibleDateString: string,
-    expirationDateString?: string,
+    image_link?: string, 
+    visible_date: string,
+    expiration_date?: string,
     state?: string,
-    isDev?: number
+    is_dev?: number
 }
 
 interface Card
@@ -39,20 +39,21 @@ interface Card
 function parseCardJson(cardJson: CardJson): Card
 {
     var expirationDate: Date | null;
-    if(cardJson.expirationDateString)
+    if(cardJson.expiration_date)
     {
-        expirationDate = new Date(cardJson.expirationDateString);
+        expirationDate = new Date(cardJson.expiration_date);
     }
+
     let card: Card = 
         {
-            id: cardJson.id,
+            id: Number(cardJson.id),
             title: cardJson.title || "",
             text: makeMultilangResource(cardJson.text_en || "", cardJson.text_de || ""),
-            imageSrc: cardJson.imageSrc || "",
-            visibleDate: new Date(cardJson.visibleDateString),
+            imageSrc: cardJson.image_link || "",
+            visibleDate: new Date(String(cardJson.visible_date)),
             expirationDate: expirationDate,
             state: State[cardJson.state],
-            isDev: Boolean(cardJson.isDev) || false
+            isDev: Boolean(Number(cardJson.is_dev || "0"))
         };
 
     return card;
@@ -66,11 +67,10 @@ export function loadCards()
         url: "https://lukasbuehler.ch"+'/loadCards.php',
         dataType: 'json',
         success: function(data) {
-            console.log(data);
 
             var cards: Card[] = [];
 
-            for(let cardData of JSON.parse(data))
+            for(let cardData of data)
             {
                 // loop through returned data and make cards
 
@@ -85,8 +85,11 @@ export function loadCards()
         }
     });
 
-    function instantiateCards()
+    function instantiateCards(cards: Card[])
     {
-
+        for(var i; i < Math.min(3, cards.length); i++)
+        {
+            // set card to slot
+        }
     }
 }

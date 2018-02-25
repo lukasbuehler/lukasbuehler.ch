@@ -69,14 +69,14 @@ h4 {
 img.ios-app-icon {
   border-radius: 20%; }
 
-div.icon-links {
+div.large-icons {
   font-size: 32px; }
-  div.icon-links a {
+  div.large-icons a {
     color: inherit;
     margin: 5px; }
-  div.icon-links a:hover {
+  div.large-icons a:hover {
     color: #00dd00; }
-  div.icon-links a:active {
+  div.large-icons a:active {
     color: #3c91e6; }
 
 .social-media-box, .social-media-box > * {
