@@ -77,6 +77,7 @@ export function loadCards()
                 cards.push(parseCardJson(cardData));
             }
             console.log(cards);
+            instantiateSpotlightCards(cards);
         },
         error: function( data, status, error ) { 
             console.log("Data: "+data);
@@ -85,11 +86,38 @@ export function loadCards()
         }
     });
 
-    function instantiateCards(cards: Card[])
+    function instantiateSpotlightCards(cards: Card[])
     {
-        for(var i; i < Math.min(3, cards.length); i++)
+        console.log("Instantiating")
+        for(var i = 0; i < Math.min(3, cards.length); i++)
         {
+            console.log("Making card "+i)
             // set card to slot
+            let card = cards[i];
+
+            var classes: string[] = [];
+            /*
+            if(card.isApp)
+            {
+                classes.push("ios-app-icon")
+            }
+            */
+
+            $("#spotlight .card-row").find(".cardslot").eq(i).append(
+                `
+                <div class="card-view shadow">
+                    <img src="${card.imageSrc || ""}" alt="${card.title}" class="${classes.join(" ")}">
+                    <h4>
+                        <strong>${card.title}</strong>${""/*" "+card.titleNote*/}
+                    </h4>
+                    <p>${card.text.en.translation["key"]}</p>
+                    <p>${card.state}</p>
+                </div>
+                `
+            );
         }
+
+        // Stop the spinner
+        $("#spotlight i.fa-spinner").parent().hide();
     }
 }
