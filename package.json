@@ -6,7 +6,9 @@
   "scripts": {
     "test": "gulp",
     "test-clean": "gulp --clean",
-    "prod": "gulp --prod; ./commit_website.sh"
+    "prod": "gulp --prod; ./commit_website.sh",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -35,10 +37,12 @@
     "tsify": "^3.0.4",
     "typescript": "^2.7.2",
     "vinyl-source-stream": "^2.0.0",
-    "yargs": "^10.1.2"
+    "yargs": "^10.1.2",
+    "snyk": "^1.69.10"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.0",
     "gulp": "^3.9.1"
-  }
+  },
+  "snyk": true
 }
