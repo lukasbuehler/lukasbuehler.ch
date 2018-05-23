@@ -18,6 +18,7 @@ interface CardJson
     text_en?: string,
     text_de?: string,
     image_link?: string, 
+    image_classes?: string,
     visible_date: string,
     expiration_date?: string,
     state?: string,
@@ -30,6 +31,7 @@ interface Card
     title: string,
     text?: MultilangResource,
     imageSrc?: string, 
+    imageClasses?: string,
     visibleDate: Date,
     expirationDate?: Date,
     state?: State,
@@ -50,6 +52,7 @@ function parseCardJson(cardJson: CardJson): Card
             title: cardJson.title || "",
             text: makeMultilangResource(cardJson.text_en || "", cardJson.text_de || ""),
             imageSrc: cardJson.image_link || "",
+            imageClasses: cardJson.image_classes || "",
             visibleDate: new Date(String(cardJson.visible_date)),
             expirationDate: expirationDate,
             state: State[cardJson.state],
@@ -95,18 +98,12 @@ export function loadCards()
             // set card to slot
             let card = cards[i];
 
-            var classes: string[] = [];
-            /*
-            if(card.isApp)
-            {
-                classes.push("ios-app-icon")
-            }
-            */
+            var imageClasses: string[] = [];
 
             $("#spotlight .card-row").find(".cardslot").eq(i).append(
                 `
                 <div class="card-view shadow">
-                    <img src="${card.imageSrc || ""}" alt="${card.title}" class="${classes.join(" ")}">
+                    <img src="${card.imageSrc || ""}" alt="${card.title}" class="${card.imageClasses || ""}">
                     <h4>
                         <strong>${card.title}</strong>${""/*" "+card.titleNote*/}
                     </h4>

@@ -66,7 +66,7 @@ h4 {
 .shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
-img.ios-app-icon {
+img.ios-app-icon, .card-view img.app {
   border-radius: 20%; }
 
 div.large-icons {
@@ -86,7 +86,7 @@ div.large-icons {
   .social-media-box iframe, .social-media-box > * iframe {
     max-width: 100% !important;
     max-height: 100%;
-    width: auto !important;
+    /*width: auto !important;*/
     display: inline !important; }
 
 .carousel-control.right, .carousel-control.left {
