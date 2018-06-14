@@ -45,7 +45,6 @@ const instance = i18n
     .use(LanguageDetecort)
     .init({
         fallbackLng: "en",
-        debug: "false",
         ns: ["index", "general"],
         defaultNS: "general",
         backend: {
@@ -66,22 +65,32 @@ function addResouces(lang: string, namespace: string, data: Object)
 function updateContent()
 {
     // Update all the elements with the accroding text
-    jQuery.getJSON(`/lang/en/index.json`, function(data){
-        // Get ids
-        for (let group of data.children)
-        {
-            console.log(group);
-            for (let obj of group.children)
-            {
-                console.log(obj);
 
-                //$(`#${group.name} .${obj.name}`).text(i18n.t("index:welcome.intro"))
+    // Get language
+
+    // Get page name
+    let page = "index"
+
+    // update page content
+    jQuery.getJSON(`/lang/en/${page}.json`, function(data){
+        // Get ids
+        console.log(data);
+        for (let group in data)
+        {
+            for (let elem in data[group])
+            {
+                $(`#${group} .${elem}`).text(i18n.t(`${page}:${group}.${elem}`))
             }
         }
 
         
     });
-    $("#welcome .intro").text(i18n.t("index:welcome.intro"))
+
+    // update all things
+
+
+    
+    //$("#welcome .intro").text(i18n.t("index:welcome.intro"))
 
     
 }

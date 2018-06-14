@@ -55,7 +55,7 @@ The cards are dynamically loaded content. They can have various content and disp
 The database is on the same server like my website.
 It holds all the information for the cards, since I want them to be fetched on pageload and easily changable without changing the website code.
 
-It's a *MySQLite* database.
+It's a **MySQLite** database.
 
 #### Fetching
 Some JavaScript runs at start and asks the PHP for a JSON representation of the database. The PHP then connects and returns the cards as JSON. 
@@ -75,5 +75,5 @@ TODO: Multilanguage card content
 
 ### Multilanguage
 
-I am using i18next. 
+I am using [i18next](https://www.i18next.com/). 
 TODO: Write more here.
