@@ -2,6 +2,31 @@
 This repo holds all the code for my personal website. 
 That way anyone can use my website and copy some things if they'd like to.
 
+## My To-Dos
+### Next update
+- [ ] Write all texts
+    - [ ] English texts 
+    - [ ] German texts
+- [ ] Multilingual
+    - [ ] English
+    - [ ] German
+    - [ ] Multilingual Cards
+- [ ] Dynamic Cards
+    - [X] Load from Database
+    - [ ] Display nicely
+- [ ] Small Fixes
+    - [ ] Fontawesome bug with linked symbols
+    - [ ] On mobile close the navbar when selecting an option
+
+### After that
+- [ ] Have /card or /me for v-card qr code.
+- [ ] Make military text
+- [ ] Make a biography / CV
+- [ ] Update the projects
+- [ ] Make images smaller and easier to load.
+- [ ] Actually update the dependencies
+
+
 ## How does it work?
 My webpage is obviously based on HTML and CSS but I am also using [Bootsrap](https://getbootstrap.com/).
 Bootstrap helps you create good looking, fast and responsive webpages really quickly. I personally started off with a template from W3 Schools that I found [here](https://www.w3schools.com/bootstrap/).
@@ -39,7 +64,7 @@ To access the database (with read only access) use the following credentials:
 ```.php
 $servername = "lukasbuehler.ch:3306";
 $username = "web";
-$password = "hello_friend";
+$password = "hello_friend"; // yes this is actually it in plain text. But you won't have write access :)
 $dbname = "Cards";
 ```
 

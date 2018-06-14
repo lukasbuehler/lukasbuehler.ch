@@ -31,14 +31,16 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "i18next": "^10.4.1",
+    "i18next-browser-languagedetector": "^2.2.0",
+    "i18next-xhr-backend": "^1.5.1",
     "jquery": "^3.3.1",
     "moment": "^2.20.1",
     "sass": "^1.0.0-beta.5.2",
+    "snyk": "^1.69.10",
     "tsify": "^3.0.4",
     "typescript": "^2.7.2",
     "vinyl-source-stream": "^2.0.0",
-    "yargs": "^10.1.2",
-    "snyk": "^1.69.10"
+    "yargs": "^10.1.2"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.0",
