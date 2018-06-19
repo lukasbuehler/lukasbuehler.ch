@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.2
+version: v1.12.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -28,3 +28,20 @@ patch:
   'npm:qs:20170213':
     - browser-sync > qs:
         patched: '2018-03-06T13:27:29.063Z'
+  'npm:hoek:20180212':
+    - gulp-sass > node-sass > request > hawk > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > request > hawk > boom > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > request > hawk > sntp > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > boom > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > sntp > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
+    - gulp-sass > node-sass > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-19T06:40:10.839Z'
