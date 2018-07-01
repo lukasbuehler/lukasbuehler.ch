@@ -50,7 +50,10 @@ function parseCardJson(cardJson: CardJson): Card
         {
             id: Number(cardJson.id),
             title: cardJson.title || "",
-            text: makeMultilangResource(cardJson.text_en || "", cardJson.text_de || ""),
+            text: makeMultilangResource(
+                "text", cardJson.text_en || "", 
+                "text", cardJson.text_de || ""
+            ),
             imageSrc: cardJson.image_link || "",
             imageClasses: cardJson.image_classes || "",
             visibleDate: new Date(String(cardJson.visible_date)),
@@ -107,7 +110,7 @@ export function loadCards()
                     <h4>
                         <strong>${card.title}</strong>${""/*" "+card.titleNote*/}
                     </h4>
-                    <p>${card.text.en.translation["key"]}</p>
+                    <p>${card.text.en.translation["text"]}</p>
                     <p>${card.state}</p>
                 </div>
                 `

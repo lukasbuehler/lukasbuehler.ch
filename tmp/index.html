@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Lukas Bühler </title>
+    <title>Lukas Bühler</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,7 +17,7 @@
 
 <body id="index" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <nav class="navbar navbar-default navbar-fixed-top shadow">
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top shadow">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -28,24 +27,24 @@
                 </button>
                 <a class="navbar-brand" href="#welcome" class="img-circle">
                     <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 40px; margin: -10px; margin-right: 10px; float: left;">
-                    <span class="hidden-xs hidden-sm">Lukas Bühler</span>
-                    <span class="hidden-lg hidden-md hidden-xs">LB</span>
-                    <span class="hidden-lg hidden-md hidden-sm">L. Bühler</span>
+                    <span class="hidden-xs hidden-sm i18n-name-full"></span>
+                    <span class="hidden-lg hidden-md hidden-xs i18n-name-initials"></span>
+                    <span class="hidden-lg hidden-md hidden-sm i18n-name-short"></span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#about">About Me</a>
+                        <a href="#about" class="about"></a>
                     </li>
                     <li>
-                        <a href="#development">Development</a>
+                        <a href="#development" class="development"></a>
                     </li>
                     <li>
-                        <a href="#social-media">Social Media</a>
+                        <a href="#social-media" class="social_media"></a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="#contact" class="contact"></a>
                     </li>
                 </ul>
             </div>
@@ -55,13 +54,13 @@
     <!-- Welcome container  -->
     <div id="welcome" class="jumbotron text-center">
         <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 80%; max-width: 250px;">
-        <h1 class="name">Lukas Bühler</h1>
-        <p class="intro">Welcome.</p>
+        <h1 class="i18n-name-full"></h1>
+        <p class="intro"></p>
     </div>
 
     <!-- Spotlight container -->
     <div id="spotlight" class="container-fluid text-center bg-grey">
-        <h2 class>Spotlight</h2>
+        <h2 class="title"></h2>
         <div class="row text-cenow who's callingnter card-row">
             <div class="large-icons">
                     <i class="fa fa-spinner fa-spin fa-large text-center"></i>
@@ -80,10 +79,10 @@
     </div>
 
     <!-- About me container -->
-    <div id="about" class="container-fluid">
+    <div id="about_me" class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <h2>About Me</h2>
+                <h2 class="title"></h2>
             </div>
         </div>
         <div class="row">
@@ -91,11 +90,9 @@
                 <img src="resources/images/lukas_buehler_hocke_nuerburgring_2017.jpg" alt="Nürburgring 2017" class="snapshot shadow">
             </div>
             <div class="col-sm-8">
-                <h4 class="intro">
-                    My name is Lukas Bühler, I was born and raised in Switzerland and I'm currently
-                    <span class="people age lukas"></span> years old.</h4>
+                <h4 class="intro"></h4>
                 <br>
-                <p>
+                <p class="text1">
                     At the moment I am working as a trainee software developer at
                     <a href="https://belsoft-collaboration.ch/">Belsoft Collaboration AG</a> in Zürich.
                     <br> But I am not only a fulltime developer at work, I also work on multiple projects in my freetime. Check
@@ -111,12 +108,8 @@
         <div class="row">
             <div class="col-sm-8">
 
-                <h4>
-                    Skiing has always been a big passion for me and I probably couldn't do without it.
-                </h4>
-                <p>
-                    Words.
-                </p>
+                <h4 class="phrase"></h4>
+                <p class="text2"></p>
                 <br>
             </div>
             <div class="col-sm-4">
@@ -126,7 +119,7 @@
         <br>
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn btn-ms btn-main">Read more</button>
+                <button class="btn btn-ms btn-main i18n-button-read_more"></button>
             </div>
         </div>
     </div>
@@ -134,28 +127,19 @@
 
     <!-- Development container -->
     <div id="development" class="container-fluid text-center bg-grey">
-        <h2>Development</h2>
+        <h2 class="title"></h2>
         <br>
-        <h3 style="margin-bottom: 25px;">My projects</h3>
+        <h3 style="margin-bottom: 25px;" class="my-projects"></h3>
         <div class="row text-center card-row">
             <div class="col-sm-4">
-                <div class="card-view shadow">
-                    <img src="resources/images/hudis_logo.png" alt="Hudis" class="ios-app-icon">
-                    <h4>
-                        <strong>Hudis?</strong> (iOS App)
-                    </h4>
-                    <p>Get to know who's calling you.</p>
-                    <p>
-                        <b>In development</b>
-                    </p>
-                </div>
+                <!-- Card here TODO -->
             </div>
             <!-- Add more cards here -->
         </div>
         <div class="row">
-            <h3>Links</h3>
+            <h3 class="dev-links"></h3>
             <div class="large-icons">
-                <a href="https://github.com/Luky66/">
+                <a href="https://github.com/lukasbuehler/">
                     <i class="fa fa-github"></i>
                 </a>
                 <a href="https://stackoverflow.com/users/9045906/lukas?tab=profile">
@@ -171,7 +155,7 @@
 
     <!-- social media container -->
     <div id="social-media" class="container-fluid">
-        <h2>Social Media</h2>
+        <h2 class="title"></h2>
         <div class="row">
             <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
                 <div class="social-media-box">
@@ -206,9 +190,9 @@
 
     <!-- Contact container -->
     <div id="contact" class="container-fluid bg-grey">
-        <h2 class="text-center">CONTACT</h2>
+        <h2 class="text-center title"></h2>
         <div class="row">
-            <p>Feel free to contact me via E-Mail or this contact form.</p>
+            <p class="text"></p>
             <p>
                 I'll get back to you as fast as I can.
                 <br/>
@@ -217,26 +201,16 @@
                     mail@lukasbuehler.ch
                 </a>
             </p>
-            <p>
-                You may also send me packages for free via the Swiss military Feldpost.
-                <br/>
-                <a href="mailto:mail@lukasbuehler.ch" title="Send an E-Mail">
-                    <span class="fa fa-package"></span>
-                    How to send me packages during my military service.
-                </a>
-            </p>
         </div>
     </div>
 
     <!-- footer -->
-    <footer class="container-fluid text-center">
-        <a href="#myPage" title="To Top">
+    <footer id="footer" class="container-fluid text-center">
+        <a href="#welcome" title="To Top">
             <span class="glyphicon glyphicon-chevron-up"></span>
-            <p>Back to the top</p>
+            <p class="back_to_top"></p>
         </a>
-        <p>
-            made by Lukas Bühler
-        </p>
+        <p class="made_by"></p>
     </footer>
 
     <!-- Twitter widget -->

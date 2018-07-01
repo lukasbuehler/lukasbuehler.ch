@@ -6,9 +6,10 @@
         "social_media": "Social Media",
         "contact": "Contact"
     },
-    "buttons":
+    "footer":
     {
-        "read_more": "Read more"
+        "back_to_top": "Back to the top",
+        "made_by": "made by Lukas Bühler"
     },
     "cards":
     {
@@ -20,6 +21,24 @@
             "visit": "Visit page",
             "new_version": "Version {{version}} available!",
             "watch_now": "Watch now!"
+        }
+    },
+    "classes":
+    {
+        "name": 
+        {
+            "full": "Lukas Buehler",
+            "short": "L. Buehler",
+            "initials": "LB"
+        },
+        "button":
+        {
+            "read_more": "Read more",
+            "visit": "Visit"
+        },
+        "other":
+        {
+            
         }
     }
 }
