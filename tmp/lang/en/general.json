@@ -19,7 +19,7 @@
             "in_development": "In development",
             "download": "Download here",
             "visit": "Visit page",
-            "new_version": "Version {{version}} available!",
+            "new_version": "Version {{version}} now available!",
             "watch_now": "Watch now!"
         }
     },

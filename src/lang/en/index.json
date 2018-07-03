@@ -11,7 +11,7 @@
     {
         "title": "About Me",
         "intro": "My name is Lukas Bühler, I was born and raised in Switzerland and I'm currently {{age}} years old.",
-        "text1": "",
+        "text1": "At the moment I am working as a trainee software developer at <a href=\"https://belsoft-collaboration.ch/\">Belsoft Collaboration AG</a> in Zürich.<br> But I am not only a fulltime developer at work, I also work on multiple projects in my freetime. Check it out in the <a class=\"scrollSmooth\" href=\"#development\">development section</a>.<br> Besides being a developer I am also a ski coach for the <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünden.,",
         "phrase": "Skiing has always been a big passion for me and I probably couldn't do without it.",
         "text2": "Words."
 
