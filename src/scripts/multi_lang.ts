@@ -4,42 +4,27 @@ import * as XHR from "i18next-xhr-backend"
 import * as LanguageDetecort from "i18next-browser-languagedetector"
 import * as $ from "jquery";
 
-
 export interface MultilangResource
 {
-    en: 
-    {
-        translation: Object
-    },
-    de: 
-    {
-        translation: Object
-    }
-};
+    en: Object,
+    de: Object
+}
 
 export function makeMultilangResource(
-    key_en: string, text_en: string, 
+    key_en: string, text_en: string,
     key_de: string, text_de: string
 ): MultilangResource
 {
-    let resource =
-    {
+    return {
         en: 
         {
-            translation: 
-            {
-                [key_en]: text_en
-            }
+            [key_en]: text_en
         },
         de:
         {
-            translation: 
-            {
-                [key_de]: text_de
-            }
+            [key_de]: text_de
         }
-    };
-    return resource;
+    }
 }
 
 let my18nextVars = 
@@ -67,18 +52,32 @@ const instance = i18n
         }
     });
 
-function addResouces(lang: string, namespace: string, data: Object)
+export function addResources(lng: string, ns: string, resource: Object, deep?: boolean)
 {
-    i18n.addResourceBundle(lang, namespace, data);
+
+    i18n.addResourceBundle(lng, ns, resource, deep);
+}
+
+export function getTranslation(selector: string, paramsObj?: Object): string
+{
+    if(paramsObj)
+    {
+        return i18n.t(selector, paramsObj);
+    }
+    else
+    {
+        return i18n.t(selector);
+    }
+    
 }
 
 
-function updateContent()
+export function updateContent()
 {
     // Update all the elements with the accroding text
     let params = 
     {
-        age: 20 // TODO
+        my_age: 20 // TODO
     }
 
     // Get language
@@ -129,12 +128,6 @@ function updateContent()
     }
 }
 
-// Not sure if this is needed
-function updateCardContent(language)
-{
-    //Update the cards with the correct language
-    
-}
 
 function insertI18nextPhrase(file: String, group: String, params: Object, elems: String[], isMatchingGroup: boolean)
 {

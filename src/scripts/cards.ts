@@ -1,14 +1,15 @@
-import { MultilangResource, makeMultilangResource } from "./multi_lang";
+import { MultilangResource, makeMultilangResource, getTranslation, addResources, updateContent } from "./multi_lang";
+
 import * as $ from "jquery"; 
 
 enum State
 {
-    Planning = "general:cards.states.in_planning",
-    Development = "general:cards.states.development",
-    Download = "general:cards.states.download",
-    Visit = "general:cards.states.visit",
-    NewVersion = "general:cards.states.new_version",
-    Watch = "general:cards.states.watch_now"
+    Planning = "in_planning",
+    Development = "in_development",
+    Download = "download",
+    Visit = "visit",
+    NewVersion = "new_version",
+    Watch = "watch_now"
 }
 
 interface CardJson
@@ -21,7 +22,7 @@ interface CardJson
     image_classes?: string,
     visible_date: string,
     expiration_date?: string,
-    state?: string,
+    state: string,
     is_dev?: number
 }
 
@@ -34,7 +35,7 @@ interface Card
     imageClasses?: string,
     visibleDate: Date,
     expirationDate?: Date,
-    state?: State,
+    state: State,
     isDev: boolean
 }
 
@@ -78,10 +79,11 @@ export function loadCards()
 
             for(let cardData of data)
             {
-                // loop through returned data and make cards
-
                 cards.push(parseCardJson(cardData));
             }
+
+            // maybe sort the cards?
+
             console.log(cards);
             instantiateSpotlightCards(cards);
         },
@@ -94,29 +96,41 @@ export function loadCards()
 
     function instantiateSpotlightCards(cards: Card[])
     {
-        console.log("Instantiating")
         for(var i = 0; i < Math.min(3, cards.length); i++)
         {
-            console.log("Making card "+i)
-            // set card to slot
             let card = cards[i];
 
             var imageClasses: string[] = [];
 
-            $("#spotlight .card-row").find(".cardslot").eq(i).append(
-                `
+            addResources("en", "general", // en
+            {
+                
+                "cards": 
+                {
+                    ["card_"+card.id]: 
+                    {
+                        "title": card.title,
+                        "text": card.text.en["text"]
+                    }
+                }
+                
+            }, true);
+
+            let cardHtml = `
                 <div class="card-view shadow">
                     <img src="${card.imageSrc || ""}" alt="${card.title}" class="${card.imageClasses || ""}">
                     <h4>
-                        <strong>${card.title}</strong>${""/*" "+card.titleNote*/}
+                        <strong>${getTranslation("general:cards.card_"+card.id+".title")}</strong>${""/*" "+card.titleNote*/}
                     </h4>
-                    <p>${card.text.en.translation["text"]}</p>
-                    <p>${card.state}</p>
+                    <p>${getTranslation("general:cards.card_"+card.id+".text")}</p>
+                    <p>${getTranslation("general:cards.states."+card.state)}</p>
                 </div>
-                `
-            );
+            `
+
+            $("#spotlight .card-row").find(".cardslot").eq(i).append(cardHtml);
         }
 
+        updateContent();
         // Stop the spinner
         $("#spotlight i.fa-spinner").parent().hide();
     }

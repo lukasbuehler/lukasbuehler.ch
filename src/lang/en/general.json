@@ -1,9 +1,9 @@
 {
     "navbar": 
     {
-        "about": "About Me",
+        "about-me": "About Me",
         "development": "Development",
-        "social_media": "Social Media",
+        "social-media": "Social Media",
         "contact": "Contact"
     },
     "footer":
@@ -11,9 +11,9 @@
         "back_to_top": "Back to the top",
         "made_by": "made by Lukas Bühler"
     },
-    "cards":
+    "cards": 
     {
-        "states": 
+        "states":
         {
             "in_planning": "In planning",
             "in_development": "In development",
