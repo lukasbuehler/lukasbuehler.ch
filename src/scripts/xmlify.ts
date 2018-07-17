@@ -10,7 +10,6 @@
  * 
  */  
 
-import * as $ from "jquery";
 
 interface XmlifyElement {
     xmlifyTag: string;

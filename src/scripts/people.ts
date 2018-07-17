@@ -23,7 +23,6 @@
 */
 
 import * as moment from "moment";
-import * as $ from "jquery";
 
 // TODO Optimize! And Typescriptify!
 

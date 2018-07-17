@@ -2,7 +2,6 @@
 import * as i18n from "i18next"
 import * as XHR from "i18next-xhr-backend"
 import * as LanguageDetecort from "i18next-browser-languagedetector"
-import * as $ from "jquery";
 
 export interface MultilangResource
 {
@@ -72,7 +71,7 @@ export function getTranslation(selector: string, paramsObj?: Object): string
 }
 
 
-export function updateContent()
+export function updateContent(lng?: string)
 {
     // Update all the elements with the accroding text
     let params = 
@@ -81,10 +80,9 @@ export function updateContent()
     }
 
     // Get language
-    let lng = "en" // as of yet hardcoded
+    lng = lng || i18n.language
     if(lng)
     {
-        console.log("lng = "+lng)
         // Get page name
         let page = $("body").attr("id") // fetches the current page name from the id of the body element in the DOM.
 
@@ -124,6 +122,9 @@ export function updateContent()
                     }
                 }
             }
+        })  
+        .fail(function() {
+            updateContent(i18n.language.substring(0, 2));
         });
     }
 }
@@ -139,7 +140,6 @@ function insertI18nextPhrase(file: String, group: String, params: Object, elems:
     else
     {
         element = $(`.${my18nextVars.classesSelectorClassPrefix}${elems.join("-")}`)
-        console.log(`.${my18nextVars.classesSelectorClassPrefix}${elems.join("-")}`);
     }
 
     if(element.hasClass(my18nextVars.insertHtmlCommandClass))

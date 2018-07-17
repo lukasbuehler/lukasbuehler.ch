@@ -3,7 +3,9 @@
 import { setupPeopleScript } from "./people";
 import { smoothScrollSetup } from "./smoothScroll";
 import { loadCards } from "./cards";
+import { closeNavbarOnItemSelection } from "./navbar"
 
 setupPeopleScript();
 smoothScrollSetup();
 loadCards();
+closeNavbarOnItemSelection();

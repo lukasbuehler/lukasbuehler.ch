@@ -1,7 +1,5 @@
 import { MultilangResource, makeMultilangResource, getTranslation, addResources, updateContent } from "./multi_lang";
 
-import * as $ from "jquery"; 
-
 enum State
 {
     Planning = "in_planning",

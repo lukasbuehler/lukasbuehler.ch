@@ -5,26 +5,39 @@ That way anyone can use my website and copy some things if they'd like to.
 ## My To-Dos
 ### Next update
 - [ ] Write all texts
-    - [ ] English texts 
+    - [X] English texts 
     - [ ] German texts
-- [ ] Multilingual
-    - [ ] English
+- [X] Multilingual
+    - [X] English
     - [ ] German
-    - [ ] Multilingual Cards
+    - [X] Multilingual Cards
 - [ ] Dynamic Cards
     - [X] Load from Database
-    - [ ] Display nicely
+    - [X] Display nicely
 - [ ] Small Fixes
     - [ ] Fontawesome bug with linked symbols
-    - [ ] On mobile close the navbar when selecting an option
+    - [X] On mobile close the navbar when selecting an option
 
 ### After that
+- [ ] Refactor
+    - [ ] Remove unused dependencies
+    - [ ] Refactor HTML
+    - [ ] Refactor Scripts
+- [ ] Make useable with JS disabled
+- [ ] Update the dependencies
+- [ ] Make images smaller and easier to load.
 - [ ] Have /card or /me for v-card qr code.
 - [ ] Make military text
 - [ ] Make a biography / CV
 - [ ] Update the projects
-- [ ] Make images smaller and easier to load.
-- [ ] Actually update the dependencies
+
+### Documentation
+- [ ] Gulp
+    - [ ] Workflow
+- [ ] Cards
+- [ ] Multilanguage
+
+
 
 
 ## How does it work?
@@ -33,7 +46,7 @@ Bootstrap helps you create good looking, fast and responsive webpages really qui
 The specific template I used is [here](https://www.w3schools.com/bootstrap/bootstrap_theme_company.asp)
 
 ## Note
-Keep in mind that this repo just holds all the code to create my website and doesn't necessairily hold all its content. Some data is fetched from a database for example.
+Keep in mind that this repo just holds all the code to create my website and doesn't necessairily hold all its content. The cards are fetched from a database for example.
 
 
 ## Documentation
@@ -45,8 +58,8 @@ TODO
 #### Workflow
 TODO
 
-#### Modifying the structure
-TODO
+#### Modifying the structure???
+TODO ???
 
 ### Cards 
 The cards are dynamically loaded content. They can have various content and display projects, ideas, and all sorts of stuff. The card information is stored in a database
@@ -75,5 +88,5 @@ TODO: Multilanguage card content
 
 ### Multilanguage
 
-I am using [i18next](https://www.i18next.com/). 
-TODO: Write more here.
+I am using [i18next](https://www.i18next.com/).
+TODO: Write more here. Will do, soon.
