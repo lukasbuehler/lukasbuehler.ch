@@ -1,7 +1,7 @@
 
 import * as i18n from "i18next"
 import * as XHR from "i18next-xhr-backend"
-import * as LanguageDetecort from "i18next-browser-languagedetector"
+import * as LanguageDetector from "i18next-browser-languagedetector"
 
 export interface MultilangResource
 {
@@ -37,9 +37,13 @@ let my18nextVars =
 
 const instance = i18n
     .use(XHR)
-    .use(LanguageDetecort)
+    .use(LanguageDetector)
     .init({
-        fallbackLng: "en",
+        fallbackLng: 
+        {
+            'de_*': ['de', 'en'],
+            'default': ['en']
+        },
         ns: ["index", "general"],
         defaultNS: "general",
         backend: {
@@ -81,6 +85,8 @@ export function updateContent(lng?: string)
 
     // Get language
     lng = lng || i18n.language
+    console.log("lang = "+lng)
+    console.log(i18n.languages);
     if(lng)
     {
         // Get page name
@@ -124,7 +130,7 @@ export function updateContent(lng?: string)
             }
         })  
         .fail(function() {
-            updateContent(i18n.language.substring(0, 2));
+            //updateContent(i18n.language.substring(0, 2));
         });
     }
 }

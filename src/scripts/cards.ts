@@ -113,6 +113,19 @@ export function loadCards()
                 }
                 
             }, true);
+            addResources("de", "general", // de
+            {
+                
+                "cards": 
+                {
+                    ["card_"+card.id]: 
+                    {
+                        "title": card.title,
+                        "text": card.text.de["text"]
+                    }
+                }
+                
+            }, true);
 
             let cardHtml = `
                 <div class="card-view shadow">
