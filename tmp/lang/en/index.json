@@ -7,7 +7,7 @@
     {
         "title": "Spotlight"
     },
-    "about-me": 
+    "about_me": 
     {
         "title": "About Me",
         "intro": "My name is Lukas Bühler, I was born and raised in Switzerland and I'm currently {{my_age}} years old.",
@@ -18,10 +18,10 @@
     },
     "development": {
         "title": "Development",
-        "my-projects": "My projects",
-        "dev-links": "Links"
+        "my_projects": "My projects",
+        "dev_links": "Links"
     },
-    "social-media": {
+    "social_media": {
         "title": "Social Media"
     },
     "contact":

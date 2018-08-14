@@ -28,11 +28,17 @@ export function makeMultilangResource(
 
 let my18nextVars = 
 {
-    "generalLanguageFileName": "general",
-    "classesGroupName": "classes",
-    "insertHtmlCommandClass": "i18n-insert-as-html",
-    "classesSelectorClassPrefix": "i18n-c-",
+    "specificPageNameSpaceSelector": "page",
+    "insertAsHtmlClass": "i18c-html"
 }
+
+let parameterGetCallbacks = 
+{
+    "age": function() {
+        return "20";
+    }
+}
+
 
 
 const instance = i18n
@@ -41,7 +47,6 @@ const instance = i18n
     .init({
         fallbackLng: 
         {
-            'de_*': ['de', 'en'],
             'default': ['en']
         },
         ns: ["index", "general"],
@@ -78,84 +83,68 @@ export function getTranslation(selector: string, paramsObj?: Object): string
 export function updateContent(lng?: string)
 {
     // Update all the elements with the accroding text
+
     let params = 
     {
-        my_age: 20 // TODO
+        my_age: parameterGetCallbacks.age()
     }
 
     // Get language
     lng = lng || i18n.language
-    console.log("lang = "+lng)
     console.log(i18n.languages);
     if(lng)
     {
         // Get page name
         let page = $("body").attr("id") // fetches the current page name from the id of the body element in the DOM.
 
-        // update page content
-        jQuery.getJSON(`/lang/${lng}/${page}.json`, function(data){
-            // Get ids
-            for (let group in data)
+        $('.i18n').each(function(){
+            let selector: string = getI18nSelector(page, this);
+            if($(this).hasClass(my18nextVars.insertAsHtmlClass))
             {
-                for (let elem in data[group])
-                {
-                    insertI18nextPhrase(page, group, params, [elem], true);
-                }
+                insertI18nextPhraseAsHtml($(this), selector, params);
             }
-        });
-
-        // update all the little things
-        jQuery.getJSON(`/lang/${lng}/general.json`, function(data){
-            // Get ids
-            for (let group in data)
+            else
             {
-                if(group === my18nextVars.classesGroupName)
-                {
-                    // Don't match groups.
-                    for (let elem in data[group])
-                    {
-                        for (let elem2 in data[group][elem])
-                        {
-                            insertI18nextPhrase(my18nextVars.generalLanguageFileName, group, params, [elem, elem2], false)
-                        }
-                    }
-                }
-                else
-                {
-                    for (let elem in data[group])
-                    {
-                        insertI18nextPhrase(my18nextVars.generalLanguageFileName, group, params, [elem], true)
-                    }
-                }
+                insertI18nextPhraseAsText($(this), selector, params);
             }
-        })  
-        .fail(function() {
-            //updateContent(i18n.language.substring(0, 2));
-        });
+        })
     }
 }
 
-
-function insertI18nextPhrase(file: String, group: String, params: Object, elems: String[], isMatchingGroup: boolean)
+function getI18nSelector(page: string, _elem: HTMLElement): string
 {
-    let element: JQuery<HTMLElement>
-    if(isMatchingGroup)
-    {
-        element = $(`#${group} .${elems.join(".")}`);
-    }
-    else
-    {
-        element = $(`.${my18nextVars.classesSelectorClassPrefix}${elems.join("-")}`)
-    }
+    let classString: string = $(_elem).attr('class');
+    let regEx: RegExp = /(^|\s)(i18n-([a-zA-Z0-9\-\_]+))/gm
+    let _groups: RegExpExecArray = regEx.exec(classString);
 
-    if(element.hasClass(my18nextVars.insertHtmlCommandClass))
+    //let currentClass = _groups[2];
+    let i18nSelector = makeI18nSelectorFromClassString(page, _groups[3]);
+
+    return i18nSelector;
+}
+
+/** s is the class string without the "i18n-" prefix. */
+function makeI18nSelectorFromClassString(page: string, s: string): string
+{
+    let _splittedString: string[] = s.split("-");
+    let _nameSpace: string = _splittedString.shift();
+    let _elements = _splittedString;
+
+    if(_nameSpace === my18nextVars.specificPageNameSpaceSelector)
     {
-        element.html(i18n.t(`${file}:${group}.${elems.join(".")}`, params))
+        _nameSpace = page;
     }
-    else
-    {
-        element.text(i18n.t(`${file}:${group}.${elems.join(".")}`, params))
-    }
+    let selector: string = `${_nameSpace}:${_elements.join(".")}`;
+    return selector
+}
+
+function insertI18nextPhraseAsText(element: JQuery<HTMLElement>, i18nSelector: string, params: Object)
+{
+    element.text(i18n.t(i18nSelector, params))
+}
+function insertI18nextPhraseAsHtml(element: JQuery<HTMLElement>, i18nSelector: string, params: Object)
+{
+    element.html(i18n.t(i18nSelector, params))
 }
 
 function changeLng(lng)

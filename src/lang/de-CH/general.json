@@ -1,0 +1,41 @@
+{
+    "navbar": 
+    {
+        "about_me": "Über mich",
+        "development": "Programmiere",
+        "social_media": "Soziali Medie",
+        "contact": "Kontakt"
+    },
+    "footer":
+    {
+        "back_to_top": "Nach obe",
+        "made_by": "gmacht vom Lukas Bühler"
+    },
+    "cards": 
+    {
+        "states":
+        {
+            "in_planning": "In Planig",
+            "in_development": "In Entwicklig",
+            "download": "Da Abelade",
+            "visit": "Site Bsueche",
+            "new_version": "Version {{version}} jetzt verfüegbar!",
+            "watch_now": "Jetzt ahluege!"
+        }
+    },
+    "name": 
+    {
+        "full": "Lukas Bühler",
+        "short": "L. Bühler",
+        "initials": "LB"
+    },
+    "button":
+    {
+        "read_more": "Meh lese",
+        "visit": "Besuche"
+    },
+    "other":
+    {
+        
+    }
+}

@@ -7,7 +7,7 @@
     {
         "title": "Spotlight"
     },
-    "about-me": 
+    "about_me": 
     {
         "title": "Über mich",
         "intro": "Mein name ist Lukas Bühler, ich wurde in der Schweiz geboren und gross gezogen und bin {{my_age}} Jahre alt.",
@@ -18,10 +18,10 @@
     },
     "development": {
         "title": "Software Entwicklung",
-        "my-projects": "Meine Projekte",
-        "dev-links": "Links"
+        "my_projects": "Meine Projekte",
+        "dev_links": "Links"
     },
-    "social-media": {
+    "social_media": {
         "title": "Soziale Medien"
     },
     "contact":

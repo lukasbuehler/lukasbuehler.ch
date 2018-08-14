@@ -1,9 +1,9 @@
 {
     "navbar": 
     {
-        "about-me": "About Me",
+        "about_me": "About Me",
         "development": "Development",
-        "social-media": "Social Media",
+        "social_media": "Social Media",
         "contact": "Contact"
     },
     "footer":
@@ -23,22 +23,19 @@
             "watch_now": "Watch now!"
         }
     },
-    "classes":
+    "name": 
     {
-        "name": 
-        {
-            "full": "Lukas Buehler",
-            "short": "L. Buehler",
-            "initials": "LB"
-        },
-        "button":
-        {
-            "read_more": "Read more",
-            "visit": "Visit"
-        },
-        "other":
-        {
-            
-        }
+        "full": "Lukas Buehler",
+        "short": "L. Buehler",
+        "initials": "LB"
+    },
+    "button":
+    {
+        "read_more": "Read more",
+        "visit": "Visit"
+    },
+    "other":
+    {
+        
     }
 }

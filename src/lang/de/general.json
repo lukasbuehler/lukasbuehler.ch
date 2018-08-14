@@ -1,9 +1,9 @@
 {
     "navbar": 
     {
-        "about-me": "Über mich",
+        "about_me": "Über mich",
         "development": "Programmieren",
-        "social-media": "Soziale Medien",
+        "social_media": "Soziale Medien",
         "contact": "Kontakt"
     },
     "footer":
@@ -23,22 +23,19 @@
             "watch_now": "Jetzt ansehen!"
         }
     },
-    "classes":
+    "name": 
     {
-        "name": 
-        {
-            "full": "Lukas Bühler",
-            "short": "L. Bühler",
-            "initials": "LB"
-        },
-        "button":
-        {
-            "read_more": "Mehr lesen",
-            "visit": "Besuchen"
-        },
-        "other":
-        {
-            
-        }
+        "full": "Lukas Bühler",
+        "short": "L. Bühler",
+        "initials": "LB"
+    },
+    "button":
+    {
+        "read_more": "Mehr lesen",
+        "visit": "Besuchen"
+    },
+    "other":
+    {
+        
     }
 }
