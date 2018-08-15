@@ -4,32 +4,23 @@ That way anyone can use my website and copy some things if they'd like to.
 
 ## My To-Dos
 ### Next update
-- [ ] Write all texts
-    - [X] English texts 
-    - [ ] German texts
-- [X] Multilingual
-    - [X] English
-    - [ ] German
-    - [X] Multilingual Cards
-- [ ] Dynamic Cards
-    - [X] Load from Database
-    - [X] Display nicely
 - [ ] Small Fixes
     - [ ] Fontawesome bug with linked symbols
-    - [X] On mobile close the navbar when selecting an option
+- [ ] Make useable with JS disabled
+- [ ] Update the dependencies
+- [ ] Use CDNs
+- [ ] Make images smaller and easier to load.
+- [ ] Have /card or /me for v-card qr code.
+- [ ] Make a biography / CV
+- [ ] Update the projects
+
 
 ### After that
 - [ ] Refactor
     - [ ] Remove unused dependencies
     - [ ] Refactor HTML
     - [ ] Refactor Scripts
-- [ ] Make useable with JS disabled
-- [ ] Update the dependencies
-- [ ] Make images smaller and easier to load.
-- [ ] Have /card or /me for v-card qr code.
-- [ ] Make military text
-- [ ] Make a biography / CV
-- [ ] Update the projects
+
 
 ### Documentation
 - [ ] Gulp

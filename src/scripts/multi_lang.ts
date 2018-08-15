@@ -2,6 +2,7 @@
 import * as i18n from "i18next"
 import * as XHR from "i18next-xhr-backend"
 import * as LanguageDetector from "i18next-browser-languagedetector"
+import { getAge } from "./momentHelper";
 
 export interface MultilangResource
 {
@@ -35,7 +36,7 @@ let my18nextVars =
 let parameterGetCallbacks = 
 {
     "age": function() {
-        return "20";
+        return getAge("19.06.1998");
     }
 }
 
