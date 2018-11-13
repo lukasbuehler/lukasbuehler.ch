@@ -7,12 +7,14 @@ import { getAge } from "./momentHelper";
 export interface MultilangResource
 {
     en: Object,
-    de: Object
+    de: Object,
+    ch: Object
 }
 
 export function makeMultilangResource(
     key_en: string, text_en: string,
-    key_de: string, text_de: string
+    key_de: string, text_de: string,
+    key_ch: string, text_ch: string
 ): MultilangResource
 {
     return {
@@ -23,6 +25,10 @@ export function makeMultilangResource(
         de:
         {
             [key_de]: text_de
+        },
+        ch:
+        {
+            [key_ch]: text_ch
         }
     }
 }

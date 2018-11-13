@@ -17,6 +17,8 @@
         {
             "in_planning": "In planning",
             "in_development": "In development",
+            "cancelled": "Cancelled",
+            "put_off": "Inactive",
             "download": "Download here",
             "visit": "Visit page",
             "new_version": "Version {{version}} now available!",

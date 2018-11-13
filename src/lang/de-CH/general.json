@@ -17,6 +17,8 @@
         {
             "in_planning": "In Planig",
             "in_development": "In Entwicklig",
+            "cancelled": "Abbroche",
+            "put_off": "Inaktiv",
             "download": "Da Abelade",
             "visit": "Site bsueche",
             "new_version": "Version {{version}} jetzt verfüegbar!",

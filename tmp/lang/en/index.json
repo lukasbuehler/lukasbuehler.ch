@@ -18,7 +18,7 @@
     },
     "development": {
         "title": "Development",
-        "my_projects": "My projects",
+        "projects": "Projects",
         "dev_links": "Links"
     },
     "social_media": {

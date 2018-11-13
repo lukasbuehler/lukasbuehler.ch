@@ -25,9 +25,9 @@
                 </button>
                 <a class="navbar-brand" href="#welcome">
                     <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 40px; margin: -10px; margin-right: 10px; float: left;">
-                    <span class="hidden-xs hidden-sm i18n-name-full"></span>
-                    <span class="hidden-lg hidden-md hidden-xs i18n-name-initials"></span>
-                    <span class="hidden-lg hidden-md hidden-sm i18n-name-short"></span>
+                    <span class="hidden-xs hidden-sm i18n i18n-general-name-full"></span>
+                    <span class="hidden-lg hidden-md hidden-xs i18n i18n-general-name-initials"></span>
+                    <span class="hidden-lg hidden-md hidden-sm i18n i18n-general-name-short"></span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -61,7 +61,8 @@
         <h2 class="i18n i18n-page-spotlight-title"></h2>
         <div class="row text-center card-row">
             <div class="large-icons">
-                    <i class="fa fa-spinner fa-spin fa-large text-center"></i>
+                <i class="fa fa-spinner fa-spin fa-large text-center"></i>
+                <i class="fa fa-exclamation-triangle fa-large text-center loadingError" style="display:none"></i>
             </div>
             <div class="col-sm-4 cardslot">
                 <!-- card 1 goes here -->
@@ -119,8 +120,12 @@
     <div id="development" class="container-fluid text-center bg-grey">
         <h2 class="i18n i18n-page-development-title"></h2>
         <br>
-        <h3 style="margin-bottom: 25px;" class="i18n i18n-page-development-my_projects"></h3>
+        <h3 style="margin-bottom: 25px;" class="i18n i18n-page-development-projects"></h3>
         <div class="row text-center card-row">
+            <div class="large-icons">
+                <!-- <i class="fa fa-spinner fa-spin fa-large text-center"></i> -->
+                <i class="fa fa-exclamation-triangle fa-large text-center loadingError" style="display:none"></i>
+            </div>
             <div class="col-sm-4">
                 <!-- Card here TODO -->
             </div>
@@ -128,6 +133,7 @@
         </div>
         <div class="row">
             <h3 class="dev-links"></h3>
+            
             <div class="large-icons">
                 <a href="https://github.com/lukasbuehler/">
                     <i class="fa fa-github"></i>

@@ -4,6 +4,8 @@ enum State
 {
     Planning = "in_planning",
     Development = "in_development",
+    Cancelled = "cancelled",
+    PutOff = "put_off",
     Download = "download",
     Visit = "visit",
     NewVersion = "new_version",
@@ -16,10 +18,12 @@ interface CardJson
     title: string,
     text_en?: string,
     text_de?: string,
-    image_link?: string, 
+    text_ch?: string,
+    image_src?: string, 
     image_classes?: string,
     visible_date: string,
     expiration_date?: string,
+    link?: string,
     state: string,
     is_dev?: number
 }
@@ -32,14 +36,28 @@ interface Card
     imageSrc?: string, 
     imageClasses?: string,
     visibleDate: Date,
-    expirationDate?: Date,
+    expirationDate?: Date | "",
+    link?: string
     state: State,
     isDev: boolean
 }
 
+function setLoadingErrorVisibility(visible: boolean)
+{
+    if(visible)
+    {
+        $("i.fa.loadingError").show();
+        $("#spotlight i.fa-spinner").hide();
+    }
+    else
+    {
+        $("i.fa.loadingError").hide();
+    }
+}
+
 function parseCardJson(cardJson: CardJson): Card
 {
-    var expirationDate: Date | null;
+    var expirationDate: Date | "";
     if(cardJson.expiration_date)
     {
         expirationDate = new Date(cardJson.expiration_date);
@@ -51,12 +69,14 @@ function parseCardJson(cardJson: CardJson): Card
             title: cardJson.title || "",
             text: makeMultilangResource(
                 "text", cardJson.text_en || "", 
-                "text", cardJson.text_de || ""
+                "text", cardJson.text_de || "",
+                "text", cardJson.text_ch || ""
             ),
-            imageSrc: cardJson.image_link || "",
+            imageSrc: cardJson.image_src || "",
             imageClasses: cardJson.image_classes || "",
             visibleDate: new Date(String(cardJson.visible_date)),
             expirationDate: expirationDate,
+            link: cardJson.link,
             state: State[cardJson.state],
             isDev: Boolean(Number(cardJson.is_dev || "0"))
         };
@@ -86,9 +106,10 @@ export function loadCards()
             instantiateSpotlightCards(cards);
         },
         error: function( data, status, error ) { 
-            console.log("Data: "+data);
+            console.log(data);
             console.log("Status: "+status);
             console.log("Error: "+error);
+            setLoadingErrorVisibility(true);
         }
     });
 
@@ -127,6 +148,14 @@ export function loadCards()
                 
             }, true);
 
+            let cardButtonHtml = "";
+            if(card.link)
+            {
+                cardButtonHtml = `
+                    <a href="${card.link}" class="btn btn-ms btn-main i18n i18n-general-button-read_more"></a>
+                `;
+            }
+
             let cardHtml = `
                 <div class="card-view shadow">
                     <img src="${card.imageSrc || ""}" alt="${card.title}" class="${card.imageClasses || ""}">
@@ -135,6 +164,7 @@ export function loadCards()
                     </h4>
                     <p>${getTranslation("general:cards.card_"+card.id+".text")}</p>
                     <p>${getTranslation("general:cards.states."+card.state)}</p>
+                    ${cardButtonHtml}
                 </div>
             `
 

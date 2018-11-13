@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $row["text_en"] = utf8_encode($row["text_en"]);
         $row["text_de"] = utf8_encode($row["text_de"]);
+        $row["text_ch"] = utf8_encode($row["text_ch"]);
 
         $rows[] = json_encode($row);
     }
@@ -31,7 +32,7 @@ if ($result->num_rows > 0) {
     echo "[" . join(",", $rows) . "]";
 
 } else {
-    echo "{error: '0 results'}";
+    echo "[]";
 }
 
 ?>

@@ -5,6 +5,7 @@
     ],
     "compilerOptions": {
         "strict": false,//true,
+        "allowJs": true,
         "checkJs": true,
         "target": "es6",
         "moduleResolution": "node",
