@@ -10,10 +10,10 @@
     "about_me": 
     {
         "title": "Über mich",
-        "intro": "Mein name ist Lukas Bühler, ich wurde in der Schweiz geboren und gross gezogen und bin {{my_age}} Jahre alt.",
-        "text1": "Im Moment arbeite ich als Software Entwickler bei der <a href=\"https://belsoft-collaboration.ch/\">Belsoft Collaboration AG</a> in Zürich.<br> Aber ich bin nicht nur Vollzeit Software-Entwickler bei der Arbeit, sondern arbeite auch an eigenen Projekten in meiner Freizeit. Schau dir den <a href=\"#development\">Software-Entwicklungs Bereich</a> an.<br> Neben dem, dass ich ein Entwickler bin, bin ich auch als Ski-Leiter beim <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünden tätig.,",
+        "intro": "Mein name ist Lukas Bühler, ich bin {{my_age}} Jahre alt und bin aus der Schweiz.",
+        "text1": "Ich bin Student and der ETH in Zürich und studiere Rechnergestützte Wissenschaften.<br> Ich arbeite nebenan jedoch auch noch an eigenen Projekten, hauptsächlich an Software-Projekten. Mehr unter <a href=\"#development\">Software-Entwicklung</a><br>Ausserdem bin ich Ski-Leiter beim <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> tätig.,",
         "phrase": "Skifahren war immer eine grosse Leidenschaft für mich.",
-        "text2": "Wörter."
+        "text2": "Schon von klein auf stand ich viel auf den Skieren. Nach ein wenig Ski Schule trat ich dem Skiclub Beverin als JO Mitglied bei und begann da auch Rennen zu fahren. Auch heute bin ich noch aktiv im Skiclub und stehe als Trainer viel im Einsatz."
 
     },
     "development": {

@@ -2,14 +2,14 @@
     "navbar": 
     {
         "about_me": "Über mich",
-        "development": "Programmieren",
+        "development": "Entwicklung",
         "social_media": "Soziale Medien",
         "contact": "Kontakt"
     },
     "footer":
     {
         "back_to_top": "Zurück nach oben",
-        "made_by": "gemacht von Lukas Bühler"
+        "made_by": "by Lukas Bühler"
     },
     "cards": 
     {

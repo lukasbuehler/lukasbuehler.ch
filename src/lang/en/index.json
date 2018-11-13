@@ -10,10 +10,10 @@
     "about_me": 
     {
         "title": "About Me",
-        "intro": "My name is Lukas Bühler, I was born and raised in Switzerland and I'm currently {{my_age}} years old.",
-        "text1": "At the moment I am working as a trainee software developer at <a href=\"https://belsoft-collaboration.ch/\">Belsoft Collaboration AG</a> in Zürich.<br> But I am not only a fulltime developer at work, I also work on multiple projects in my freetime. Check it out in the <a class=\"scrollSmooth\" href=\"#development\">development section</a>.<br> Besides being a developer I am also a ski coach for the <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünden.,",
-        "phrase": "Skiing has always been a big passion for me and I probably couldn't do without it.",
-        "text2": "Words."
+        "intro": "My name is Lukas Bühler, I'm {{my_age}} years old and from Switzerland.",
+        "text1": "I'm a student at the Swiss Federal Institute of Technology Zurich, where I'm studying Computational Science and Engineering.<br> I am also working on my own projects, most of which are software related. Check them out here: <a class=\"scrollSmooth\" href=\"#development\">development section</a>.<br> Besides being a student and a developer I am also a ski coach for the <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünden.",
+        "phrase": "Skiing has always been a big passion for me.",
+        "text2": "I have been skiing since I was little. And as soon as I could I joined the Skiclub Beverin and started participating in ski races. I am still active in the ski club today and now happily doing my part as a coach there."
 
     },
     "development": {
@@ -27,6 +27,6 @@
     "contact":
     {
         "title": "Contact",
-        "text": "If you wish to contact me I'd like to point you to my e-mail."
+        "text": "Feel free to reach out via e-mail."
     }
 }

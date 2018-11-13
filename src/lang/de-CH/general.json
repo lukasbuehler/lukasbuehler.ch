@@ -2,14 +2,14 @@
     "navbar": 
     {
         "about_me": "Über mich",
-        "development": "Programmiere",
+        "development": "Entwicklig",
         "social_media": "Soziali Medie",
         "contact": "Kontakt"
     },
     "footer":
     {
-        "back_to_top": "Nach obe",
-        "made_by": "gmacht vom Lukas Bühler"
+        "back_to_top": "Zrugg nach Obe",
+        "made_by": "by Lukas Bühler"
     },
     "cards": 
     {
@@ -18,7 +18,7 @@
             "in_planning": "In Planig",
             "in_development": "In Entwicklig",
             "download": "Da Abelade",
-            "visit": "Site Bsueche",
+            "visit": "Site bsueche",
             "new_version": "Version {{version}} jetzt verfüegbar!",
             "watch_now": "Jetzt ahluege!"
         }
@@ -32,7 +32,7 @@
     "button":
     {
         "read_more": "Meh lese",
-        "visit": "Besuche"
+        "visit": "Bsuche"
     },
     "other":
     {
