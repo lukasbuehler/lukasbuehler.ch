@@ -6,72 +6,68 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Zurich" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
-<body id="index" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="index">
 
-    <nav id="navbar" class="navbar navbar-default navbar-fixed-top shadow">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#welcome">
-                    <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 40px; margin: -10px; margin-right: 10px; float: left;">
-                    <span class="hidden-xs hidden-sm i18n i18n-general-name-full"></span>
-                    <span class="hidden-lg hidden-md hidden-xs i18n i18n-general-name-initials"></span>
-                    <span class="hidden-lg hidden-md hidden-sm i18n i18n-general-name-short"></span>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#about-me" class="i18n i18n-general-navbar-about_me"></a>
-                    </li>
-                    <li>
-                        <a href="#development" class="i18n i18n-general-navbar-development"></a>
-                    </li>
-                    <li>
-                        <a href="#social-media" class="i18n i18n-general-navbar-social_media"></a>
-                    </li>
-                    <li>
-                        <a href="#contact" class="i18n i18n-general-navbar-contact"></a>
-                    </li>
-                </ul>
-            </div>
+    <nav id="navbar" class="navbar fixed-top navbar-dark bg-primary  navbar-expand-sm ">
+        <a class="navbar-brand" href="#welcome">
+            <span class="d-none d-md-block i18n i18n-general-name-full"></span>
+            <span class="d-md-none i18n i18n-general-name-short"></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#about-me" class="nav-link i18n i18n-general-navbar-about_me"></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#development" class="nav-link i18n i18n-general-navbar-development"></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#social-media" class="nav-link i18n i18n-general-navbar-social_media"></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link i18n i18n-general-navbar-contact"></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-globe"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="?lng=en">English</a>
+                        <a class="dropdown-item" href="?lng=de">Deutsch</a>
+                        <a class="dropdown-item" href="?lng=de-ch">Schwiizerdütsch</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
     <!-- Welcome container  -->
     <div id="welcome" class="jumbotron text-center">
-        <img src="resources/images/lukas_buehler_portrait.png" class="img-circle" style="width: 80%; max-width: 250px;">
+        <img src="images/lukas_buehler_portrait.png" class="rounded-circle" style="width: 80%; max-width: 250px;">
         <h1 class="i18n i18n-general-name-full"></h1>
         <p class="i18n i18n-page-welcome-intro"></p>
     </div>
 
     <!-- Spotlight container -->
-    <div id="spotlight" class="container-fluid text-center bg-grey">
+    <div id="spotlight" class="container text-center bg-grey">
         <h2 class="i18n i18n-page-spotlight-title"></h2>
         <div class="row text-center card-row">
             <div class="large-icons">
                 <i class="fa fa-spinner fa-spin fa-large text-center"></i>
                 <i class="fa fa-exclamation-triangle fa-large text-center loadingError" style="display:none"></i>
             </div>
-            <div class="col-sm-4 cardslot">
-                <!-- card 1 goes here -->
-            </div>
-            <div class="col-sm-4 cardslot">
-                <!-- card 2 goes here -->
-            </div>
-            <div class="col-sm-4 cardslot">
-                <!-- card 3 goes here -->
+            <div class="card-deck">
             </div>
         </div>
         <br>
@@ -86,7 +82,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <img src="resources/images/lukas_buehler_hocke_nuerburgring_2017.jpg" alt="Nürburgring 2017" class="snapshot shadow">
+                <img src="images/lukas_buehler_hocke_nuerburgring_2017.jpg" alt="Nürburgring 2017" class="snapshot shadow">
             </div>
             <div class="col-sm-8">
                 <h4 class="i18n i18n-page-about_me-intro"></h4>
@@ -104,7 +100,7 @@
                 <br>
             </div>
             <div class="col-sm-4">
-                <img src="resources/images/lukas_buehler_skiing_tschappina.jpg" alt="Skiing in Tschappina" class="snapshot shadow">
+                <img src="images/lukas_buehler_skiing_tschappina.jpg" alt="Skiing in Tschappina" class="snapshot shadow">
             </div>
         </div>
         <br>
@@ -153,14 +149,12 @@
     <div id="social-media" class="container-fluid">
         <h2 class="i18n i18n-page-social_media-title"></h2>
         <div class="row">
-            <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
-                <div class="social-media-box">
-                    <a class="twitter-timeline" data-height="750" data-dnt="true" data-link-color="#47a9ff" href="https://twitter.com/LukasBuehler?ref_src=twsrc%5Etfw">Tweets by LukasBuehler</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-
+            <div class="col-sm-6">
+                <h3>Instagram</h3>
             </div>
-
+            <div class="col-sm-6">
+                <h3>Twitter</h3>
+            </div>
         </div>
     </div>
 
@@ -181,7 +175,7 @@
 
     <!-- footer -->
     <footer id="footer" class="container-fluid text-center">
-        <a href="#welcome" title="To Top">
+        <a href="#index" title="To Top">
             <span class="glyphicon glyphicon-chevron-up"></span>
             <p class="i18n i18n-general-footer-back_to_top"></p>
         </a>
@@ -189,13 +183,10 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
     <!-- my scripts -->
     <script src="bundle.js"></script>
-
-    <!-- Twitter widget -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     
 </body>

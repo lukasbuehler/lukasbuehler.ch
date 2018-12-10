@@ -1,15 +1,20 @@
 {
-    "files": [
-        "./src/**/*.ts",
-        "typings/index.d.ts"
-    ],
     "compilerOptions": {
+        "outDir": "./tmp/",
+        "sourceMap": true,
+        "noImplicitAny": false,//true,
         "strict": false,//true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react",
         "allowJs": true,
-        "checkJs": true,
-        "target": "es6",
+
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+
         "moduleResolution": "node",
-        "locale": "en"
+        //"checkJs": true,
+        "locale": "en",
     }
-    
 }

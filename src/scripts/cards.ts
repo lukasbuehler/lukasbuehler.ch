@@ -115,6 +115,7 @@ export function loadCards()
 
     function instantiateSpotlightCards(cards: Card[])
     {
+        $("#spotlight .card-row").find(".card-deck").empty();
         for(var i = 0; i < Math.min(3, cards.length); i++)
         {
             let card = cards[i];
@@ -152,23 +153,23 @@ export function loadCards()
             if(card.link)
             {
                 cardButtonHtml = `
-                    <a href="${card.link}" class="btn btn-ms btn-main i18n i18n-general-button-read_more"></a>
+                    <a href="${card.link}" class="btn btn-primary i18n i18n-general-button-read_more"></a>
                 `;
             }
 
             let cardHtml = `
-                <div class="card-view shadow">
-                    <img src="${card.imageSrc || ""}" alt="${card.title}" class="${card.imageClasses || ""}">
-                    <h4>
-                        <strong>${getTranslation("general:cards.card_"+card.id+".title")}</strong>${""/*" "+card.titleNote*/}
-                    </h4>
-                    <p>${getTranslation("general:cards.card_"+card.id+".text")}</p>
-                    <p>${getTranslation("general:cards.states."+card.state)}</p>
-                    ${cardButtonHtml}
+                <div class="card">
+                    <div class="card-body flex-column h-100" style="padding: 10px;">
+                        <img class="card-img ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
+                        <h5 class="card-title">${getTranslation("general:cards.card_"+card.id+".title")}</h5>
+                        <p class="card-text">${getTranslation("general:cards.card_"+card.id+".text")}</p>
+                        ${cardButtonHtml}
+                    </div>
+                    <div class="card-footer"><strong>${getTranslation("general:cards.states."+card.state)}</strong></div>
                 </div>
             `
 
-            $("#spotlight .card-row").find(".cardslot").eq(i).append(cardHtml);
+            $("#spotlight .card-row").find(".card-deck").append(cardHtml);
         }
 
         updateContent();

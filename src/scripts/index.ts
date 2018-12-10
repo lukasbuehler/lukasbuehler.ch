@@ -4,6 +4,9 @@ import { smoothScrollSetup } from "./smoothScroll";
 import { loadCards } from "./cards";
 import { closeNavbarOnItemSelection } from "./navbar"
 
+// Import styles for webpack
+import './../styles.scss';
+
 smoothScrollSetup();
 loadCards();
 closeNavbarOnItemSelection();
