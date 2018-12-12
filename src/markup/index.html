@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Zurich" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -16,7 +15,7 @@
 
 <body id="index">
 
-    <nav id="navbar" class="navbar fixed-top navbar-dark bg-primary  navbar-expand-sm ">
+    <nav id="navbar" class="navbar fixed-top navbar-dark bg-primary navbar-expand-sm shadow">
         <a class="navbar-brand" href="#welcome">
             <span class="d-none d-md-block i18n i18n-general-name-full"></span>
             <span class="d-md-none i18n i18n-general-name-short"></span>
@@ -43,9 +42,9 @@
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="?lng=en">English</a>
-                        <a class="dropdown-item" href="?lng=de">Deutsch</a>
-                        <a class="dropdown-item" href="?lng=de-ch">Schwiizerdütsch</a>
+                        <a class="dropdown-item" href="?lng=en">&#x1F1EC&#x1F1E7; &nbsp; English</a>
+                        <a class="dropdown-item" href="?lng=de">&#x1F1E9&#x1F1EA; &nbsp; Deutsch</a>
+                        <a class="dropdown-item" href="?lng=de-ch">&#x1F1E8&#x1F1ED; &nbsp; Schwiizerdütsch</a>
                     </div>
                 </li>
             </ul>
@@ -53,28 +52,28 @@
     </nav>
 
     <!-- Welcome container  -->
-    <div id="welcome" class="jumbotron text-center">
+    <div id="welcome" class="section jumbotron text-center">
         <img src="images/lukas_buehler_portrait.png" class="rounded-circle" style="width: 80%; max-width: 250px;">
         <h1 class="i18n i18n-general-name-full"></h1>
         <p class="i18n i18n-page-welcome-intro"></p>
     </div>
 
     <!-- Spotlight container -->
-    <div id="spotlight" class="container text-center bg-grey">
+    <div id="spotlight" class="section container text-center">
         <h2 class="i18n i18n-page-spotlight-title"></h2>
         <div class="row text-center card-row">
             <div class="large-icons">
                 <i class="fa fa-spinner fa-spin fa-large text-center"></i>
                 <i class="fa fa-exclamation-triangle fa-large text-center loadingError" style="display:none"></i>
             </div>
-            <div class="card-deck">
+            <div class="card-deck px-xs-3">
             </div>
         </div>
         <br>
     </div>
 
     <!-- About me container -->
-    <div id="about-me" class="container-fluid">
+    <div id="about-me" class="section container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="i18n i18n-page-about_me-title"></h2>
@@ -82,7 +81,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <img src="images/lukas_buehler_hocke_nuerburgring_2017.jpg" alt="Nürburgring 2017" class="snapshot shadow">
+                <img src="images/lukas_buehler_hocke_nuerburgring_2017.jpg" alt="Nürburgring 2017" class="shadow rounded w-100 h-auto">
             </div>
             <div class="col-sm-8">
                 <h4 class="i18n i18n-page-about_me-intro"></h4>
@@ -100,20 +99,20 @@
                 <br>
             </div>
             <div class="col-sm-4">
-                <img src="images/lukas_buehler_skiing_tschappina.jpg" alt="Skiing in Tschappina" class="snapshot shadow">
+                <img src="images/lukas_buehler_skiing_tschappina.jpg" alt="Skiing in Tschappina" class="shadow rounded w-100 h-auto">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn btn-ms btn-main i18n i18n-general-button-read_more"></button>
+                <!--<button class="btn btn-ms btn-primary i18n i18n-general-button-read_more"></button>-->
             </div>
         </div>
     </div>
 
 
     <!-- Development container -->
-    <div id="development" class="container-fluid text-center bg-grey">
+    <div id="development" class="section container-fluid text-center bg-grey">
         <h2 class="i18n i18n-page-development-title"></h2>
         <br>
         <h3 style="margin-bottom: 25px;" class="i18n i18n-page-development-projects"></h3>
@@ -128,25 +127,26 @@
             <!-- Add more cards here -->
         </div>
         <div class="row">
-            <h3 class="dev-links"></h3>
-            
-            <div class="large-icons">
-                <a href="https://github.com/lukasbuehler/">
-                    <i class="fa fa-github"></i>
-                </a>
-                <a href="https://stackoverflow.com/users/9045906/lukas?tab=profile">
-                    <i class="fa fa-stack-overflow"></i>
-                </a>
-                <a href="https://twitter.com/LukasBuehler">
-                    <i class="fa fa-twitter"></i>
-                </a>
+            <div class="col-sm-12">
+                <h3 class="dev-links"></h3>
+        
+                <div class="large-icons">
+                    <a href="https://github.com/lukasbuehler/">
+                        <i class="fa fa-github"></i>
+                    </a>
+                    <a href="https://stackoverflow.com/users/9045906/lukas?tab=profile">
+                        <i class="fa fa-stack-overflow"></i>
+                    </a>
+                    <a href="https://twitter.com/LukasBuehler">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </div>
             </div>
-            
         </div>
     </div>
 
     <!-- social media container -->
-    <div id="social-media" class="container-fluid">
+    <div id="social-media" class="section container-fluid">
         <h2 class="i18n i18n-page-social_media-title"></h2>
         <div class="row">
             <div class="col-sm-6">
@@ -159,31 +159,35 @@
     </div>
 
     <!-- Contact container -->
-    <div id="contact" class="container-fluid bg-grey">
+    <div id="contact" class="section container-fluid bg-grey">
         <h2 class="text-center i18n i18n-page-contact-title"></h2>
         <div class="row">
-            <p class="i18n i18n-page-contact-text"></p>
-            <p>
-                <br/>
-                <a href="mailto:mail@lukasbuehler.ch" title="Send an E-Mail">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    mail@lukasbuehler.ch
-                </a>
-            </p>
+            <div class="col-sm-12">
+                <p class="i18n i18n-page-contact-text"></p>
+                <p>
+                    <br/>
+                    <a href="mailto:contact@lukasbuehler.ch" title="Send an E-Mail">
+                        <span class="fa fa-envelope"></span>
+                        contact@lukasbuehler.ch
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 
     <!-- footer -->
     <footer id="footer" class="container-fluid text-center">
         <a href="#index" title="To Top">
-            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="fa fa-chevron-up"></span>
             <p class="i18n i18n-general-footer-back_to_top"></p>
         </a>
         <p class="i18n i18n-general-footer-made_by"></p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
     <!-- my scripts -->
     <script src="bundle.js"></script>

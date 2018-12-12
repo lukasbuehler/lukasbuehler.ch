@@ -148,18 +148,31 @@ export function loadCards()
                 }
                 
             }, true);
+            addResources("de-ch", "general", // de-ch
+            {
+                
+                "cards": 
+                {
+                    ["card_"+card.id]: 
+                    {
+                        "title": card.title,
+                        "text": card.text.ch["text"]
+                    }
+                }
+                
+            }, true);
 
             let cardButtonHtml = "";
             if(card.link)
             {
                 cardButtonHtml = `
-                    <a href="${card.link}" class="btn btn-primary i18n i18n-general-button-read_more"></a>
+                    <a href="${card.link}" class="btn btn-primary mt-auto mr-auto ml-auto i18n i18n-general-button-read_more "></a>
                 `;
             }
 
             let cardHtml = `
-                <div class="card">
-                    <div class="card-body flex-column h-100" style="padding: 10px;">
+                <div class="card shadow">
+                    <div class="card-body d-flex flex-column">
                         <img class="card-img ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
                         <h5 class="card-title">${getTranslation("general:cards.card_"+card.id+".title")}</h5>
                         <p class="card-text">${getTranslation("general:cards.card_"+card.id+".text")}</p>
