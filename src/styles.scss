@@ -25,6 +25,7 @@ div.card-deck
 img.app 
 {
     border-radius: 22%;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important; // regular bootstrap shadow
 }
 
 .large-icons
@@ -39,4 +40,23 @@ img.app
 h2 
 {
     margin-bottom: 0.5em;
+}
+
+.container, .container-fluid
+{
+    .row+.row
+    {
+        margin-top: 5%;
+    }
+}
+
+@media(min-width:768px)
+{
+    .card-deck
+    {
+        .card
+        {
+            max-width: 30vw;
+        }
+    }
 }

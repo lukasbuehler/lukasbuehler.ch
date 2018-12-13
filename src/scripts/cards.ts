@@ -102,8 +102,20 @@ export function loadCards()
 
             // maybe sort the cards?
 
-            console.log(cards);
-            instantiateSpotlightCards(cards);
+            console.log(JSON.stringify(cards));
+
+            cards.sort(cardCompare);
+
+            console.log(JSON.stringify(cards));
+
+
+            cards = removeHiddenCards(cards);
+
+            console.log(JSON.stringify(cards));
+
+
+            instantiateCards(cards, "spotlight");
+            instantiateCards(returnDevCards(cards), "development");
         },
         error: function( data, status, error ) { 
             console.log(data);
@@ -113,14 +125,12 @@ export function loadCards()
         }
     });
 
-    function instantiateSpotlightCards(cards: Card[])
+    function instantiateCards(cards: Card[], section: string)
     {
-        $("#spotlight .card-row").find(".card-deck").empty();
+        $("#"+section).find(".card-deck").empty();
         for(var i = 0; i < Math.min(3, cards.length); i++)
         {
             let card = cards[i];
-
-            var imageClasses: string[] = [];
 
             addResources("en", "general", // en
             {
@@ -182,11 +192,48 @@ export function loadCards()
                 </div>
             `
 
-            $("#spotlight .card-row").find(".card-deck").append(cardHtml);
+            $("#"+section).find(".card-deck").append(cardHtml);
         }
 
         updateContent();
         // Stop the spinner
-        $("#spotlight i.fa-spinner").parent().hide();
+        $("#"+section+" i.fa-spinner").parent().hide();
+    }
+
+    function cardCompare(a: Card, b:Card): number
+    {
+        if(a.visibleDate < b.visibleDate)
+        {
+            return 1;
+        }
+        if(a.visibleDate > b.visibleDate)
+        {
+            return -1;
+        }
+        return 0;
+    }
+
+    function removeHiddenCards(cards: Card[]): Card[]
+    {
+        for(var i=0; i < cards.length; ++i)
+        {
+            if(cards[i].expirationDate && cards[i].expirationDate < new Date())
+            {
+                cards.splice(i);
+            }
+        }
+        return cards;
+    }
+
+    function returnDevCards(cards: Card[]): Card[]
+    {
+        for(var i=0; i < cards.length; ++i)
+        {
+            if(!cards[i].isDev)
+            {
+                cards.splice(i);
+            }
+        }
+        return cards;
     }
 }
