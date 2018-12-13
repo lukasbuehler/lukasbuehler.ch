@@ -6,9 +6,9 @@
   "scripts": {
     "test": "webpack-dev-server --open",
     "watch": "webpack --watch;",
-    "build-dev": "webpack --mode=development",
+    "prod": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "push": "echo \"TODO\""
+    "deploy": "echo \"TODO\""
   },
   "repository": {
     "type": "git",
