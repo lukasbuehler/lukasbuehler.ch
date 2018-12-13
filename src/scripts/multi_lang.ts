@@ -104,7 +104,8 @@ export function updateContent(lng?: string)
         // Get page name
         let page = $("body").attr("id") // fetches the current page name from the id of the body element in the DOM.
 
-        $('.i18n').each(function(){
+        $('.i18n').each(function()
+        {
             let selector: string = getI18nSelector(page, this);
             if($(this).hasClass(my18nextVars.insertAsHtmlClass))
             {

@@ -178,7 +178,7 @@ export function loadCards()
                         <p class="card-text">${getTranslation("general:cards.card_"+card.id+".text")}</p>
                         ${cardButtonHtml}
                     </div>
-                    <div class="card-footer"><strong>${getTranslation("general:cards.states."+card.state)}</strong></div>
+                    <div class="card-footer"><span><strong class="i18n i18n-general-cards-states-${card.state}"></strong></span></div>
                 </div>
             `
 
