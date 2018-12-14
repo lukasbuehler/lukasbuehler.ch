@@ -8,7 +8,7 @@
     "watch": "webpack --watch;",
     "prod": "webpack --mode=development; ./copy_dst.sh",
     "build": "webpack --mode=production",
-    "deploy": "echo \"TODO\""
+    "deploy": "./commit_website.sh"
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-# do some git stuff to push to github
+cd dist; git add .; git commit -a;
+git push;

@@ -19,6 +19,10 @@ module.exports = {
             {
                 from: 'src/lang',
                 to: 'lang'
+            },
+            {
+                from: 'src/scripts/loadCards.php',
+                to: 'loadCards.php'
             }
         ]),
         new MiniCssExtractPlugin({
