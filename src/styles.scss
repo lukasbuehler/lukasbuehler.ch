@@ -14,14 +14,6 @@ body {
     margin-bottom: 0px !important;
 }
 
-div.card-deck 
-{
-    .card-img
-    {
-        margin-bottom: 5%;
-    }
-}
-
 img.app 
 {
     border-radius: 22%;
@@ -34,6 +26,8 @@ img.app
 
     a {
         text-decoration: none;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
     }
 }
 
@@ -46,17 +40,35 @@ h2
 {
     .row+.row
     {
-        margin-top: 5%;
+        margin-top: 2vh;
     }
 }
 
 @media(min-width:768px)
 {
-    .card-deck
+    #spotlight .card-deck, #development .card-deck
     {
         .card
         {
             max-width: 30vw;
         }
     }
+}
+
+.instagram-media
+{
+    width: 100% !important;
+    max-width: none !important;
+    border: none !important;
+    margin: 0 !important;
+}
+.twitter-timeline
+{
+    height: 100% !important;
+}
+
+.card
+{
+    overflow: hidden;
+    margin-bottom: 2vh !important;
 }
