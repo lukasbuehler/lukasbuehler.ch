@@ -6,7 +6,7 @@
   "scripts": {
     "test": "webpack-dev-server --open",
     "watch": "webpack --watch;",
-    "prod": "webpack --mode=development",
+    "prod": "webpack --mode=development; ./copy_dst.sh",
     "build": "webpack --mode=production",
     "deploy": "echo \"TODO\""
   },
