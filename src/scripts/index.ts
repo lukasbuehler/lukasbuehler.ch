@@ -7,6 +7,17 @@ import { closeNavbarOnItemSelection } from "./navbar"
 // Import styles for webpack
 import './../styles.scss';
 
+export function stretchInstagramNameMaxWidth()
+{
+    $(".instagram-media").ready(function()
+    {
+        $(".instagram-media").contents().find('span.UsernameText').css("max-width","100%");
+    });
+}
+
 //smoothScrollSetup();
 loadCards();
 closeNavbarOnItemSelection();
+stretchInstagramNameMaxWidth();
+
+

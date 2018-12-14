@@ -61,6 +61,11 @@ h2
     max-width: none !important;
     border: none !important;
     margin: 0 !important;
+    
+    a.Username>span.UsernameText
+    {
+        max-width: 100% !important;
+    }
 }
 .twitter-timeline
 {
@@ -71,4 +76,12 @@ h2
 {
     overflow: hidden;
     margin-bottom: 2vh !important;
+}
+
+@media(max-width:767px)
+{
+    #social-media .twitter-card
+    {
+        height: 80vh;
+    }
 }

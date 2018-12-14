@@ -102,16 +102,8 @@ export function loadCards()
 
             // maybe sort the cards?
 
-            console.log(JSON.stringify(cards));
-
             cards.sort(cardCompare);
-
-            console.log(JSON.stringify(cards));
-
-
             cards = removeHiddenCards(cards);
-
-            console.log(JSON.stringify(cards));
 
 
             instantiateCards(cards, "spotlight");
