@@ -1,7 +1,7 @@
 {
     "welcome": 
     {
-        "intro": "Willkomme uf meinere Websiite"
+        "intro": "Willkomme uf minere Websiite"
     },
     "spotlight":
     {
@@ -10,8 +10,8 @@
     "about_me": 
     {
         "title": "Über mich",
-        "intro": "Min name isch Lukas Bühler, ich bi {{my_age}} Jahr alt und bin us de Schwiiz, wie me merkt.",
-        "text1": "Ich bi Student a de ETH in Züri und studiere Rechnergstützti Wüsseschafte.<br> Ich schaffe nebedra au no ah eigene Projekt, s'meischte devo sind Software-Projekt. Da findt mer meh: <a href=\"#development\">Software-Entwickligs Beriich</a><br> Nebed dem, dass ich Programmierer bin, bin ich au als Ski-Leiter bim <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünde tätig.",
+        "intro": "Min name isch Lukas Bühler, ich bi {{my_age}}i und bin us de Schwiiz, wie me merkt.",
+        "text1": "Ich bi Student a de ETH Züri und studiere Rechnergstützti Wüsseschafte.<br> Ich schaffe nebedra au no ah eigene Projekt, s'meischte devo sind Software-Projekt. Da findt mer meh: <a href=\"#development\">Software-Entwickligs Beriich</a><br> Nebed dem, dass ich Programmierer bin, bin ich au als Ski-Leiter bim <a href=\"http://www.scbeverin.ch\">Ski Club Beverin</a> in Graubünde tätig.",
         "phrase": "Skifahre isch immer e grossi Liideschaft gsi für mich.",
         "text2": "Scho sit ich chlii gsi bi, bini viel uf de Ski gstande. Nach e bizli Ski-Schuel bin ich em Skiclub Beverin biitrette als JO Mitglied und ha da ahfange Renne z'fahre. Au hüt bini no aktiv im Skiclub und bi viel als Trainer im Ihsatz."
 

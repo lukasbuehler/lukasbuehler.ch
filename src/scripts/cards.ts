@@ -176,7 +176,7 @@ export function loadCards()
                 <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <img class="card-img ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
-                        <h5 class="card-title">${getTranslation("general:cards.card_"+card.id+".title")}</h5>
+                        <h4 class="card-title">${getTranslation("general:cards.card_"+card.id+".title")}</h4>
                         <p class="card-text">${getTranslation("general:cards.card_"+card.id+".text")}</p>
                         ${cardButtonHtml}
                     </div>

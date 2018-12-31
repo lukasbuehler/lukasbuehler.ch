@@ -76,6 +76,15 @@ h2
 {
     overflow: hidden;
     margin-bottom: 2vh !important;
+    img
+    {
+        margin-bottom: 2vh;
+    }
+    
+}
+.twitter-card div.card-body
+{
+    flex: 1 1 0;
 }
 
 @media(max-width:767px)

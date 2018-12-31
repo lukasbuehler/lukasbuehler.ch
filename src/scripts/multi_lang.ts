@@ -155,7 +155,31 @@ function insertI18nextPhraseAsHtml(element: JQuery<HTMLElement>, i18nSelector: s
     element.html(i18n.t(i18nSelector, params))
 }
 
-function changeLng(lng)
+/**
+ * Binds buttons with the classes i18n-change-lng to the specified language in another class.
+ * i18n-change-lng 18n-change-lng-<selector>
+ */
+export function bindLngChangeButtons()
+{
+    $(document).ready(function(){
+        $('a.i18n-change-lng').each(function()
+        {
+            let _classString: string = $(this).attr('class');
+            let _regEx: RegExp = /(^|\s)(i18n-change-lng-([a-zA-Z0-9\-\_]+))/gm
+            let _groups: RegExpExecArray = _regEx.exec(_classString);
+
+            let i18nLng = _groups[3];
+
+            $(this).click(function()
+            {
+                alert("Test");
+                changeLng(i18nLng);
+            });
+        });
+    });
+}
+
+export function changeLng(lng)
 {
     i18n.changeLanguage(lng);
 }

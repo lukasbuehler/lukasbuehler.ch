@@ -3,9 +3,11 @@
 //import { smoothScrollSetup } from "./smoothScroll";
 import { loadCards } from "./cards";
 import { closeNavbarOnItemSelection } from "./navbar"
+import { bindLngChangeButtons } from "./multi_lang";
 
 // Import styles for webpack
 import './../styles.scss';
+
 
 export function stretchInstagramNameMaxWidth()
 {
@@ -19,5 +21,7 @@ export function stretchInstagramNameMaxWidth()
 loadCards();
 closeNavbarOnItemSelection();
 stretchInstagramNameMaxWidth();
+
+bindLngChangeButtons();
 
 
