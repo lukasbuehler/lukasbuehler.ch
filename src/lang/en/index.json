@@ -19,10 +19,11 @@
     "development": {
         "title": "Development",
         "projects": "Projects",
-        "dev_links": "Links"
+        "dev_links": "Development Links"
     },
     "social_media": {
-        "title": "Social Media"
+        "title": "Social Media",
+        "links": "Links"
     },
     "contact":
     {

@@ -19,10 +19,11 @@
     "development": {
         "title": "Software Entwicklig",
         "projects": "Projekt",
-        "dev_links": "Links"
+        "dev_links": "Software Entwickligs Links"
     },
     "social_media": {
-        "title": "Soziali Medie"
+        "title": "Soziali Medie",
+        "links": "Links"
     },
     "contact":
     {

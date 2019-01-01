@@ -172,7 +172,6 @@ export function bindLngChangeButtons()
 
             $(this).click(function()
             {
-                alert("Test");
                 changeLng(i18nLng);
             });
         });
