@@ -8,7 +8,9 @@
     "watch": "webpack --watch;",
     "prod": "webpack --mode=production; ./copy_dst.sh",
     "build": "webpack --mode=production",
-    "deploy": "./commit_website.sh"
+    "deploy": "./commit_website.sh",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,8 @@
     "i18next-browser-languagedetector": "^2.2.4",
     "i18next-xhr-backend": "^1.5.1",
     "jquery": "^3.3.1",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "snyk": "^1.123.0"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.1.2",
@@ -48,5 +51,6 @@
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
-  }
+  },
+  "snyk": true
 }
