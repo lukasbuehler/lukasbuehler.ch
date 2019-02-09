@@ -1,6 +1,18 @@
+// Main Stylesheet
+
+// Body
+
 body {
     padding-top: 56px;
     //font: 400 15px Zurich, sans-serif;
+    background: #f6f6f6;
+}
+
+// Structure 
+
+h2 
+{
+    margin-bottom: 0.5em;
 }
 
 .section+.section
@@ -31,11 +43,6 @@ img.app
     }
 }
 
-h2 
-{
-    margin-bottom: 0.5em;
-}
-
 .container, .container-fluid
 {
     .row+.row
@@ -44,17 +51,8 @@ h2
     }
 }
 
-@media(min-width:768px)
-{
-    #spotlight .card-deck, #development .card-deck
-    {
-        .card
-        {
-            max-width: 30vw;
-        }
-    }
-}
 
+// Socialmedia card styles
 .instagram-media
 {
     width: 100% !important;
@@ -72,6 +70,7 @@ h2
     height: 100% !important;
 }
 
+// Card styles
 .card
 {
     overflow: hidden;
@@ -82,11 +81,29 @@ h2
     }
     
 }
+
+// Makes the twitter card flex
 .twitter-card div.card-body
 {
     flex: 1 1 0;
 }
 
+
+// Layout changes for large screens
+// Sets the max width for cards on wide displays.
+@media(min-width:768px)
+{
+    #spotlight .card-deck, #development .card-deck
+    {
+        .card
+        {
+            max-width: 30vw;
+        }
+    }
+}
+
+// Changes for small displays
+// Sets the max height for the twitter card in stacked view
 @media(max-width:767px)
 {
     #social-media .twitter-card

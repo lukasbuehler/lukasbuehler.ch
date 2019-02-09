@@ -11,6 +11,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/markup/index.html"
         }),
+        new HtmlWebpackPlugin({
+            template: "./src/markup/card.html",
+            filename: "card/index.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/markup/error_pages/404.html",
+            filename: "error_pages/404.html"
+        }),
         new CopyWebpackPlugin([
             {
                 from: 'src/resources',
