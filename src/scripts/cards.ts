@@ -110,7 +110,7 @@ export function loadCards()
 
 
             instantiateCards(cards, "spotlight");
-            instantiateCards(returnDevCards(cards), "development");
+            instantiateCards(filterDevCards(cards), "development");
         },
         error: function( data, status, error ) { 
             console.log(data);
@@ -202,13 +202,13 @@ export function loadCards()
         return cards;
     }
 
-    function returnDevCards(cards: Card[]): Card[]
+    function filterDevCards(cards: Card[]): Card[]
     {
         for(var i=0; i < cards.length; ++i)
         {
             if(!cards[i].isDev)
             {
-                cards.splice(i);
+                cards.splice(i, 1);
             }
         }
         return cards;
