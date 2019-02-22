@@ -20,8 +20,8 @@
             "cancelled": "Cancelled",
             "put_off": "Inactive",
             "download": "Download here",
-            "visit": "Visit page",
-            "new_version": "Version {{version}} now available!",
+            "visit": "Check out the website!",
+            "new_version": "New version available!",
             "watch_now": "Watch now!"
         }
     },

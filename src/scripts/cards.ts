@@ -173,10 +173,10 @@ export function loadCards()
             }
 
             let cardHtml = `
-                <div class="card shadow">
+                <div class="card shadow" style="min-width: 250px;">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
-                        <h4 class="card-title i18n i18n-general-cards-card_${card.id}-title"></h4>
+                        <img class="card-img mt-auto ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
+                        <h4 class="card-title mt-auto i18n i18n-general-cards-card_${card.id}-title"></h4>
                         <p class="card-text i18n i18n-general-cards-card_${card.id}-text"></p>
                         ${cardButtonHtml}
                     </div>
