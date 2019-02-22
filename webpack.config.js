@@ -9,17 +9,21 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(["tmp"]),
         new HtmlWebpackPlugin({
-            template: "./src/markup/index.html"
+            template: "!!handlebars-loader!src/markup/index.hbs"
         }),
         new HtmlWebpackPlugin({
-            template: "./src/markup/card.html",
+            template: "./src/markup/card.hbs",
             filename: "card/index.html"
         }),
         new HtmlWebpackPlugin({
-            template: "./src/markup/error_pages/404.html",
+            template: "./src/markup/error_pages/404.hbs",
             filename: "error_pages/404.html"
         }),
         new CopyWebpackPlugin([
+            {
+                from: "src/markup/images",
+                to: "images"
+            },
             {
                 from: 'src/resources',
                 to: 'resources'
@@ -50,13 +54,17 @@ module.exports = {
     },
     module: {
         rules: [
+            { 
+                test: /\.(handlebars|hbs|moustache)$/, 
+                use: "handlebars-loader" 
+            },
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
                 exclude: /node_modules/
             },
             {
-                test: /\.html$/,
+                test: /\.handlebars$/,
                 use: ["html-loader"]
             },
             {
@@ -99,6 +107,9 @@ module.exports = {
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+         }
       },
 };
