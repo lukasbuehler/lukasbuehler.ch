@@ -1,5 +1,8 @@
 import { MultilangResource, makeMultilangResource, getTranslation, addResources, updateContent } from "./multi_lang";
 
+declare function require(module: string): any;
+let cardTemplate = require('../markup/templates/card.hbs');
+
 enum State
 {
     Planning = "in_planning",
@@ -150,7 +153,7 @@ export function loadCards()
                 }
                 
             }, true);
-            addResources("de-ch", "general", // de-ch
+            addResources("de-CH", "general", // de-CH
             {
                 
                 "cards": 
@@ -164,26 +167,8 @@ export function loadCards()
                 
             }, true);
 
-            let cardButtonHtml = "";
-            if(card.link)
-            {
-                cardButtonHtml = `
-                    <a href="${card.link}" class="btn btn-primary mt-auto mr-auto ml-auto i18n i18n-general-button-read_more "></a>
-                `;
-            }
-
-            let cardHtml = `
-                <div class="card shadow" style="min-width: 250px;">
-                    <div class="card-body d-flex flex-column">
-                        <img class="card-img mt-auto ${card.imageClasses || ""}" src="${card.imageSrc || ""}" alt="${card.title}">
-                        <h4 class="card-title mt-auto i18n i18n-general-cards-card_${card.id}-title"></h4>
-                        <p class="card-text i18n i18n-general-cards-card_${card.id}-text"></p>
-                        ${cardButtonHtml}
-                    </div>
-                    <div class="card-footer"><span><strong class="i18n i18n-general-cards-states-${card.state}"></strong></span></div>
-                </div>
-            `
-
+            console.log(JSON.stringify(card))
+            let cardHtml = cardTemplate(card)
             $("#"+section).find(".card-deck").append(cardHtml);
         }
 
