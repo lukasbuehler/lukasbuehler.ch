@@ -2,13 +2,15 @@
 
 //import { smoothScrollSetup } from "./smoothScroll";
 import { loadCards } from "./cards";
-import { closeNavbarOnItemSelection } from "./navbar"
+import { closeNavbarOnItemSelection } from "./navbar";
 import { bindLngChangeButtons } from "./multi_lang";
+import { addNavbarTemplate, addSocialMediaTemplates } from "./templates";
 
 // Import styles for webpack
 import './../styles.scss';
 
 
+/*
 export function stretchInstagramNameMaxWidth()
 {
     $(".instagram-media").ready(function()
@@ -16,11 +18,15 @@ export function stretchInstagramNameMaxWidth()
         $(".instagram-media").contents().find('span.UsernameText').css("max-width","100%");
     });
 }
+*/
 
 //smoothScrollSetup();
 loadCards();
 closeNavbarOnItemSelection();
-stretchInstagramNameMaxWidth();
+//stretchInstagramNameMaxWidth();
+
+addNavbarTemplate();
+addSocialMediaTemplates();
 
 bindLngChangeButtons();
 
