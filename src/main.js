@@ -1,9 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import vuetify from './plugins/vuetify'
+import App from './App.vue'
 
-// TODO remove
-new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp(App)
+app.use(vuetify)
 
-createApp(App).mount("#app");
+app.mount('#app')
