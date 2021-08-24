@@ -1,4 +1,4 @@
-# lukasbuehler.ch
+# my-website-dev
 
 ## Project setup
 ```
