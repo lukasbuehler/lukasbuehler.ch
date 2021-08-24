@@ -34,24 +34,14 @@
       </v-row>
       <!-- CV -->
       <v-row class="text-center">
-        <v-col cols="5" class="">
-          <div class="d-flex flex-column align-center">
-            <div>
-              <v-chip class="ma-2" color="primary" text-color="white">
-                <v-icon left>
-                  mdi-school
-                </v-icon>
-                University
-              </v-chip>
-              <span class="">2018 - Today</span>
-            </div>
-
-            <h3>Bachelor Computational Science and Engineering</h3>
-          </div>
-        </v-col>
-        <v-col cols="2" class="py-0 d-flex flex-column align-center">
-          <v-btn color="primary" fab small dark>
-            <v-icon>mdi-school</v-icon>
+        <v-col
+          offset-md="5"
+          :order="$vuetify.breakpoint.mdAndUp ? '3' : '1'"
+          cols="2"
+          class="py-0 d-flex flex-column align-center"
+        >
+          <v-btn color="green" fab small dark>
+            <v-icon>mdi-code-tags</v-icon>
           </v-btn>
           <div class="d-flex flex-row" style="height: 100%;">
             <div class="flex-grow-1"></div>
@@ -61,7 +51,7 @@
             <div class="flex-grow-1"></div>
           </div>
         </v-col>
-        <v-col cols="5" class="">
+        <v-col order="12" class="">
           <div class="d-flex flex-column align-center">
             <div>
               <v-chip class="ma-2" color="green" text-color="white">
@@ -76,6 +66,36 @@
             <h3>PKFR Spot (<a href="https://pkfrspot.com">pkfrspot.com</a>)</h3>
           </div>
         </v-col>
+      </v-row>
+      <v-row class="text-center">
+        <v-col order="2" class="">
+          <div class="d-flex flex-column align-center">
+            <div>
+              <v-chip class="ma-2" color="primary" text-color="white">
+                <v-icon left>
+                  mdi-school
+                </v-icon>
+                University
+              </v-chip>
+              <span class="">2018 - Today</span>
+            </div>
+
+            <h3>Bachelor Computational Science and Engineering</h3>
+          </div>
+        </v-col>
+        <v-col :order="$vuetify.breakpoint.mdAndUp ? '3' : '1'" cols="2" class="py-0 d-flex flex-column align-center">
+          <v-btn color="primary" fab small dark>
+            <v-icon>mdi-school</v-icon>
+          </v-btn>
+          <div class="d-flex flex-row" style="height: 100%;">
+            <div class="flex-grow-1"></div>
+            <div style="border-left: solid 5px #2196f3;"></div>
+
+            <div style="border-left: solid 5px #3f51b5;"></div>
+            <div class="flex-grow-1"></div>
+          </div>
+        </v-col>
+        <v-col v-if="$vuetify.breakpoint.mdAndUp" order="12" cols="5" class=""> </v-col>
       </v-row>
       <v-row class="text-center">
         <v-col cols="5" class=""> </v-col>
