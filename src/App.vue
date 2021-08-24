@@ -1,60 +1,31 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+    <v-app-bar app color="d-flex flex-row align-center justify-center" dark>
+      <h2 class="flex-grow-1 headline mr-5">Lukas Bühler</h2>
+      <div class="">
+        <v-btn class="mr-2" to="/" text>
+          <span>Home</span>
+        </v-btn>
+        <v-btn class="mr-2" to="/about" text>
+          <span>About</span>
+        </v-btn>
+        <v-btn class="mr-2" to="/dev" text>
+          <span>Dev</span>
+        </v-btn>
+        <v-btn class="mr-2" to="/cv" text>
+          <span>CV</span>
+        </v-btn>
+        <v-btn class="mr-2" to="/blog" text>
+          <span>Blog</span>
+        </v-btn>
       </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <div class="flex-grow-1 d-flex justify-end">
+        <v-btn icon>
+          <v-icon>mdi-brightness-6</v-icon>
+        </v-btn>
+      </div>
     </v-app-bar>
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <router-view />
   </v-app>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld';
-
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
-</script>
