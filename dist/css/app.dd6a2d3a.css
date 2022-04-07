@@ -1,0 +1,1 @@
+.blink{-webkit-animation:blinker 1s ease-in-out infinite;animation:blinker 1s ease-in-out infinite}@-webkit-keyframes blinker{50%{opacity:0}}@keyframes blinker{50%{opacity:0}}
