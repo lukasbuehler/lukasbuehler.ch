@@ -1,18 +1,27 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import UnderConstruction from "../views/UnderConstruction.vue";
+//import Home from "../views/Home.vue";
 //import About from "../views/About.vue";
-import CV from "../views/CV.vue";
-import Blog from "../views/Blog.vue";
+//import CV from "../views/CV.vue";
+//import Blog from "../views/Blog.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  /*
   {
     path: "/",
     name: "Home",
     component: Home,
   },
+  */
+  {
+    path: "/",
+    name: "Under construction",
+    component: UnderConstruction,
+  },
+  /*
   {
     path: "/cv",
     name: "CV",
@@ -22,13 +31,14 @@ const routes = [
     path: "/about",
     name: "About",
     //component: About,
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import( "../views/About.vue"), // webpackChunkName: "about" 
   },
   {
     path: "/blog",
     name: "Blog",
     component: Blog,
   },
+  */
 ];
 
 const router = new VueRouter({
