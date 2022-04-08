@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-container>
+    <v-container style="padding-top:50px;">
       <v-row class="text-center">
         <v-col cols="12">
           <h1 class="display-2">Curriculum Vitae</h1>

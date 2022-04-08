@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-//import About from "../views/About.vue";
-import CV from "../views/CV.vue";
+import Studies from "../views/Studies";
+//import Dev from ""
 import Blog from "../views/Blog.vue";
+import CV from "../views/CV.vue";
+//import About from "../views/About.vue";
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,21 @@ const routes = [
     component: Home,
   },
   {
+    path: "/studies",
+    name: "Studies",
+    component: Studies,
+  },
+  {
+    path: "/dev",
+    name: "Dev",
+    //component: Blog,
+  },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: Blog,
+  },
+  {
     path: "/cv",
     name: "CV",
     component: CV,
@@ -22,12 +39,8 @@ const routes = [
     path: "/about",
     name: "About",
     //component: About,
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
-    path: "/blog",
-    name: "Blog",
-    component: Blog,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
 ];
 
