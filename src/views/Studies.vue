@@ -3,30 +3,46 @@
     <v-container class="text-center" style="padding-top:50px;">
       <v-row class="text-center">
         <v-col cols="12">
-          <h1 class="display-2">ETH Summaries</h1>
+          <h1 class="display-2">Summaries</h1>
+          <p>This sections contains summaries I've created during my studies.
+            I studied Computational Science and Engineering at ETH Zürich.
+          </p>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
-          <h3>4rd Semester</h3>
+          <h3>4th Semester</h3>
           <div class="grid">
             <SummaryCard
               name="Wahrscheinlichkeitstheorie und Statistik"
-              department="D-?"
-              profName=""
+              department="D-ITET / RW"
+              profName="Prof. Dr. Beatrice Acciaio"
               semester="FS 2022"
+              repoLink="https://gitlab.ethz.ch/lukasbuehler_summaries/wahrscheinlichkeitstheorie-und-statistik-zsf"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/wahrscheinlichkeitstheorie-und-statistik-zsf/-/raw/master/wahrscheinlichkeitstheorie_und_statistik_zsf.pdf"
             />
             <SummaryCard
               name="Physikalische Chemie 3: Molekulare Quantenmechanik"
-              department="D-?"
-              profName=""
+              department="D-CHAB"
+              profName="Prof. Dr. Frédéric Merkt"
               semester="FS 2022"
+              repoLink="https://gitlab.ethz.ch/buehlluk/phys-chem-3-summary-fs22/-/tree/master/"
+              pdfLink="https://gitlab.ethz.ch/buehlluk/phys-chem-3-summary-fs22/-/raw/master/PCIII.pdf"
+              authors="Adel Gavranović, Lukas Bühler"
             />
             <SummaryCard
               name="Numerical Methods for Partial Differential Equations"
-              department="D-?"
-              profName="Ralf Hiptmair"
+              department="RW / D-INFK"
+              profName="Prof. Dr. Ralf Hiptmair"
               semester="FS 2022"
+              repoLink="https://gitlab.ethz.ch/lukasbuehler_summaries/numpde_summary_fs22"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/numpde_summary_fs22/-/raw/master/numpde_summary_fs22.pdf"
+            />
+            <SummaryCard 
+              name="Statistische Physik"
+              department="RW"
+              semester="FS 2022"
+              profName="S. Riniker"
             />
           </div>
         </v-col>
@@ -50,15 +66,33 @@
           <div class="grid">
             <SummaryCard
               name="Komplexe Analysis"
-              profName="Alessandra Iozzi"
-              department="D-ITET"
+              profName="Prof. Dr. Alessandra Iozzi"
+              department="D-ITET / RW"
               semester="FS 2020"
+              repoLink="https://gitlab.ethz.ch/lukasbuehler_summaries/komplexe-analysis-zsf"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/komplexe-analysis-zsf/-/raw/master/komplexe_analysis_zsf.pdf"
             />
             <SummaryCard
               name="Analysis I & II"
-              profName="Peter Feller"
-              department="D-ITET"
+              profName="Prof. Dr. Peter Feller"
+              department="D-ITET / RW"
               semester="FS 2020"
+              repoLink="https://gitlab.ethz.ch/lukasbuehler_summaries/analysis-1-2-zsf"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/analysis-1-2-zsf/-/raw/master/analysis_1_2_zsf_buehlluk.pdf"
+            />
+            <SummaryCard
+              name="Chemie"
+              department="RW"
+              profName="Dr. Erich Christian Meister"
+              semester="FS 2020"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/chemie-zsf/-/raw/master/Chemie_Zusammenfassung_Lukas_Buehler.pdf"
+            />
+            <SummaryCard
+              name="Datenstrukturen und Algorithmen"
+              department="RW"
+              semester="FS 2020"
+              profName="Dr. Felix Oliver Friedrich Wicker"
+              pdfLink="https://gitlab.ethz.ch/lukasbuehler_summaries/datenstrukturen-und-algorithmen-zsf/-/raw/master/d_and_a_summary_ver_2.pdf"
             />
           </div>
         </v-col>
