@@ -1,0 +1,208 @@
+---
+import { ClientRouter } from "astro:transitions";
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title} | {subtitle}</title>
+    <ClientRouter />
+  </head>
+  <body
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 h-screen w-screen overflow-hidden font-sans transition-colors duration-700"
+  >
+    <nav
+      class="fixed top-0 left-0 w-full p-8 flex justify-between z-50 pointer-events-none mix-blend-difference text-white"
+    >
+      <div class="flex flex-col">
+        <h1 class="text-xl font-bold tracking-tighter uppercase">{title}</h1>
+        {
+          subtitle && (
+            <span class="text-xs opacity-70 tracking-widest uppercase">
+              {subtitle}
+            </span>
+          )
+        }
+      </div>
+
+      <div class="pointer-events-auto flex gap-6 text-sm font-mono">
+        <a
+          href="/"
+          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+          >[ HOME ]</a
+        >
+        <a
+          href="/workspace"
+          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+          >[ WORKSPACE ]</a
+        >
+        <a
+          href="/hobbies"
+          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+          >[ HOBBY ]</a
+        >
+      </div>
+    </nav>
+
+    <main class="w-full h-full relative">
+      <slot />
+    </main>
+
+    <style is:global>
+      /* Virtual room layout: HOME (middle), HOBBIES (left), WORKSPACE (right) */
+      @keyframes slideOutLeft {
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      /* Right direction (default) - old slides right, new slides in from left */
+      ::view-transition-old(root) {
+        animation: 0.5s ease-in-out both slideOutRight;
+      }
+
+      ::view-transition-new(root) {
+        animation: 0.5s ease-in-out both slideInLeft;
+      }
+
+      /* Left direction - old slides left, new slides in from right */
+      ::view-transition-old(slide-left-root) {
+        animation: 0.5s ease-in-out both slideOutLeft;
+      }
+
+      ::view-transition-new(slide-left-root) {
+        animation: 0.5s ease-in-out both slideInRight;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <script is:inline>
+      // Virtual room layout: HOME (/) = center, HOBBIES (/hobbies) = left, WORKSPACE (/workspace) = right
+      const roomPositions = {
+        "/": 0,
+        "/hobbies": -1,
+        "/workspace": 1,
+      };
+
+      let lastScrollTime = 0;
+      const scrollDelay = 600;
+
+      function getCurrentRoom() {
+        const path = window.location.pathname;
+        return roomPositions[path] !== undefined ? roomPositions[path] : 0;
+      }
+
+      function getNextRoom(direction) {
+        const currentPos = getCurrentRoom();
+        const positions = Object.values(roomPositions).sort((a, b) => a - b);
+        const currentIndex = positions.indexOf(currentPos);
+
+        if (direction === "next") {
+          const nextPos = positions[(currentIndex + 1) % positions.length];
+          return nextPos;
+        } else {
+          const nextIndex =
+            (currentIndex - 1 + positions.length) % positions.length;
+          return positions[nextIndex];
+        }
+      }
+
+      function getRoomPath(position) {
+        for (const [path, pos] of Object.entries(roomPositions)) {
+          if (pos === position) return path;
+        }
+        return "/";
+      }
+
+      function getSlideDirection(from, to) {
+        return to > from ? "right" : "left";
+      }
+
+      // Store direction in sessionStorage before navigation
+      function navigateWithTransition(nextPos) {
+        const currentPos = getCurrentRoom();
+        if (nextPos === currentPos) {
+          // Same page, don't navigate
+          return;
+        }
+
+        lastScrollTime = Date.now();
+        const slideDir = getSlideDirection(currentPos, nextPos);
+        const nextPath = getRoomPath(nextPos);
+
+        // Store direction before navigating
+        sessionStorage.setItem("slideDirection", slideDir);
+        window.location.href = nextPath;
+      }
+
+      // Apply direction on page load from sessionStorage
+      const savedDirection = sessionStorage.getItem("slideDirection");
+      if (savedDirection) {
+        if (savedDirection === "left") {
+          document.documentElement.style.viewTransitionName = "slide-left-root";
+        }
+        sessionStorage.removeItem("slideDirection");
+      }
+
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          const now = Date.now();
+          if (now - lastScrollTime < scrollDelay) return;
+
+          const direction = e.deltaY > 0 ? "next" : "prev";
+          const currentPos = getCurrentRoom();
+          const nextPos = getNextRoom(direction);
+          navigateWithTransition(nextPos);
+        },
+        { passive: true }
+      );
+
+      // Handle link clicks
+      document.addEventListener("click", (e) => {
+        const link = e.target.closest("a");
+        if (link && link.href) {
+          const href = new URL(link.href).pathname;
+          const currentPos = getCurrentRoom();
+          const nextPos =
+            roomPositions[href] !== undefined ? roomPositions[href] : 0;
+
+          navigateWithTransition(nextPos);
+        }
+      });
+    </script>
+  </body>
+</html>

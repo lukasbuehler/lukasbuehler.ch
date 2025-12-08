@@ -1,0 +1,75 @@
+---
+import { ClientRouter } from "astro:transitions";
+const { title, currentWall } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body
+    class="bg-slate-900 h-screen w-screen overflow-hidden flex items-center justify-center perspective-1000"
+  >
+    <main
+      class="relative w-[90vw] h-[85vh] max-w-6xl bg-white shadow-2xl rounded-xl overflow-hidden border-8 border-slate-100"
+      transition:animate="initial"
+    >
+      <nav
+        class="absolute top-1/2 w-full flex justify-between px-4 z-50 -translate-y-1/2"
+      >
+        <a
+          href="/garden"
+          class="p-4 bg-white/80 rounded-full hover:scale-110 transition shadow-lg"
+          >←</a
+        >
+        <a
+          href="/workbench"
+          class="p-4 bg-white/80 rounded-full hover:scale-110 transition shadow-lg"
+          >→</a
+        >
+      </nav>
+
+      <div
+        class="w-full h-full p-12 bg-[url('/assets/wall-texture-matte.png')] relative"
+      >
+        <slot />
+      </div>
+    </main>
+
+    <style is:global>
+      /* THE 3D CUBE ANIMATION */
+      .perspective-1000 {
+        perspective: 2000px;
+      }
+
+      /* Define the keyframes for rotating the room */
+      @keyframes rotateOutRight {
+        to {
+          transform: rotateY(-90deg);
+          opacity: 0;
+        }
+      }
+      @keyframes rotateInRight {
+        from {
+          transform: rotateY(90deg);
+          opacity: 0;
+        }
+        to {
+          transform: rotateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Apply to Astro Transitions */
+      ::view-transition-old(root) {
+        animation: 0.6s ease-in-out both rotateOutRight;
+        transform-origin: center right;
+      }
+      ::view-transition-new(root) {
+        animation: 0.6s ease-in-out both rotateInRight;
+        transform-origin: center left;
+      }
+    </style>
+  </body>
+</html>
