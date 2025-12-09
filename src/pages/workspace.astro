@@ -1,31 +1,36 @@
 ---
 import OrthoLayout from "../layouts/OrthoLayout.astro";
+import Monitor3D from "../components/Monitor3D.astro";
 ---
 
 <OrthoLayout title="Workspace" subtitle="Projects">
-  <div class="perspective">
+  <div class="perspective w-full h-full hidden md:block">
     <div
-      class="absolute top-36 right-20 overflow-hidden"
-      style="width: 400px; height: 600px; transform: perspective(800px) rotateY(-10deg) rotateX(-5deg);"
+      class="absolute top-36 right-20 w-[400px] h-[600px] flex flex-col gap-4"
+      style="transform: perspective(1000px) rotateY(-30deg) rotateX(0deg);"
     >
-      <div
-        class="w-[150%] h-[150%] flex flex-col border-none origin-top-left gap-2"
-        style="transform: scale(0.666);"
-      >
-        <iframe
-          class="h-3/5 w-full border-solid border-8 border-gray-950 rounded-lg shadow-xl bg-black/90"
-          src="https://pkspot.app/embedded/map"></iframe>
-
-        <div
-          class="h-2/5 w-full border-solid border-8 border-gray-950 rounded-lg shadow-xl bg-black/90 overflow-clip"
-        >
-          <iframe
-            class="w-full h-full"
-            style="transform: scale(1.1); "
-            src="https://eu.posthog.com/embedded/nlLOckIQ1DssICMFS9PUKNHpiErdvA"
-          ></iframe>
-        </div>
+      <div class="h-3/5 w-full">
+        <Monitor3D src="https://pkspot.app/embedded/map" title="PK Spot Map" />
       </div>
+
+      <div class="h-2/5 w-full">
+        <Monitor3D
+          src="https://eu.posthog.com/embedded/nlLOckIQ1DssICMFS9PUKNHpiErdvA"
+          title="Analytics"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="md:hidden flex flex-col p-4 gap-8 pt-32">
+    <div class="h-96">
+      <Monitor3D src="https://pkspot.app/embedded/map" title="PK Spot Map" />
+    </div>
+    <div class="h-64">
+      <Monitor3D
+        src="https://eu.posthog.com/embedded/nlLOckIQ1DssICMFS9PUKNHpiErdvA"
+        title="Analytics"
+      />
     </div>
   </div>
 </OrthoLayout>

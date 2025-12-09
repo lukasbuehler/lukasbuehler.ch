@@ -1,5 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Navbar from "../components/Navbar.astro"; // We'll extract nav too
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -11,63 +13,62 @@ const { title, subtitle } = Astro.props;
 <html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | {subtitle}</title>
     <ClientRouter />
   </head>
   <body
-    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 h-screen w-screen overflow-hidden font-sans transition-colors duration-700"
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-700"
   >
-    <nav
-      class="fixed top-0 left-0 w-full p-8 flex justify-between z-50 pointer-events-none mix-blend-difference text-white"
-    >
-      <div class="flex flex-col">
-        <h1 class="text-xl font-bold tracking-tighter uppercase">{title}</h1>
-        {
-          subtitle && (
-            <span class="text-xs opacity-70 tracking-widest uppercase">
-              {subtitle}
-            </span>
-          )
-        }
-      </div>
+    <Navbar title={title} subtitle={subtitle} />
 
-      <div class="pointer-events-auto flex gap-6 text-sm font-mono">
-        <a
-          href="/"
-          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
-          >[ HOME ]</a
-        >
-        <a
-          href="/workspace"
-          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
-          >[ WORKSPACE ]</a
-        >
-        <a
-          href="/hobbies"
-          class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
-          >[ HOBBY ]</a
-        >
-      </div>
-    </nav>
-
-    <main class="w-full h-full relative">
+    <main class="w-full h-screen overflow-hidden relative mobile-scroll">
       <slot />
     </main>
 
     <style is:global>
-      /* Virtual room layout: HOME (middle), HOBBIES (left), WORKSPACE (right) */
+      /* --- MOBILE OVERRIDES --- */
+      /* On small screens, disable the hidden overflow so we can scroll vertically */
+      @media (max-width: 768px) {
+        .mobile-scroll {
+          height: auto !important;
+          min-height: 100vh;
+          overflow-y: auto !important;
+          overflow-x: hidden;
+        }
+      }
+
+      /* --- VIEW TRANSITIONS --- */
+      /* These animations create the "sliding wall" effect */
+
+      /* Camera moves RIGHT (Content slides out to left, new comes from right) */
+      .slide-right::view-transition-old(root) {
+        animation: 0.5s ease-in-out both slideOutLeft;
+      }
+      .slide-right::view-transition-new(root) {
+        animation: 0.5s ease-in-out both slideInRight;
+      }
+
+      /* Camera moves LEFT (Content slides out to right, new comes from left) */
+      .slide-left::view-transition-old(root) {
+        animation: 0.5s ease-in-out both slideOutRight;
+      }
+      .slide-left::view-transition-new(root) {
+        animation: 0.5s ease-in-out both slideInLeft;
+      }
+
       @keyframes slideOutLeft {
         to {
           transform: translateX(-100%);
+          opacity: 0.5;
         }
       }
-
       @keyframes slideOutRight {
         to {
           transform: translateX(100%);
+          opacity: 0.5;
         }
       }
-
       @keyframes slideInLeft {
         from {
           transform: translateX(-100%);
@@ -76,7 +77,6 @@ const { title, subtitle } = Astro.props;
           transform: translateX(0);
         }
       }
-
       @keyframes slideInRight {
         from {
           transform: translateX(100%);
@@ -85,112 +85,66 @@ const { title, subtitle } = Astro.props;
           transform: translateX(0);
         }
       }
-
-      /* Right direction (default) - old slides right, new slides in from left */
-      ::view-transition-old(root) {
-        animation: 0.5s ease-in-out both slideOutRight;
-      }
-
-      ::view-transition-new(root) {
-        animation: 0.5s ease-in-out both slideInLeft;
-      }
-
-      /* Left direction - old slides left, new slides in from right */
-      .slide-left::view-transition-old(root) {
-        animation: 0.5s ease-in-out both slideOutLeft !important;
-      }
-
-      .slide-left::view-transition-new(root) {
-        animation: 0.5s ease-in-out both slideInRight !important;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
     </style>
 
-    <script is:inline>
-      // Virtual room layout: HOME (/) = center, HOBBIES (/hobbies) = left, WORKSPACE (/workspace) = right
-      const roomPositions = {
-        "/": 0,
-        "/hobbies": -1,
-        "/workspace": 1,
-      };
+    <script>
+      import {
+        getNextRoom,
+        getSlideAnimation,
+      } from "../scripts/spatial-router";
 
+      // State
       let lastScrollTime = 0;
-      const scrollDelay = 600;
+      const SCROLL_DELAY = 800; // Slower delay for cleaner distinct movements
 
-      function getCurrentRoom() {
-        const path = window.location.pathname;
-        return roomPositions[path] !== undefined ? roomPositions[path] : 0;
-      }
-
-      function getNextRoom(direction) {
-        const currentPos = getCurrentRoom();
-        const positions = Object.values(roomPositions).sort((a, b) => a - b);
-        const currentIndex = positions.indexOf(currentPos);
-
-        if (direction === "next") {
-          const nextPos = positions[(currentIndex + 1) % positions.length];
-          return nextPos;
-        } else {
-          const nextIndex =
-            (currentIndex - 1 + positions.length) % positions.length;
-          return positions[nextIndex];
-        }
-      }
-
-      function getRoomPath(position) {
-        for (const [path, pos] of Object.entries(roomPositions)) {
-          if (pos === position) return path;
-        }
-        return "/";
-      }
-
-      function getSlideDirection(from, to) {
-        return to > from ? "right" : "left";
-      }
-
-      // Handle Astro transitions
-      document.addEventListener("astro:before-preparation", (e) => {
-        const currentPos = getCurrentRoom();
-        const nextPath = e.to.pathname;
-        const nextPos =
-          roomPositions[nextPath] !== undefined ? roomPositions[nextPath] : 0;
-
-        if (nextPos !== currentPos) {
-          const slideDir = getSlideDirection(currentPos, nextPos);
-          if (slideDir === "left") {
-            document.documentElement.classList.add("slide-left");
-          } else {
-            document.documentElement.classList.remove("slide-left");
-          }
-        }
-      });
-
-      // Clean up after transition
-      document.addEventListener("astro:after-swap", () => {
-        document.documentElement.classList.remove("slide-left");
-      });
-
+      // 1. Handle Wheel (Desktop Navigation)
       window.addEventListener(
         "wheel",
         (e) => {
+          // Ignore if on mobile (screen width < 768px)
+          if (window.innerWidth < 768) return;
+
           const now = Date.now();
-          if (now - lastScrollTime < scrollDelay) return;
+          if (now - lastScrollTime < SCROLL_DELAY) return;
 
+          // Threshold: Don't trigger on tiny accidental scrolls
+          if (Math.abs(e.deltaY) < 30) return;
+
+          lastScrollTime = now;
           const direction = e.deltaY > 0 ? "next" : "prev";
-          const currentPos = getCurrentRoom();
-          const nextPos = getNextRoom(direction);
+          const currentPath = window.location.pathname;
+          const nextPath = getNextRoom(currentPath, direction);
 
-          if (nextPos !== currentPos) {
-            lastScrollTime = Date.now();
-            const nextPath = getRoomPath(nextPos);
+          // Navigate
+          if (nextPath !== currentPath) {
             window.location.href = nextPath;
           }
         },
         { passive: true }
       );
+
+      // 2. Handle Transition Direction (The "Efficient Route" Visuals)
+      document.addEventListener("astro:before-preparation", (e) => {
+        const fromPath = window.location.pathname;
+        const toPath = e.to.pathname;
+
+        // Calculate which way we should visually slide
+        const animationClass = getSlideAnimation(fromPath, toPath);
+
+        // Apply class for CSS to pick up
+        if (animationClass === "slide-right") {
+          document.documentElement.classList.add("slide-right");
+          document.documentElement.classList.remove("slide-left");
+        } else {
+          document.documentElement.classList.add("slide-left");
+          document.documentElement.classList.remove("slide-right");
+        }
+      });
+
+      // Cleanup
+      document.addEventListener("astro:after-swap", () => {
+        document.documentElement.classList.remove("slide-left", "slide-right");
+      });
     </script>
   </body>
 </html>

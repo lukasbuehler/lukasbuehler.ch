@@ -1,5 +1,16 @@
 ---
 import OrthoLayout from "../layouts/OrthoLayout.astro";
+import Monitor3D from "../components/Monitor3D.astro";
 ---
 
-<OrthoLayout title="Recreation" subtitle="Hobbies" />
+<OrthoLayout title="Recreation" subtitle="Hobbies">
+  <div
+    class="absolute top-36 left-20 w-[350px] h-[600px] flex flex-col gap-4"
+    style="transform: perspective(1000px) rotateY(30deg) rotateX(0deg);"
+  >
+    <Monitor3D
+      title="YouTube video player"
+      src="https://www.youtube.com/embed/HPk9WpUQMUQ?si=j33Ejcc16Z02EXim"
+    />
+  </div></OrthoLayout
+>

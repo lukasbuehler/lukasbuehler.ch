@@ -1,0 +1,41 @@
+---
+// src/components/Navbar.astro
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+const { title, subtitle } = Astro.props;
+---
+
+<nav
+  class="fixed top-0 left-0 w-full p-8 flex justify-between z-50 pointer-events-none mix-blend-difference text-white"
+>
+  <div class="flex flex-col">
+    <h1 class="text-xl font-bold tracking-tighter uppercase">{title}</h1>
+    {
+      subtitle && (
+        <span class="text-xs opacity-70 tracking-widest uppercase">
+          {subtitle}
+        </span>
+      )
+    }
+  </div>
+
+  <div class="pointer-events-auto flex gap-6 text-sm font-mono">
+    <a
+      href="/"
+      class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+      >[ HOME ]</a
+    >
+    <a
+      href="/workspace"
+      class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+      >[ WORKSPACE ]</a
+    >
+    <a
+      href="/hobbies"
+      class="hover:underline opacity-50 hover:opacity-100 transition-opacity"
+      >[ HOBBY ]</a
+    >
+  </div>
+</nav>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  dark?: boolean;
+}
+const { src, title, dark = true } = Astro.props;
+---
+
+<div
+  class={`
+  relative w-full h-full 
+  border-solid border-8 rounded-lg shadow-xl overflow-clip
+  ${dark ? "border-gray-950 bg-black/90" : "border-slate-200 bg-white"}
+`}
+>
+  <div
+    class="w-[150%] h-[150%] origin-top-left"
+    style="transform: scale(0.666);"
+  >
+    <iframe
+      src={src}
+      title={title}
+      class="w-full h-full border-none"
+      allowfullscreen></iframe>
+  </div>
+</div>
