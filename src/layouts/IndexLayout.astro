@@ -1,0 +1,26 @@
+---
+import GardenLayout from "./GardenLayout.astro";
+import EntryList from "../components/EntryList.astro";
+import { publishedEntries } from "../lib/entries";
+interface Props {
+  kind: "note" | "project";
+  title: string;
+  description: string;
+}
+const { kind, title, description } = Astro.props;
+const entries = (await publishedEntries()).filter((e) => e.data.kind === kind);
+---
+
+<GardenLayout title={title} description={description}>
+  <header class="page-intro">
+    <h1>{title}</h1>
+    <p>{description}</p>
+  </header>
+  <section class="index-entries" aria-label={title}>
+    <EntryList
+      entries={entries}
+      projects={kind === "project"}
+      headingLevel="h2"
+    />
+  </section>
+</GardenLayout>

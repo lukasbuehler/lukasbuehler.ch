@@ -1,0 +1,29 @@
+---
+import { entryUrl, type Entry } from "../lib/entries";
+interface Props {
+  entries: Entry[];
+  projects?: boolean;
+  headingLevel?: "h2" | "h3";
+}
+const { entries, projects = false, headingLevel: Heading = "h3" } = Astro.props;
+---
+
+<div class:list={["entry-list", { "project-list": projects }]}>
+  {entries.map((entry) => (
+    <a class="entry-link" href={entryUrl(entry)}>
+      <div class="entry-heading">
+        <Heading>{entry.data.title}</Heading>
+        <span class="entry-topics">{entry.data.topics.join(" / ")}</span>
+      </div>
+      <div class="entry-summary">
+        <p>{entry.data.description}</p>
+        {entry.data.status && (
+          <span class="entry-status">{entry.data.status}</span>
+        )}
+      </div>
+      <span class="entry-arrow" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+  ))}
+</div>

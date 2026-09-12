@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+interface Props {
+  title?: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+}
+const { title, description, image, article = false } = Astro.props;
+const pageTitle = title
+  ? `${title} — Lukas Bühler`
+  : "Lukas Bühler — Digital garden";
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : undefined;
+const socialImage =
+  image && Astro.site ? new URL(image, Astro.site) : undefined;
+const path = Astro.url.pathname;
+const navigation = [
+  { href: "/projects/", label: "Projects" },
+  { href: "/notes/", label: "Notes" },
+  { href: "/about/", label: "About" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f6f0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={article ? "article" : "website"} />
+    <meta property="og:site_name" content="Lukas Bühler" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta
+      name="twitter:card"
+      content={socialImage ? "summary_large_image" : "summary"}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="/" aria-label="Lukas Bühler, home">
+          Lukas Bühler
+        </a>
+        <nav aria-label="Main navigation">
+          {navigation.map(({ href, label }) => (
+            <a
+              href={href}
+              aria-current={
+                path.startsWith(href.slice(0, -1)) ? "page" : undefined
+              }
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <a href="/">Lukas Bühler</a>
+        <p>A personal digital garden.</p>
+        <a href="/about/">About this garden</a>
+      </footer>
+    </div>
+  </body>
+</html>

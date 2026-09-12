@@ -1,0 +1,23 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  caption: string;
+}
+const { src, poster, caption } = Astro.props;
+---
+
+<figure>
+  <video
+    controls
+    preload="none"
+    playsinline
+    poster={poster}
+    aria-label={caption}
+  >
+    <source src={src} />
+    <a href={src}>Download video</a>
+    <slot />
+  </video>
+  <figcaption>{caption}</figcaption>
+</figure>
