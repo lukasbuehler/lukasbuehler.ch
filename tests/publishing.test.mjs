@@ -1,0 +1,131 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import {
+  readFileSync,
+  writeFileSync,
+  rmSync,
+  existsSync,
+  readdirSync,
+} from "node:fs";
+import { execFileSync, spawnSync } from "node:child_process";
+import { join, relative } from "node:path";
+
+const build = () =>
+  execFileSync(process.execPath, ["node_modules/astro/astro.js", "build"], {
+    stdio: "pipe",
+  });
+const read = (path) => readFileSync(path, "utf8");
+const content = "src/content/entries";
+
+function checkPages(directory = "dist") {
+  for (const item of readdirSync(directory, { withFileTypes: true })) {
+    const path = join(directory, item.name);
+    if (item.isDirectory()) {
+      checkPages(path);
+      continue;
+    }
+    if (!path.endsWith(".html")) continue;
+    const html = read(path);
+    if (/http-equiv="refresh"/i.test(html)) continue;
+    assert.equal(
+      [...html.matchAll(/<h1(?:\s|>)/g)].length,
+      1,
+      `${path}: one H1`,
+    );
+    assert.match(html, /<title>[^<]+<\/title>/);
+    assert.match(html, /name="description" content="[^"]+"/);
+    assert.match(html, /rel="canonical" href="https:\/\/lukasbuehler.ch\//);
+    assert.ok(
+      !html.replace(/<code[\s\S]*?<\/code>/g, "").includes("[[projects/"),
+      `${path}: unresolved wiki link`,
+    );
+    for (const [, href] of html.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
+      const target = join("dist", href);
+      assert.ok(
+        existsSync(target) || existsSync(join(target, "index.html")),
+        `${relative("dist", path)}: broken link ${href}`,
+      );
+    }
+  }
+}
+
+test("published output, MD/MDX maths, backlinks, and draft boundaries", () => {
+  const fixtures = [
+    "garden-check-md.md",
+    "garden-check-mdx.mdx",
+    "garden-check-private.md",
+  ];
+  try {
+    build();
+    checkPages();
+    assert.ok(!existsSync("dist/notes/authoring-example/index.html"));
+    const sitemap = read("dist/sitemap-0.xml");
+    assert.ok(!sitemap.includes("authoring-example"));
+    assert.ok(!sitemap.includes("/workspace"));
+    assert.match(read("dist/projects/aegis/index.html"), /Linked from/);
+    assert.match(
+      read("dist/projects/aegis/index.html"),
+      /href="\/notes\/looking-for-signals\/"/,
+    );
+
+    const header = (title) =>
+      `---\ntitle: ${title}\ndescription: Publishing integration fixture\nkind: note\ndraft: false\n---\n\n`;
+    const body =
+      String.raw`Inline $z = f_\theta(x)$.
+
+$$
+\mathcal{L} = \lVert x - \hat{x} \rVert_2^2
+$$
+
+An ordinary [project link](/projects/aegis/).
+
+A [[projects/pk-spot|wiki link]].
+
+<div>HTML authoring works.</div>
+
+` + "`[[projects/this-is-code]]`";
+    writeFileSync(
+      join(content, fixtures[0]),
+      header("Markdown fixture") + body,
+    );
+    writeFileSync(join(content, fixtures[1]), header("MDX fixture") + body);
+    // Omitted draft is private by default.
+    writeFileSync(
+      join(content, fixtures[2]),
+      "---\ntitle: Private fixture\ndescription: Must never be published\nkind: note\n---\nPRIVATE_FIXTURE_MARKER",
+    );
+    build();
+    checkPages();
+    for (const id of ["garden-check-md", "garden-check-mdx"]) {
+      const html = read(`dist/notes/${id}/index.html`);
+      assert.match(html, /class="katex"/);
+      assert.match(html, /class="katex-display"/);
+      assert.match(html, /<math /);
+      assert.match(html, /href="\/projects\/pk-spot\/"/);
+      assert.match(html, /HTML authoring works/);
+      assert.match(html, /<code>\[\[projects\/this-is-code\]\]<\/code>/);
+    }
+    assert.ok(!existsSync("dist/notes/garden-check-private/index.html"));
+    assert.ok(!read("dist/sitemap-0.xml").includes("garden-check-private"));
+    assert.match(read("dist/projects/pk-spot/index.html"), /Markdown fixture/);
+    assert.match(read("dist/projects/pk-spot/index.html"), /MDX fixture/);
+    writeFileSync(
+      join(content, fixtures[0]),
+      header("Invalid link fixture") +
+        "[[notes/garden-check-private|Private page]]",
+    );
+    const invalid = spawnSync(
+      process.execPath,
+      ["node_modules/astro/astro.js", "build"],
+      { encoding: "utf8" },
+    );
+    assert.notEqual(invalid.status, 0);
+    assert.match(
+      invalid.stdout + invalid.stderr,
+      /missing or unpublished entry/,
+    );
+  } finally {
+    fixtures.forEach((file) => rmSync(join(content, file), { force: true }));
+    build();
+  }
+});

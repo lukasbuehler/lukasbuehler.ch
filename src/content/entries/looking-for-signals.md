@@ -2,6 +2,7 @@
 title: Looking for signals inside a language model
 description: "The question behind Aegis: could an autoencoder help expose signals associated with scheming?"
 kind: note
+draft: false
 featured: 1
 topics: [AI safety]
 ---

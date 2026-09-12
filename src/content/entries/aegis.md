@@ -2,6 +2,7 @@
 title: Aegis
 description: Investigating whether a language model’s internal representations can reveal signals associated with scheming.
 kind: project
+draft: false
 featured: 2
 topics: [AI safety, Machine learning]
 status: Early exploration

@@ -6,7 +6,7 @@ const entries = defineCollection({
     title: z.string(),
     description: z.string(),
     kind: z.enum(["note", "project"]),
-    draft: z.boolean().default(false),
+    draft: z.boolean().default(true),
     featured: z.number().optional(),
     topics: z.array(z.string()).default([]),
     status: z.string().optional(),
