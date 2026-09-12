@@ -9,6 +9,10 @@ interface Props {
 }
 const { kind, title, description } = Astro.props;
 const entries = (await publishedEntries()).filter((e) => e.data.kind === kind);
+if (kind === "note")
+  entries.sort(
+    (a, b) => b.data.published!.getTime() - a.data.published!.getTime(),
+  );
 ---
 
 <GardenLayout title={title} description={description}>

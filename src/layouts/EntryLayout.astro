@@ -2,6 +2,7 @@
 import "katex/dist/katex.min.css";
 import GardenLayout from "./GardenLayout.astro";
 import EntryList from "../components/EntryList.astro";
+import EntryDate from "../components/EntryDate.astro";
 import { backlinks, type Entry } from "../lib/entries";
 interface Props {
   entry: Entry;
@@ -18,6 +19,8 @@ const parent = data.kind === "project" ? "projects" : "notes";
   description={data.description}
   image={data.image?.src}
   article
+  published={data.published}
+  updated={data.updated}
 >
   <article>
     <header class="article-header">
@@ -36,6 +39,12 @@ const parent = data.kind === "project" ? "projects" : "notes";
     )}
     <div class="article-grid">
       <aside class="article-meta" aria-label="Page details">
+        {data.published && (
+          <div>
+            <p class="meta-label">Published</p>
+            <EntryDate date={data.published} />
+          </div>
+        )}
         {data.topics.length > 0 && (
           <div>
             <p class="meta-label">Topics</p>
@@ -51,14 +60,7 @@ const parent = data.kind === "project" ? "projects" : "notes";
         {data.updated && (
           <div>
             <p class="meta-label">Updated</p>
-            <time datetime={data.updated.toISOString()}>
-              {data.updated.toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-                timeZone: "UTC",
-              })}
-            </time>
+            <EntryDate date={data.updated} />
           </div>
         )}
         {data.links.length > 0 && (

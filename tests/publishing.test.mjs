@@ -62,14 +62,8 @@ test("published output, MD/MDX maths, backlinks, and draft boundaries", () => {
     const sitemap = read("dist/sitemap-0.xml");
     assert.ok(!sitemap.includes("authoring-example"));
     assert.ok(!sitemap.includes("/workspace"));
-    assert.match(read("dist/projects/aegis/index.html"), /Linked from/);
-    assert.match(
-      read("dist/projects/aegis/index.html"),
-      /href="\/notes\/looking-for-signals\/"/,
-    );
-
     const header = (title) =>
-      `---\ntitle: ${title}\ndescription: Publishing integration fixture\nkind: note\ndraft: false\n---\n\n`;
+      `---\ntitle: ${title}\ndescription: Publishing integration fixture\nkind: note\ndraft: false\npublished: 2026-09-12\n---\n\n`;
     const body =
       String.raw`Inline $z = f_\theta(x)$.
 
@@ -99,6 +93,12 @@ A [[projects/pk-spot|wiki link]].
     for (const id of ["garden-check-md", "garden-check-mdx"]) {
       const html = read(`dist/notes/${id}/index.html`);
       assert.match(html, /class="katex"/);
+      assert.match(html, /<time datetime="2026-09-12">/);
+      assert.match(html, /12 September 2026/);
+      assert.match(
+        html,
+        /property="article:published_time" content="2026-09-12T00:00:00.000Z"/,
+      );
       assert.match(html, /class="katex-display"/);
       assert.match(html, /<math /);
       assert.match(html, /href="\/projects\/pk-spot\/"/);

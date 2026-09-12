@@ -192,8 +192,10 @@ p {
   line-height: 1.2;
   letter-spacing: -0.04em;
 }
-.entry-topics {
-  display: block;
+.entry-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   font-size: 12px;
   color: var(--muted);
   margin-top: 14px;
@@ -517,7 +519,7 @@ figcaption {
   .entry-link :is(h2, h3) {
     font-size: 24px;
   }
-  .entry-topics {
+  .entry-details {
     margin-top: 10px;
   }
   .entry-summary p {

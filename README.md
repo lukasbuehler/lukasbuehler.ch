@@ -27,13 +27,14 @@ title: Learning to walk again
 description: A short description of what this page is about.
 kind: note
 draft: true
+published: 2026-09-12
 topics: [Movement]
 ---
 ```
 
 Write below the frontmatter. Start body sections with `##`: the layout supplies the single H1 from `title`.
 
-Set `draft: false` to include a page in the site. Omitted `draft` also means draft. Drafts have no generated route, listing, backlink, or sitemap entry, even in the normal development server. To preview one, temporarily set it to false locally, then restore it before committing. Draft filtering does not make files in `public/` private: anything placed there is copied into the build. Keep unapproved academic assets outside `public/` and outside a public repository.
+Set `draft: false` to include a page in the site. Published notes require a `published: YYYY-MM-DD` date. This stays as the original publication date; add `updated` separately for substantive revisions. Note indexes show newest first, while homepage selection remains controlled by `featured`. Omitted `draft` also means draft. Drafts have no generated route, listing, backlink, or sitemap entry, even in the normal development server. To preview one, temporarily set it to false locally, then restore it before committing. Draft filtering does not make files in `public/` private: anything placed there is copied into the build. Keep unapproved academic assets outside `public/` and outside a public repository.
 
 A `kind: project` page lives at `/projects/filename/`; a note lives at `/notes/filename/`. Keep a note’s kind stable when it leads to a project: create a project overview and link the two instead of moving the original note.
 

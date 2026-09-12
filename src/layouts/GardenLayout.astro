@@ -5,8 +5,17 @@ interface Props {
   description: string;
   image?: string;
   article?: boolean;
+  published?: Date;
+  updated?: Date;
 }
-const { title, description, image, article = false } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  article = false,
+  published,
+  updated,
+} = Astro.props;
 const pageTitle = title
   ? `${title} — Lukas Bühler`
   : "Lukas Bühler — Digital garden";
@@ -35,6 +44,15 @@ const navigation = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={article ? "article" : "website"} />
+    {article && published && (
+      <meta
+        property="article:published_time"
+        content={published.toISOString()}
+      />
+    )}
+    {article && updated && (
+      <meta property="article:modified_time" content={updated.toISOString()} />
+    )}
     <meta property="og:site_name" content="Lukas Bühler" />
     {canonical && <meta property="og:url" content={canonical} />}
     {socialImage && <meta property="og:image" content={socialImage} />}

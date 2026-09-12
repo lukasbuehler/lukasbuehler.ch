@@ -1,5 +1,6 @@
 ---
 import { entryUrl, type Entry } from "../lib/entries";
+import EntryDate from "./EntryDate.astro";
 interface Props {
   entries: Entry[];
   projects?: boolean;
@@ -13,7 +14,14 @@ const { entries, projects = false, headingLevel: Heading = "h3" } = Astro.props;
     <a class="entry-link" href={entryUrl(entry)}>
       <div class="entry-heading">
         <Heading>{entry.data.title}</Heading>
-        <span class="entry-topics">{entry.data.topics.join(" / ")}</span>
+        <div class="entry-details">
+          {entry.data.kind === "note" && entry.data.published && (
+            <EntryDate date={entry.data.published} />
+          )}
+          {entry.data.topics.length > 0 && (
+            <span>{entry.data.topics.join(" / ")}</span>
+          )}
+        </div>
       </div>
       <div class="entry-summary">
         <p>{entry.data.description}</p>
