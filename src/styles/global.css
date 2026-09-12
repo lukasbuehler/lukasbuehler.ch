@@ -141,6 +141,12 @@ p {
 }
 .text-link {
   font-size: 14px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule);
+}
+.text-link:hover {
+  text-decoration-color: currentColor;
 }
 .text-link span {
   margin-left: 8px;
@@ -168,7 +174,7 @@ p {
 }
 .entry-link {
   display: grid;
-  grid-template-columns: 1fr 1fr 24px;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
   border-top: 1px solid var(--rule);
   padding: 26px 0 32px;
@@ -203,13 +209,8 @@ p {
   display: block;
   margin-top: 16px;
 }
-.entry-arrow {
-  justify-self: end;
-  font-size: 23px;
-  color: var(--accent);
-}
 .project-list .entry-link {
-  grid-template-columns: 1fr 24px;
+  grid-template-columns: 1fr;
   gap: 25px 12px;
   padding: 26px 26px 30px;
   background: var(--wash);
@@ -226,10 +227,6 @@ p {
 }
 .project-list .entry-summary {
   grid-column: 1;
-}
-.project-list .entry-arrow {
-  grid-column: 2;
-  grid-row: 1;
 }
 .notes-section {
   margin-bottom: 100px;
@@ -507,7 +504,7 @@ figcaption {
     font-size: 36px;
   }
   .entry-link {
-    grid-template-columns: 1fr 20px;
+    grid-template-columns: 1fr;
     gap: 16px;
     padding: 24px 0;
   }
@@ -516,10 +513,6 @@ figcaption {
   }
   .entry-summary {
     grid-column: 1;
-  }
-  .entry-arrow {
-    grid-column: 2;
-    grid-row: 1;
   }
   .entry-link :is(h2, h3) {
     font-size: 24px;

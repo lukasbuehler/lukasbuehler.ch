@@ -65,7 +65,7 @@ const parent = data.kind === "project" ? "projects" : "notes";
           <div class="project-links">
             {data.links.map((link) => (
               <a class="text-link" href={link.url}>
-                {link.label} <span aria-hidden="true">↗</span>
+                {link.label}
               </a>
             ))}
           </div>
