@@ -7,6 +7,10 @@ draft: false
 featured: 1
 topics: [Robotics, Imitation learning]
 status: Master’s thesis · ASL, ETH Zürich · 2026
+image:
+  src: /images/projects/master-thesis-lab.png
+  alt: AI-edited view of the lab setup, with a white robot arm, an orange UAV, and a suspended button panel.
+  caption: AI-edited experiment frame. Background clutter removed and visual details reconstructed.
 ---
 
 For my master’s thesis at ASL, ETH Zürich, I designed a relative imitation-learning approach using egocentric vision and relative task-space velocities.
