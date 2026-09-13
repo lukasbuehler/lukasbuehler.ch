@@ -60,6 +60,29 @@ export async function renderSharingCard(entry: Entry) {
           timeZone: "UTC",
         }).format(data.published)
       : "";
+  return renderCard({
+    title,
+    label,
+    image,
+    detail: date,
+    disclosure: data.image?.caption?.startsWith("AI-edited") && !!image,
+  });
+}
+
+interface CardContent {
+  title: string;
+  label: string;
+  image?: string;
+  detail?: string;
+  disclosure?: boolean;
+}
+export async function renderCard({
+  title,
+  label,
+  image,
+  detail: date = "",
+  disclosure = false,
+}: CardContent) {
   // Measure the title and reduce type until even unusually long titles fit.
   for (let size = image ? 48 : 68; size >= 24; size -= 2) {
     let titleHeight = 0;
@@ -121,12 +144,7 @@ export async function renderSharingCard(entry: Entry) {
             },
             [
               box({}, "lukasbuehler.ch"),
-              box(
-                {},
-                data.image?.caption?.startsWith("AI-edited") && image
-                  ? "AI-edited image"
-                  : "Digital garden",
-              ),
+              box({}, disclosure ? "AI-edited image" : "Digital garden"),
             ],
           ),
         ],
@@ -145,6 +163,6 @@ export async function renderSharingCard(entry: Entry) {
       return sharp(Buffer.from(svg)).png().toBuffer();
   }
   throw new Error(
-    `Sharing title is too long for ${entry.id}; add a shorter shareTitle.`,
+    `Sharing title is too long for ${title}; add a shorter shareTitle.`,
   );
 }

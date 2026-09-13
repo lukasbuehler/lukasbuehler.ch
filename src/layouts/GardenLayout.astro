@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { pageSharingImage } from "../lib/sharing-pages";
 import themeScript from "../scripts/theme.js?raw";
 interface Props {
   title?: string;
@@ -25,8 +26,10 @@ const pageTitle = title
 const canonical = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : undefined;
+const pageCard = pageSharingImage(Astro.url.pathname);
+const imagePath = image ?? pageCard?.src;
 const socialImage =
-  image && Astro.site ? new URL(image, Astro.site) : undefined;
+  imagePath && Astro.site ? new URL(imagePath, Astro.site) : undefined;
 const path = Astro.url.pathname;
 const navigation = [
   { href: "/projects/", label: "Projects" },
@@ -65,9 +68,15 @@ const navigation = [
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:alt" content={imageAlt ?? pageTitle} />
+        <meta
+          property="og:image:alt"
+          content={imageAlt ?? pageCard?.alt ?? pageTitle}
+        />
         <meta name="twitter:image" content={socialImage} />
-        <meta name="twitter:image:alt" content={imageAlt ?? pageTitle} />
+        <meta
+          name="twitter:image:alt"
+          content={imageAlt ?? pageCard?.alt ?? pageTitle}
+        />
       </>
     )}
     <meta name="twitter:title" content={pageTitle} />

@@ -697,3 +697,30 @@ figcaption {
     color: var(--ink) !important;
   }
 }
+
+.project-list .entry-with-image {
+  grid-template-columns: minmax(0, 1fr) minmax(100px, 32%);
+  column-gap: 20px;
+}
+.project-list .entry-with-image .entry-heading {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+.project-list .entry-with-image .entry-summary {
+  grid-row: 2;
+}
+.entry-thumbnail {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  width: 100%;
+  height: auto;
+  max-height: 190px;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  .project-list .entry-with-image {
+    grid-template-columns: minmax(0, 1fr) 90px;
+    gap: 20px 16px;
+  }
+}

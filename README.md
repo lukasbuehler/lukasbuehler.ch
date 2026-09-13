@@ -71,7 +71,7 @@ image:
   caption: A short factual caption.
 ```
 
-Project images appear on their project pages and in generated sharing cards. The homepage stays typographic and does not automatically display project images.
+Project images appear on their project pages and in generated sharing cards. The homepage and Projects index show compact project thumbnails beside the card text; no large image is added above the homepage sections.
 
 Inside an MDX page:
 
@@ -160,7 +160,7 @@ To repeat the isolated check: build with a dummy token into `/private/tmp/digita
 
 `private-assets/` holds local thesis PDFs and image originals awaiting review. It is Git-ignored and outside Astro’s published directories; Git does not back it up. Keep originals there, and copy only approved publication versions into `public/documents/` or `public/images/`. A declaration-bearing PDF should be checked for signatures and personal details before publication.
 
-For a project’s lead image, use the existing `image` frontmatter (`src`, `alt`, `caption`). It appears on the project page and supplies its sharing image; project lists stay typographic. Use Markdown images or the MDX `Figure` and `Video` components for additional explanatory media. Captions should distinguish AI-altered illustrations from documentary research imagery.
+For a project’s lead image, use the existing `image` frontmatter (`src`, `alt`, `caption`). It appears on the project page and supplies its sharing image; project lists show compact thumbnails alongside their text. Use Markdown images or the MDX `Figure` and `Video` components for additional explanatory media. Captions should distinguish AI-altered illustrations from documentary research imagery.
 
 ## Link sharing previews
 
@@ -183,3 +183,5 @@ Aviz uses `model: aviz-mk1` alongside its ordinary `image` frontmatter. The stil
 ## Colour theme
 
 The footer offers System / Light / Dark. System is the default and follows OS changes, including without JavaScript. Explicit preferences use the local-only `garden-theme` localStorage key; choosing System removes it. The small inline head script applies the preference before the page paints and tolerates blocked storage. Images, the CAD scene, and generated sharing cards retain their original colours. Dark-mode colours live alongside the light palette in `src/styles/global.css`.
+
+Home, About, Projects and Notes also receive static sharing cards at `/sharing/pages/<page>.png` (`home`, `about`, `projects`, `notes`). Their wording lives in `src/lib/sharing-pages.ts`; the shared layout selects the correct metadata automatically.

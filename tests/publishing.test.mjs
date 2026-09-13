@@ -70,6 +70,20 @@ test("published output, MD/MDX maths, backlinks, and draft boundaries", () => {
   try {
     build();
     checkPages();
+    for (const [page, path] of [
+      ["home", ""],
+      ["about", "about/"],
+      ["projects", "projects/"],
+      ["notes", "notes/"],
+    ]) {
+      const html = read(`dist/${path}index.html`);
+      assert.ok(
+        html.includes(`https://lukasbuehler.ch/sharing/pages/${page}.png`),
+      );
+      const png = readFileSync(`dist/sharing/pages/${page}.png`);
+      assert.equal(png.readUInt32BE(16), 1200);
+      assert.equal(png.readUInt32BE(20), 630);
+    }
     assert.ok(!existsSync("dist/notes/authoring-example/index.html"));
     const sitemap = read("dist/sitemap-0.xml");
     assert.ok(!sitemap.includes("authoring-example"));

@@ -11,7 +11,22 @@ const { entries, projects = false, headingLevel: Heading = "h3" } = Astro.props;
 
 <div class:list={["entry-list", { "project-list": projects }]}>
   {entries.map((entry) => (
-    <a class="entry-link" href={entryUrl(entry)}>
+    <a
+      class:list={[
+        "entry-link",
+        { "entry-with-image": projects && !!entry.data.image },
+      ]}
+      href={entryUrl(entry)}
+    >
+      {projects && entry.data.image && (
+        <img
+          class="entry-thumbnail"
+          src={entry.data.image.src}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      )}
       <div class="entry-heading">
         <Heading>{entry.data.title}</Heading>
         <div class="entry-details">
