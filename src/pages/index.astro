@@ -1,7 +1,7 @@
 ---
 import GardenLayout from "../layouts/GardenLayout.astro";
 import EntryList from "../components/EntryList.astro";
-import { publishedEntries, entryUrl, projectGroups } from "../lib/entries";
+import { publishedEntries, projectGroups } from "../lib/entries";
 const entries = await publishedEntries();
 const groups = projectGroups.map((group) => ({
   ...group,
@@ -17,7 +17,6 @@ const groups = projectGroups.map((group) => ({
 const notes = entries
   .filter((e) => e.data.kind === "note" && e.data.featured !== undefined)
   .slice(0, 3);
-const visual = groups[0].entries.find((e) => e.data.image);
 ---
 
 <GardenLayout description="The digital garden of Lukas Bühler. Software, robotics, parkour, and notes from work in progress.">
@@ -39,18 +38,6 @@ const visual = groups[0].entries.find((e) => e.data.image);
       </a>
     </div>
   </section>
-  {visual?.data.image && (
-    <figure class="featured-visual">
-      <a href={entryUrl(visual)}>
-        <img
-          src={visual.data.image.src}
-          alt={visual.data.image.alt}
-          fetchpriority="high"
-        />
-      </a>
-      <figcaption>{visual.data.image.caption ?? visual.data.title}</figcaption>
-    </figure>
-  )}
   {groups
     .filter((group) => group.entries.length > 0)
     .map((group) => (

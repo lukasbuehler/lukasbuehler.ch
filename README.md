@@ -71,7 +71,7 @@ image:
   caption: A short factual caption.
 ```
 
-The first of the two selected homepage projects with an image supplies the homepage visual. The same image appears on the project page and is used for its sharing metadata. Without an image, the layout stays typographic.
+Project images appear on their project pages and in generated sharing cards. The homepage stays typographic and does not automatically display project images.
 
 Inside an MDX page:
 
