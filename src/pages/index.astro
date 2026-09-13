@@ -1,15 +1,23 @@
 ---
 import GardenLayout from "../layouts/GardenLayout.astro";
 import EntryList from "../components/EntryList.astro";
-import { publishedEntries, entryUrl } from "../lib/entries";
+import { publishedEntries, entryUrl, projectGroups } from "../lib/entries";
 const entries = await publishedEntries();
-const projects = entries
-  .filter((e) => e.data.kind === "project" && e.data.featured !== undefined)
-  .slice(0, 2);
+const groups = projectGroups.map((group) => ({
+  ...group,
+  entries: entries
+    .filter(
+      (e) =>
+        e.data.kind === "project" &&
+        e.data.projectGroup === group.id &&
+        e.data.featured !== undefined,
+    )
+    .slice(0, 2),
+}));
 const notes = entries
   .filter((e) => e.data.kind === "note" && e.data.featured !== undefined)
   .slice(0, 3);
-const visual = projects.find((e) => e.data.image);
+const visual = groups[0].entries.find((e) => e.data.image);
 ---
 
 <GardenLayout description="The digital garden of Lukas Bühler. Software, robotics, parkour, and notes from work in progress.">
@@ -43,18 +51,22 @@ const visual = projects.find((e) => e.data.image);
       <figcaption>{visual.data.image.caption ?? visual.data.title}</figcaption>
     </figure>
   )}
-  <section
-    class="home-section projects-section"
-    aria-labelledby="projects-title"
-  >
-    <div class="section-heading">
-      <h2 id="projects-title">Selected projects</h2>
-      <a class="text-link" href="/projects/">
-        All projects
-      </a>
-    </div>
-    <EntryList entries={projects} projects />
-  </section>
+  {groups
+    .filter((group) => group.entries.length > 0)
+    .map((group) => (
+      <section
+        class="home-section projects-section"
+        aria-labelledby={`${group.id}-projects-title`}
+      >
+        <div class="section-heading">
+          <h2 id={`${group.id}-projects-title`}>{group.title}</h2>
+          <a class="text-link" href={`/projects/#${group.id}`}>
+            All {group.id} projects
+          </a>
+        </div>
+        <EntryList entries={group.entries} projects />
+      </section>
+    ))}
   <section class="home-section notes-section" aria-labelledby="notes-title">
     <div class="section-heading">
       <h2 id="notes-title">Notes</h2>

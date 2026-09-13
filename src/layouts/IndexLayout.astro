@@ -1,7 +1,7 @@
 ---
 import GardenLayout from "./GardenLayout.astro";
 import EntryList from "../components/EntryList.astro";
-import { publishedEntries } from "../lib/entries";
+import { publishedEntries, projectGroups } from "../lib/entries";
 interface Props {
   kind: "note" | "project";
   title: string;
@@ -20,11 +20,29 @@ if (kind === "note")
     <h1>{title}</h1>
     <p>{description}</p>
   </header>
-  <section class="index-entries" aria-label={title}>
-    <EntryList
-      entries={entries}
-      projects={kind === "project"}
-      headingLevel="h2"
-    />
-  </section>
+  {kind === "project" ? (
+    projectGroups.map((group) => {
+      const projects = entries.filter(
+        (entry) => entry.data.projectGroup === group.id,
+      );
+      return (
+        projects.length > 0 && (
+          <section
+            id={group.id}
+            class="home-section"
+            aria-labelledby={`${group.id}-title`}
+          >
+            <div class="section-heading">
+              <h2 id={`${group.id}-title`}>{group.title}</h2>
+            </div>
+            <EntryList entries={projects} projects />
+          </section>
+        )
+      );
+    })
+  ) : (
+    <section class="index-entries" aria-label={title}>
+      <EntryList entries={entries} headingLevel="h2" />
+    </section>
+  )}
 </GardenLayout>

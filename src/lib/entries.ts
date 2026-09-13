@@ -1,4 +1,8 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+export const projectGroups = [
+  { id: "personal", title: "Personal Projects" },
+  { id: "academic", title: "Academic Projects" },
+] as const;
 export type Entry = CollectionEntry<"entries">;
 export const entryUrl = (entry: Entry) =>
   `/${entry.data.kind === "project" ? "projects" : "notes"}/${entry.id}/`;

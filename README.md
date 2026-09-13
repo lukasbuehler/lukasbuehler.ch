@@ -104,7 +104,7 @@ Video plays only when the reader chooses; provide captions for spoken material. 
 
 ## Curate the homepage
 
-Add `featured: 1` (or another number) to selected entries. Lower numbers come first. Home shows up to two selected projects and three selected notes. Entries without `featured` still appear in their index. Keep the homepage small as the interior grows.
+Add `featured: 1` (or another number) to selected entries. Lower numbers come first. Home shows up to two selected personal projects, two selected academic projects, and three selected notes. Set `projectGroup: academic` for academic work; projects default to `personal`. The Projects page lists all published projects under these two groups. Entries without `featured` still appear in their index. Keep the homepage small as the interior grows.
 
 Optional metadata:
 
