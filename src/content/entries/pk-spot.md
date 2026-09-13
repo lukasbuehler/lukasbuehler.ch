@@ -1,6 +1,6 @@
 ---
 title: PK Spot
-description: A parkour app, built around a practice I care about.
+description: A parkour app. Discover spots and train together. A service to the global Parkour community.
 kind: project
 draft: false
 image:
@@ -15,6 +15,7 @@ links:
     url: https://pkspot.app
 ---
 
-PK Spot is my parkour app. It brings my work on web applications together with my interest in movement.
+PK Spot is my parkour app. It brings my work on web applications together with my interest in the sport itself. Its goal is to be as useful as possible for practitioners.
+You can already discover spots to train, events and more.
 
 This page is a place to collect the thinking behind the project as well as the work itself.
