@@ -23,20 +23,27 @@ const parent = data.kind === "project" ? "projects" : "notes";
   updated={data.updated}
 >
   <article>
-    <header class="article-header">
-      <a class="text-link breadcrumb" href={`/${parent}/`}>
-        {data.kind === "project" ? "Projects" : "Notes"}{" "}
-        <span aria-hidden="true">/</span>
-      </a>
-      <h1>{data.title}</h1>
-      <p class="article-description">{data.description}</p>
-    </header>
-    {data.image && (
-      <figure class="featured-visual">
-        <img src={data.image.src} alt={data.image.alt} />
-        <figcaption>{data.image.caption}</figcaption>
-      </figure>
-    )}
+    <div
+      class:list={[
+        "article-intro",
+        { "article-intro-with-image": data.kind === "project" && !!data.image },
+      ]}
+    >
+      <header class="article-header">
+        <a class="text-link breadcrumb" href={`/${parent}/`}>
+          {data.kind === "project" ? "Projects" : "Notes"}{" "}
+          <span aria-hidden="true">/</span>
+        </a>
+        <h1>{data.title}</h1>
+        <p class="article-description">{data.description}</p>
+      </header>
+      {data.image && (
+        <figure class="featured-visual">
+          <img src={data.image.src} alt={data.image.alt} />
+          <figcaption>{data.image.caption}</figcaption>
+        </figure>
+      )}
+    </div>
     <div class="article-grid">
       <aside class="article-meta" aria-label="Page details">
         {data.published && (

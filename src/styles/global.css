@@ -609,3 +609,33 @@ figcaption {
   justify-content: flex-end;
   gap: 12px 24px;
 }
+
+/* Give project imagery its own column once both halves have room to breathe. */
+@media (min-width: 1200px) {
+  .article-intro-with-image {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+    padding: 45px 0 60px;
+  }
+  .article-intro-with-image .article-header {
+    padding: 0;
+  }
+  .article-intro-with-image h1 {
+    font-size: clamp(44px, 3.6vw, 58px);
+    line-height: 1.08;
+  }
+  .article-intro-with-image .article-description {
+    font-size: 21px;
+  }
+  .article-intro-with-image .featured-visual {
+    min-width: 0;
+    margin: 0;
+  }
+  .article-intro-with-image .featured-visual img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
