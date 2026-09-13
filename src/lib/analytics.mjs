@@ -37,6 +37,9 @@ export function pageviewOnly(event, canonicalUrl, blocked) {
     "token",
     "distinct_id",
     "$cookieless_mode",
+    // Required hash input; PostHog drops cookieless events without it, then
+    // removes it server-side after hashing rather than storing it on the event.
+    "$raw_user_agent",
     "$lib",
     "$lib_version",
   ]) {

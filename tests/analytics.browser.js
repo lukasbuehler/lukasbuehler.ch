@@ -95,6 +95,12 @@ async (page) => {
       (requests.length !== 1 || requests[0].data.batch?.length !== 1 || requests[0].data.batch[0].event !== "$pageview")
     )
       throw new Error("Expected one pageview: " + JSON.stringify(requests));
+    if (signal === "none") {
+      const event = requests[0].data.batch[0];
+      const ua = await testPage.evaluate(() => navigator.userAgent);
+      if (event.properties.$raw_user_agent !== ua || !event.properties.$host || !event.timestamp)
+        throw new Error("Missing cookieless ingestion hash inputs");
+    }
     if (
       requests.some(
         (r) =>

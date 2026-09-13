@@ -69,11 +69,11 @@ const enabled = analyticsConfig.enabled;
       <p>
         PostHog is configured not to persist analytics data in cookies, local
         storage, or session storage. Its cookieless service receives the
-        connection’s IP address and browser user agent and uses them, together
-        with the site hostname and a daily changing salt, to calculate a visitor
-        hash. This supports daily audience counts without a persistent
-        identifier stored in your browser. Cookieless does not mean that no data
-        is processed.
+        connection’s IP address and the browser user agent sent with the event
+        and uses them, together with the site hostname and a daily changing
+        salt, to calculate a visitor hash. This supports daily audience counts
+        without a persistent identifier stored in your browser. Cookieless does
+        not mean that no data is processed.
       </p>
       <p>
         The daily salt rotation limits linking visits across days; it does not
