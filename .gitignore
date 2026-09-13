@@ -30,3 +30,5 @@ output/
 
 # Local research originals awaiting publication clearance
 /private-assets/
+
+.vscode/
