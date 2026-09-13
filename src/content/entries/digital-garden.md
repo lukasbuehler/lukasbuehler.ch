@@ -17,7 +17,7 @@ I first heard about digital gardens from a [Struthless YouTube video on "The bra
 I loved the idea of it, and then tinkered a bit and forgot about it again.
 A **digital garden** is a personal, publicly accessible online space that sits between a personal notebook and a traditional blog. 
 
-I structured my digital garden as a collection of [[notes|notes]] and [[projects|projects]].
+I structured my digital garden as a collection of [notes](/notes/) and [projects](/projects/).
 Some things here will be finished projects. Others will be questions I’m still figuring out.
 
 I am starting with what I have. 
