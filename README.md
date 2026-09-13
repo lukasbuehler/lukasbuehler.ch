@@ -173,3 +173,9 @@ The full title is used automatically. Optionally add `shareTitle: A shorter titl
 Open Graph and Twitter large-image tags include absolute URLs, descriptive alt text, PNG type and dimensions. The common 1200 × 630 format is close to [LinkedIn’s 1200 × 627 preview frame](https://www.linkedin.com/help/linkedin/answer/a525301/sharing-articles-or-links?lang=en); generous margins accommodate small platform crops. Platforms control their final display and may cache previews. After deployment, use LinkedIn’s Post Inspector to refresh a changed URL. Local builds verify the files and tags, not live platform rendering.
 
 Preview cards locally at `http://127.0.0.1:4322/sharing/relative-imitation-learning-uav.png` (or another entry ID). Design lives in `src/lib/sharing.ts`, and the static endpoint in `src/pages/sharing/[id].png.ts`. Generated images stay in `dist/`, not Git. The Satori-specific fflate override keeps its 0.7-series dependency on the patched release.
+
+## Aviz interactive CAD
+
+Aviz uses `model: aviz-mk1` alongside its ordinary `image` frontmatter. The still remains visible without JavaScript and becomes the sharing-card image. “Explore in 3D” loads Three.js and the approximately 5.5 MB model only on request. Drag or focus the canvas and use arrow keys to rotate; buttons zoom and reset; the slider moves all four tilts around the exported shaft axes. This previews geometry, not flight dynamics or collision clearance. No automatic rotation or continuous render loop is used.
+
+`public/models/aviz-mk1/prototype.json` and `src/lib/aviz/cad-model.js` are copied unchanged from the supplied Aviz repository export. The original repo remains untouched. To refresh, copy those same files from the Aviz repo, rebuild, and recapture the neutral canvas as `public/images/projects/aviz-mk1.png`; rebuild again to refresh the sharing card. Keep the complete `meshes` and `vehicle` fields together. The website serves this model publicly as part of the project.

@@ -1,6 +1,7 @@
 ---
 import "katex/dist/katex.min.css";
 import GardenLayout from "./GardenLayout.astro";
+import AvizModel from "../components/media/AvizModel.astro";
 import EntryList from "../components/EntryList.astro";
 import { sharingUrl } from "../lib/sharing";
 import EntryDate from "../components/EntryDate.astro";
@@ -39,12 +40,15 @@ const parent = data.kind === "project" ? "projects" : "notes";
         <h1>{data.title}</h1>
         <p class="article-description">{data.description}</p>
       </header>
-      {data.image && (
-        <figure class="featured-visual">
-          <img src={data.image.src} alt={data.image.alt} />
-          <figcaption>{data.image.caption}</figcaption>
-        </figure>
-      )}
+      {data.image &&
+        (data.model === "aviz-mk1" ? (
+          <AvizModel {...data.image} />
+        ) : (
+          <figure class="featured-visual">
+            <img src={data.image.src} alt={data.image.alt} />
+            <figcaption>{data.image.caption}</figcaption>
+          </figure>
+        ))}
     </div>
     <div class="article-grid">
       <aside class="article-meta" aria-label="Page details">

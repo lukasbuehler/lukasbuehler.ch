@@ -16,6 +16,7 @@ const entries = defineCollection({
       status: z.string().optional(),
       published: z.coerce.date().optional(),
       updated: z.coerce.date().optional(),
+      model: z.literal("aviz-mk1").optional(),
       image: z
         .object({
           src: z.string(),

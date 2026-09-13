@@ -4,6 +4,11 @@ description: Designing and simulating a quadcopter with four independently tilti
 kind: project
 projectGroup: personal
 draft: false
+model: aviz-mk1
+image:
+  src: /images/projects/aviz-mk1.png
+  alt: CAD rendering of Aviz Mk1 with four individually tilting rotor assemblies.
+  caption: Aviz Mk1 CAD model. Mechanical design in progress.
 topics: [Robotics, Mechanical design, Simulation]
 status: CAD and simulation · Experimental prototype
 ---
