@@ -3,6 +3,7 @@ title: PK Spot
 description: A parkour app, built around a practice I care about.
 kind: project
 draft: false
+status: Live on web, iOS and Android
 featured: 1
 topics: [Software, Parkour]
 links:

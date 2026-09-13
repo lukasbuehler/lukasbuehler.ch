@@ -4,6 +4,7 @@ description: A playful sandbox for learning how neural networks fit together, us
 kind: project
 projectGroup: personal
 draft: false
+status: Pre-launch
 topics: [Deep learning, Education, Interactive tools]
 ---
 
