@@ -138,6 +138,8 @@ Every build generates `/sitemap.xml` (an alias of Astro's `/sitemap-index.xml`, 
 
 ## Before deployment
 
+Pages include build-time Schema.org JSON-LD from `src/lib/structured-data.ts`: shared Person and WebSite identities, WebPage/AboutPage/CollectionPage metadata, BlogPosting for notes, CreativeWork for projects, entry breadcrumbs, and index lists. Titles, descriptions, dates, topics, and sharing images follow the visible content. No publication date is invented for undated projects. This helps machines interpret the site; it does not guarantee rich search results.
+
 Gather imagery, review the starter copy, add any desired project links/contact details, and confirm permission for academic material. The September 12 dependency audit reports 15 advisories (2 low, 12 high, 1 critical) in the existing Astro 5 toolchain and its dependency graph. The critical report includes Astro image optimization; the site currently outputs static HTML and does not use that feature. A framework/dependency upgrade and fresh audit remain release work, separate from this design change. Do not expose the development server publicly.
 
 ## Optional EU analytics

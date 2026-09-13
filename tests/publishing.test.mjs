@@ -27,6 +27,34 @@ function checkPages(directory = "dist") {
     if (!path.endsWith(".html")) continue;
     const html = read(path);
     if (/http-equiv="refresh"/i.test(html)) continue;
+    const scripts = [
+      ...html.matchAll(
+        /<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
+      ),
+    ];
+    assert.equal(scripts.length, 1, `${path}: one structured data graph`);
+    const schema = JSON.parse(scripts[0][1]);
+    assert.equal(schema["@context"], "https://schema.org");
+    const node = (type) =>
+      schema["@graph"].find((item) => item["@type"] === type);
+    assert.equal(node("Person").name, "Lukas Bühler");
+    assert.equal(node("WebSite").url, "https://lukasbuehler.ch/");
+    if (path.endsWith("about/index.html"))
+      assert.ok(node("AboutPage").mainEntity);
+    if (/\/(notes|projects)\/[^/]+\/index.html$/.test(path)) {
+      const work = node(
+        path.includes("/notes/") ? "BlogPosting" : "CreativeWork",
+      );
+      assert.ok(work, `${path}: appropriate entry type`);
+      assert.equal(work.author["@id"], node("Person")["@id"]);
+      assert.equal(work.mainEntityOfPage["@id"], node("WebPage")["@id"]);
+      assert.ok(node("BreadcrumbList"));
+      if (path.includes("/notes/")) assert.ok(work.datePublished);
+    }
+    if (/\/(notes|projects)\/index.html$/.test(path)) {
+      assert.equal(node("CollectionPage").mainEntity["@type"], "ItemList");
+      assert.ok(!scripts[0][1].includes("garden-check-private"));
+    }
     assert.equal(
       [...html.matchAll(/<h1(?:\s|>)/g)].length,
       1,

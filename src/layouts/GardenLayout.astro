@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import { pageSharingImage } from "../lib/sharing-pages";
 import themeScript from "../scripts/theme.js?raw";
+import { structuredData } from "../lib/structured-data";
+import type { Entry } from "../lib/entries";
 interface Props {
   title?: string;
   description: string;
@@ -10,6 +12,8 @@ interface Props {
   article?: boolean;
   published?: Date;
   updated?: Date;
+  entry?: Entry;
+  entries?: Entry[];
 }
 const {
   title,
@@ -48,6 +52,20 @@ const navigation = [
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={structuredData({
+          canonical,
+          title: title ?? pageTitle,
+          description,
+          image: socialImage,
+          entry: Astro.props.entry,
+          entries: Astro.props.entries,
+        })}
+      ></script>
+    )}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={article ? "article" : "website"} />
