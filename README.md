@@ -15,7 +15,13 @@ npm run preview
 
 `npm test` builds the site, checks page metadata and links, temporarily adds MD/MDX fixtures to verify maths and draft boundaries, and removes them before rebuilding the real site. Run it without another build or content-editing process in parallel.
 
-`npm run format` formats the source. The build output is `dist/`. Cloudflare publishing is a later step; no hosting connection is configured here. `public/_redirects` preserves the former Workspace and Hobbies URLs for Cloudflare Pages.
+`npm run format` formats the source. The build output is `dist/`. `public/_redirects` preserves the former Workspace and Hobbies URLs on Cloudflare.
+
+## Cloudflare deployment
+
+The `lukasbuehler-ch` Worker serves Astro's static output using `wrangler.jsonc`; no server adapter is needed. Cloudflare's Git integration should build `main` from repository root with `npm run build`, then deploy with `npx wrangler deploy`. `.node-version` selects Node 24. Keep working on `development` and merge reviewed changes into `main` to publish.
+
+Set `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_ENABLED` as build variables (see Analytics below). Only `dist/` is deployed. Ignored `private-assets/` originals are neither committed nor published. To validate deployment configuration locally after a build, run `npx wrangler deploy --dry-run`. The Worker can be previewed on its `workers.dev` URL before connecting `lukasbuehler.ch`; analytics stays disabled on that preview hostname.
 
 ## Write a page
 
