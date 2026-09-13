@@ -3,6 +3,7 @@ title: Dense-feature SLAM for endoscopic reconstruction
 description: A modular SLAM pipeline using dense feature matching to reconstruct low-texture endoscopic environments.
 kind: project
 projectGroup: academic
+projectType: Semester project
 draft: false
 image:
   src: /images/projects/endoscopic-slam.png

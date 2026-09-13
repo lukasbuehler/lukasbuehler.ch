@@ -3,6 +3,7 @@ title: Extensible C++ finite-element framework for IPPL
 description: A finite-element method framework built from scratch for the open-source IPPL high-performance computing codebase.
 kind: project
 projectGroup: academic
+projectType: Bachelor’s thesis
 draft: false
 image:
   src: /images/projects/ippl-basis-functions.png

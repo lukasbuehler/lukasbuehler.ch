@@ -49,7 +49,7 @@ export async function renderSharingCard(entry: Entry) {
     data.kind === "note"
       ? "Note"
       : data.projectGroup === "academic"
-        ? "Academic project"
+        ? (data.projectType ?? "Academic project")
         : "Personal project";
   const date =
     data.kind === "note" && data.published

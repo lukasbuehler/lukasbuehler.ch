@@ -166,7 +166,7 @@ For a project’s lead image, use the existing `image` frontmatter (`src`, `alt`
 
 Every published project and note gets a static **1200 × 630 PNG** at `/sharing/<entry-id>.png`. `npm run build` generates these with local Inter fonts, Satori, and Sharp; no remote font service, browser JavaScript, or production image server is needed. Drafts do not get cards.
 
-Project cards use the title and existing project image, fitted without cropping. Projects without images and notes use a typographic layout; notes include their publication date. The template follows the site’s paper colour, dark text and thin rules. The master’s image retains a short AI-editing disclosure.
+Project cards use the title and existing project image, fitted without cropping. Academic cards use `projectType` (such as `Master’s thesis`) as their label, falling back to `Academic project`. Projects without images and notes use a typographic layout; notes include their publication date. The template follows the site’s paper colour, dark text and thin rules. The master’s image retains a short AI-editing disclosure.
 
 The full title is used automatically. Optionally add `shareTitle: A shorter title for sharing` (up to 160 characters) to frontmatter for particularly long titles; this changes only the card artwork, not the page heading or SEO title. Long titles shrink to fit, and the build fails if text cannot fit rather than silently clipping it. Images must be local files under `public/`.
 

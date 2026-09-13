@@ -9,6 +9,7 @@ const entries = defineCollection({
       description: z.string(),
       kind: z.enum(["note", "project"]),
       projectGroup: z.enum(["personal", "academic"]).default("personal"),
+      projectType: z.string().optional(),
       draft: z.boolean().default(true),
       featured: z.number().optional(),
       topics: z.array(z.string()).default([]),

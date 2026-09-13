@@ -3,6 +3,7 @@ title: Compute-efficient relative imitation learning for a fully actuated UAV
 description: Transferring learned behaviour from a robotic arm to a fully actuated UAV using egocentric vision and relative task-space velocities.
 kind: project
 projectGroup: academic
+projectType: Master’s thesis
 draft: false
 featured: 1
 topics: [Robotics, Imitation learning]
