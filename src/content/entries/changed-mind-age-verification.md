@@ -3,7 +3,7 @@ title: I changed my mind about online age verification.
 description: I used to dislike online age verification. I still kind of do, but I get it now.
 kind: note
 draft: false
-published: 2026-09-12
+published: 2026-09-13
 ---
 
 I used to see no reason for online age verification.
