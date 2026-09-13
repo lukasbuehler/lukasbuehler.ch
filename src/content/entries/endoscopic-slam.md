@@ -4,6 +4,9 @@ description: A modular SLAM pipeline using dense feature matching to reconstruct
 kind: project
 projectGroup: academic
 draft: false
+image:
+  src: /images/projects/endoscopic-slam.png
+  alt: Four views of a pink 3D point cloud with camera poses, above a strip of dense feature matches.
 featured: 2
 topics: [Computer vision, SLAM]
 status: Semester project · ETH Multi-Scale Robotics Lab · 2025

@@ -4,6 +4,9 @@ description: A finite-element method framework built from scratch for the open-s
 kind: project
 projectGroup: academic
 draft: false
+image:
+  src: /images/projects/ippl-basis-functions.png
+  alt: Four surface plots of basis functions on a square element, with vertices numbered zero to three.
 topics: [C++, Scientific computing]
 status: Bachelor’s thesis · ETH Zürich / PSI · 2023
 links:
