@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import themeScript from "../scripts/theme.js?raw";
 interface Props {
   title?: string;
   description: string;
@@ -40,6 +41,7 @@ const navigation = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f5f6f0" />
+    <script is:inline set:html={themeScript}></script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
@@ -107,6 +109,14 @@ const navigation = [
         <div class="footer-links">
           <a href="/about/">About this garden</a>
           <a href="/privacy/">Privacy</a>
+          <label class="theme-control" data-theme-control hidden>
+            Theme
+            <select id="theme-preference" aria-label="Colour theme">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
         </div>
       </footer>
     </div>

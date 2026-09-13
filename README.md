@@ -179,3 +179,7 @@ Preview cards locally at `http://127.0.0.1:4322/sharing/relative-imitation-learn
 Aviz uses `model: aviz-mk1` alongside its ordinary `image` frontmatter. The still remains visible without JavaScript and becomes the sharing-card image. “Explore in 3D” loads Three.js and the approximately 5.5 MB model only on request. Drag or focus the canvas and use arrow keys to rotate; buttons zoom and reset; the slider moves all four tilts around the exported shaft axes. This previews geometry, not flight dynamics or collision clearance. No automatic rotation or continuous render loop is used.
 
 `public/models/aviz-mk1/prototype.json` and `src/lib/aviz/cad-model.js` are copied unchanged from the supplied Aviz repository export. The original repo remains untouched. To refresh, copy those same files from the Aviz repo, rebuild, and recapture the neutral canvas as `public/images/projects/aviz-mk1.png`; rebuild again to refresh the sharing card. Keep the complete `meshes` and `vehicle` fields together. The website serves this model publicly as part of the project.
+
+## Colour theme
+
+The footer offers System / Light / Dark. System is the default and follows OS changes, including without JavaScript. Explicit preferences use the local-only `garden-theme` localStorage key; choosing System removes it. The small inline head script applies the preference before the page paints and tolerates blocked storage. Images, the CAD scene, and generated sharing cards retain their original colours. Dark-mode colours live alongside the light palette in `src/styles/global.css`.
