@@ -26,3 +26,6 @@ pnpm-debug.log*
 # Local browser verification artifacts
 .playwright-cli/
 output/
+
+# Local research originals awaiting publication clearance
+/private-assets/

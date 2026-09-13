@@ -155,3 +155,9 @@ References checked 13 September 2026:
 Browser verification with the real SDK (requests intercepted, no data sent to PostHog): DNT and GPC each produced zero SDK chunk loads, zero third-party requests, and zero storage writes. Without a privacy signal there was one EU pageview request, zero cookies, and empty local/session storage afterward. The SDK briefly writes and removes support-probe keys (`__mplssupport__` and `test`) during initialization; it does not persist analytics identifiers. This is why the policy describes no analytics persistence rather than promising that the SDK never touches storage.
 
 To repeat the isolated check: build with a dummy token into `/private/tmp/digital-garden-analytics-build`, serve that directory on `127.0.0.1:4323`, and run the Playwright CLI with `run-code --filename tests/analytics.browser.js`. The script intercepts every browser request, serves the garden from that local directory through its local HTTP server, and returns fake success for PostHog; it never sends test data to a real project. Normal `npm test` remains browser-independent.
+
+## Research media awaiting publication
+
+`private-assets/` holds local thesis PDFs and image originals awaiting review. It is Git-ignored and outside Astro’s published directories; Git does not back it up. Keep originals there, and copy only approved publication versions into `public/documents/` or `public/images/`. A declaration-bearing PDF should be checked for signatures and personal details before publication.
+
+For a project’s lead image, use the existing `image` frontmatter (`src`, `alt`, `caption`). It appears on the project page and supplies its sharing image; project lists stay typographic. Use Markdown images or the MDX `Figure` and `Video` components for additional explanatory media. Captions should distinguish AI-altered illustrations from documentary research imagery.
