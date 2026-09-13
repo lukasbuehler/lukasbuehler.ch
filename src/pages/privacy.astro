@@ -1,0 +1,76 @@
+---
+import GardenLayout from "../layouts/GardenLayout.astro";
+const enabled =
+  import.meta.env.PUBLIC_POSTHOG_ENABLED === "true" &&
+  /^phc_[A-Za-z0-9_]+$/.test(import.meta.env.PUBLIC_POSTHOG_KEY ?? "");
+---
+
+<GardenLayout
+  title="Privacy"
+  description="How this digital garden handles analytics and browser privacy signals."
+>
+  <header class="page-intro">
+    <h1>Privacy</h1>
+    <p>A small website, with limited audience measurement.</p>
+  </header>
+  <div class="article-grid about-content">
+    <div class="section-label">Website privacy</div>
+    <div class="prose">
+      <p>
+        This is Lukas Bühler’s digital garden. There are no visitor accounts,
+        comment forms, or advertising trackers in the site.
+      </p>
+      <h2>Analytics</h2>
+      {enabled ? (
+        <p>
+          On lukasbuehler.ch, I use PostHog’s EU service to understand which
+          pages are read. Analytics is disabled on local previews and other
+          hostnames.
+        </p>
+      ) : (
+        <p>
+          PostHog analytics is currently disabled in this build. The following
+          explains the cookieless configuration prepared for this website.
+        </p>
+      )}
+      <p>
+        When enabled, the site sends a pageview containing the public page
+        address and technical event information to PostHog’s EU endpoint. It
+        excludes query parameters, URL fragments, referral information, and page
+        contents. Click tracking, session recordings, user profiles, and
+        automatic error capture are disabled.
+      </p>
+      <p>
+        PostHog is configured not to persist analytics data in cookies, local
+        storage, or session storage. Its cookieless service receives the
+        connection’s IP address and browser user agent and uses them, together
+        with the site hostname and a daily changing salt, to calculate a visitor
+        hash. This supports daily audience counts without a persistent
+        identifier stored in your browser. Cookieless does not mean that no data
+        is processed.
+      </p>
+      <h2>Your browser’s privacy choices</h2>
+      <p>
+        If your browser sends Do Not Track or Global Privacy Control, the site
+        does not load or initialize PostHog and sends no analytics events. You
+        can enable either supported signal in your browser or use a content
+        blocker. Browsers differ in which signals they support.
+      </p>
+      <p>
+        These preferences do not prevent the hosting provider from handling the
+        network requests needed to deliver the page.
+      </p>
+      <h2>Further information</h2>
+      <p>
+        PostHog describes its{" "}
+        <a href="https://posthog.com/tutorials/cookieless-tracking">
+          cookieless measurement
+        </a>{" "}
+        and <a href="https://posthog.com/privacy">privacy practices</a>. An
+        ordinary link to another website only takes you there when you choose to
+        follow it; this site does not automatically load the linked PK Spot app
+        or social media embeds.
+      </p>
+    </div>
+  </div>
+</GardenLayout>

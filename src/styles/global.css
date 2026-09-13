@@ -534,7 +534,7 @@ figcaption {
     grid-column: 1;
     grid-row: 2;
   }
-  .site-footer > a:last-child {
+  .site-footer > .footer-links {
     grid-column: 2;
     grid-row: 1;
   }
@@ -601,4 +601,11 @@ figcaption {
   .project-list .entry-link:hover {
     background: #e1e8d4;
   }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px 24px;
 }

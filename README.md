@@ -1,6 +1,6 @@
 # Lukas Bühler’s digital garden
 
-A static Astro site for `https://lukasbuehler.ch`. Modern typography, a shared responsive grid, selected projects, and connected notes. No client-side framework, carousel, background animation, or third-party embed loads by default.
+A static Astro site for `https://lukasbuehler.ch`. Modern typography, a shared responsive grid, selected projects, and connected notes. No carousel, background animation, or third-party embed loads by default. Optional PostHog analytics is disabled until configured.
 
 ## Run locally
 
@@ -131,3 +131,27 @@ Canonical URLs, Open Graph tags, the sitemap, and robots.txt target `https://luk
 ## Before deployment
 
 Gather imagery, review the starter copy, add any desired project links/contact details, and confirm permission for academic material. The September 12 dependency audit reports 15 advisories (2 low, 12 high, 1 critical) in the existing Astro 5 toolchain and its dependency graph. The critical report includes Astro image optimization; the site currently outputs static HTML and does not use that feature. A framework/dependency upgrade and fresh audit remain release work, separate from this design change. Do not expose the development server publicly.
+
+## Optional EU analytics
+
+Copy `.env.example` to `.env` and set the public **EU project token** in `PUBLIC_POSTHOG_KEY` (never a personal API key). Enable **Cookieless server hash mode** under PostHog Project Settings → Web analytics, then set `PUBLIC_POSTHOG_ENABLED=true` and rebuild. In Cloudflare, set these as build environment variables. Analytics remains off without both settings and only runs on HTTPS `lukasbuehler.ch`; local previews and `pages.dev` hosts never track.
+
+The no-external PostHog SDK loads only after checking Do Not Track (including legacy variants) and Global Privacy Control. Both signals block initialization entirely. The SDK’s cookieless consent behavior alone is not used as the privacy gate. There are no opt-in/out SDK calls: in `always` mode those do not provide the desired hard-stop behavior.
+
+Only `$pageview` events with a cookieless sentinel are permitted. Before sending, an allowlist removes referrers, URL queries/fragments, campaign parameters, device/session IDs, and other automatically collected properties. Canonical page addresses and required event fields remain. Autocapture, replay, profiles, surveys, feature flags, remote configuration, logs, performance, and errors are disabled. The SDK uses memory and disables persistence. No analytics identifiers are persisted in cookies or browser storage; an opt-out is expressed through DNT/GPC or a content blocker rather than a stored preference.
+
+`/privacy/` explains this configuration and honestly reports when analytics is disabled. It is an analytics notice, not yet a complete launch privacy policy: controller contact details, actual hosting configuration, applicable processing grounds, retention, vendor agreements, and international processing still need to be confirmed before enabling production analytics. EU hosting does not by itself resolve consent or all international-transfer questions.
+
+No click-wrap has been added. Acknowledging a privacy notice and consenting to analytics are different things. Cookieless is not synonymous with no personal-data processing: PostHog receives IP/user-agent information and calculates a daily server hash. Determine whether notice plus an effective opt-out is sufficient for the actual audience and processing; if prior consent is required, add a consent gate **before** SDK loading, without withholding access to the garden.
+
+References checked 13 September 2026:
+
+- [PostHog cookieless configuration and project prerequisites](https://posthog.com/tutorials/cookieless-tracking)
+- [PostHog JavaScript configuration](https://posthog.com/docs/libraries/js/config)
+- [FDPIC information obligations](https://www.edoeb.admin.ch/de/informationspflicht)
+- [FDPIC cookie guidance](https://www.edoeb.admin.ch/en/cookies-practical-tips)
+- [EDPB technical scope of ePrivacy Article 5(3)](https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-22023-technical-scope-art-53-eprivacy-directive_en)
+
+Browser verification with the real SDK (requests intercepted, no data sent to PostHog): DNT and GPC each produced zero SDK chunk loads, zero third-party requests, and zero storage writes. Without a privacy signal there was one EU pageview request, zero cookies, and empty local/session storage afterward. The SDK briefly writes and removes support-probe keys (`__mplssupport__` and `test`) during initialization; it does not persist analytics identifiers. This is why the policy describes no analytics persistence rather than promising that the SDK never touches storage.
+
+To repeat the isolated check: build with a dummy token into `/private/tmp/digital-garden-analytics-build`, serve that directory on `127.0.0.1:4323`, and run the Playwright CLI with `run-code --filename tests/analytics.browser.js`. The script intercepts every browser request, serves the garden from that local directory through its local HTTP server, and returns fake success for PostHog; it never sends test data to a real project. Normal `npm test` remains browser-independent.
