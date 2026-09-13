@@ -6,7 +6,7 @@ projectGroup: academic
 draft: false
 featured: 2
 topics: [Computer vision, SLAM]
-status: Semester project · ETH Multi-Scale Robotics Lab
+status: Semester project · ETH Multi-Scale Robotics Lab · 2025
 ---
 
 For this semester project at ETH’s Multi-Scale Robotics Lab (MSRL), I built a modular, descriptor-free SLAM pipeline using dense feature matching for low-texture endoscopic environments.
