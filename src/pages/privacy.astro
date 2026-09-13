@@ -1,8 +1,7 @@
 ---
 import GardenLayout from "../layouts/GardenLayout.astro";
-const enabled =
-  import.meta.env.PUBLIC_POSTHOG_ENABLED === "true" &&
-  /^phc_[A-Za-z0-9_]+$/.test(import.meta.env.PUBLIC_POSTHOG_KEY ?? "");
+import { analyticsConfig } from "../lib/analytics-config";
+const enabled = analyticsConfig.enabled;
 ---
 
 <GardenLayout
@@ -19,6 +18,26 @@ const enabled =
       <p>
         This is Lukas Bühler’s digital garden. There are no visitor accounts,
         comment forms, or advertising trackers in the site.
+      </p>
+      <p>Last updated: 13 September 2026.</p>
+      <h2>Responsible person and contact</h2>
+      <p>
+        Lukas Bühler is responsible for this website. For privacy questions or
+        requests concerning your personal data, email
+        <a href="mailto:contact@lukasbuehler.ch">contact@lukasbuehler.ch</a>. If
+        you contact me, I use the information you provide to respond to your
+        message and handle your request.
+      </p>
+      <h2>Hosting</h2>
+      <p>
+        Cloudflare hosts and delivers this website through its global network.
+        To serve pages and protect the service, it processes technical request
+        data such as your IP address, requested URL, request time, and browser
+        information. This processing is separate from the optional audience
+        measurement described below and also occurs when analytics is blocked.
+        Cloudflare may process data outside Switzerland and the EU. See its{" "}
+        <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>
+        for details about its processing and international transfers.
       </p>
       <h2>Appearance preference</h2>
       <p>
@@ -41,11 +60,11 @@ const enabled =
         </p>
       )}
       <p>
-        When enabled, the site sends a pageview containing the public page
-        address and technical event information to PostHog’s EU endpoint. It
-        excludes query parameters, URL fragments, referral information, and page
-        contents. Click tracking, session recordings, user profiles, and
-        automatic error capture are disabled.
+        {enabled ? "The site sends" : "When enabled, the site sends"} a pageview
+        containing the public page address and technical event information to
+        PostHog’s EU endpoint. It excludes query parameters, URL fragments,
+        referral information, and page contents. Click tracking, session
+        recordings, user profiles, and automatic error capture are disabled.
       </p>
       <p>
         PostHog is configured not to persist analytics data in cookies, local
@@ -55,6 +74,11 @@ const enabled =
         hash. This supports daily audience counts without a persistent
         identifier stored in your browser. Cookieless does not mean that no data
         is processed.
+      </p>
+      <p>
+        The daily salt rotation limits linking visits across days; it does not
+        mean that pageview records are deleted daily. Event retention is handled
+        by the PostHog project and its service terms.
       </p>
       <h2>Your browser’s privacy choices</h2>
       <p>

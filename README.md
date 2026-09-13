@@ -21,7 +21,7 @@ npm run preview
 
 The `lukasbuehler-ch` Worker serves Astro's static output using `wrangler.jsonc`; no server adapter is needed. Cloudflare's Git integration should build `main` from repository root with `npm run build`, then deploy with `npx wrangler deploy`. `.node-version` selects Node 24. Keep working on `development` and merge reviewed changes into `main` to publish.
 
-Set `PUBLIC_POSTHOG_KEY` and `PUBLIC_POSTHOG_ENABLED` as build variables (see Analytics below). Only `dist/` is deployed. Ignored `private-assets/` originals are neither committed nor published. To validate deployment configuration locally after a build, run `npx wrangler deploy --dry-run`. The Worker can be previewed on its `workers.dev` URL before connecting `lukasbuehler.ch`; analytics stays disabled on that preview hostname.
+Analytics activation and the public project token are version-controlled in `src/lib/analytics-config.ts` (see Analytics below). Only `dist/` is deployed. Ignored `private-assets/` originals are neither committed nor published. To validate deployment configuration locally after a build, run `npx wrangler deploy --dry-run`. The Worker can be previewed on its `workers.dev` URL before connecting `lukasbuehler.ch`; analytics stays disabled on that preview hostname.
 
 ## Write a page
 
@@ -144,7 +144,7 @@ Gather imagery, review the starter copy, add any desired project links/contact d
 
 ## Optional EU analytics
 
-Copy `.env.example` to `.env` and set the public **EU project token** in `PUBLIC_POSTHOG_KEY` (never a personal API key). Enable **Cookieless server hash mode** under PostHog Project Settings → Web analytics, then set `PUBLIC_POSTHOG_ENABLED=true` and rebuild. In Cloudflare, set these as build environment variables. Analytics remains off without both settings and only runs on HTTPS `lukasbuehler.ch`; local previews and `pages.dev` hosts never track.
+PostHog EU is enabled in `src/lib/analytics-config.ts`, using the public project token (never a personal API key). Cookieless server hash mode has been enabled in the PostHog project. Set `enabled: false` there and rebuild to pause analytics. The former `PUBLIC_POSTHOG_ENABLED` and `PUBLIC_POSTHOG_KEY` build variables are no longer used and may be removed from Cloudflare. Analytics only runs in production builds on HTTPS `lukasbuehler.ch`; local previews and other hostnames never track.
 
 The no-external PostHog SDK loads only after checking Do Not Track (including legacy variants) and Global Privacy Control. Both signals block initialization entirely. The SDK’s cookieless consent behavior alone is not used as the privacy gate. There are no opt-in/out SDK calls: in `always` mode those do not provide the desired hard-stop behavior.
 

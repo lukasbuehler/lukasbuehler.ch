@@ -4,11 +4,11 @@ import {
   pageviewOnly,
 } from "../lib/analytics.mjs";
 import type { PostHogConfig } from "posthog-js";
+import { analyticsConfig } from "../lib/analytics-config";
 
 const context = {
-  enabled:
-    import.meta.env.PROD && import.meta.env.PUBLIC_POSTHOG_ENABLED === "true",
-  token: import.meta.env.PUBLIC_POSTHOG_KEY,
+  enabled: import.meta.env.PROD && analyticsConfig.enabled,
+  token: analyticsConfig.token,
   location: window.location,
   navigator: window.navigator,
   get windowDnt() {
