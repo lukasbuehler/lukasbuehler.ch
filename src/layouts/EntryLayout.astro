@@ -2,6 +2,7 @@
 import "katex/dist/katex.min.css";
 import GardenLayout from "./GardenLayout.astro";
 import EntryList from "../components/EntryList.astro";
+import { sharingUrl } from "../lib/sharing";
 import EntryDate from "../components/EntryDate.astro";
 import { backlinks, type Entry } from "../lib/entries";
 interface Props {
@@ -17,7 +18,8 @@ const parent = data.kind === "project" ? "projects" : "notes";
 <GardenLayout
   title={data.title}
   description={data.description}
-  image={data.image?.src}
+  image={sharingUrl(entry)}
+  imageAlt={`${data.shareTitle ?? data.title} — Lukas Bühler`}
   article
   published={data.published}
   updated={data.updated}

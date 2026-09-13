@@ -39,6 +39,18 @@ function checkPages(directory = "dist") {
       !html.replace(/<code[\s\S]*?<\/code>/g, "").includes("[[projects/"),
       `${path}: unresolved wiki link`,
     );
+    if (html.includes('property="og:type" content="article"')) {
+      const card = html.match(
+        /property="og:image" content="https:\/\/lukasbuehler.ch(\/sharing\/[^"]+\.png)"/,
+      );
+      assert.ok(card, `${path}: generated sharing image`);
+      const png = readFileSync(join("dist", card[1]));
+      assert.equal(png.readUInt32BE(16), 1200);
+      assert.equal(png.readUInt32BE(20), 630);
+      assert.ok(png.length < 5_000_000, `${path}: sharing image under 5 MB`);
+      assert.match(html, /name="twitter:image"/);
+      assert.match(html, /property="og:image:alt"/);
+    }
     for (const [, href] of html.matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
       const target = join("dist", href);
       assert.ok(
@@ -106,6 +118,7 @@ A [[projects/pk-spot|wiki link]].
       assert.match(html, /<code>\[\[projects\/this-is-code\]\]<\/code>/);
     }
     assert.ok(!existsSync("dist/notes/garden-check-private/index.html"));
+    assert.ok(!existsSync("dist/sharing/garden-check-private.png"));
     assert.ok(!read("dist/sitemap-0.xml").includes("garden-check-private"));
     assert.match(read("dist/projects/pk-spot/index.html"), /Markdown fixture/);
     assert.match(read("dist/projects/pk-spot/index.html"), /MDX fixture/);

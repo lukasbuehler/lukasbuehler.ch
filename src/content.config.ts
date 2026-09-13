@@ -5,6 +5,7 @@ const entries = defineCollection({
   schema: z
     .object({
       title: z.string(),
+      shareTitle: z.string().max(160).optional(),
       description: z.string(),
       kind: z.enum(["note", "project"]),
       projectGroup: z.enum(["personal", "academic"]).default("personal"),

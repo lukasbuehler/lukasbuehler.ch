@@ -161,3 +161,15 @@ To repeat the isolated check: build with a dummy token into `/private/tmp/digita
 `private-assets/` holds local thesis PDFs and image originals awaiting review. It is Git-ignored and outside Astro’s published directories; Git does not back it up. Keep originals there, and copy only approved publication versions into `public/documents/` or `public/images/`. A declaration-bearing PDF should be checked for signatures and personal details before publication.
 
 For a project’s lead image, use the existing `image` frontmatter (`src`, `alt`, `caption`). It appears on the project page and supplies its sharing image; project lists stay typographic. Use Markdown images or the MDX `Figure` and `Video` components for additional explanatory media. Captions should distinguish AI-altered illustrations from documentary research imagery.
+
+## Link sharing previews
+
+Every published project and note gets a static **1200 × 630 PNG** at `/sharing/<entry-id>.png`. `npm run build` generates these with local Inter fonts, Satori, and Sharp; no remote font service, browser JavaScript, or production image server is needed. Drafts do not get cards.
+
+Project cards use the title and existing project image, fitted without cropping. Projects without images and notes use a typographic layout; notes include their publication date. The template follows the site’s paper colour, dark text and thin rules. The master’s image retains a short AI-editing disclosure.
+
+The full title is used automatically. Optionally add `shareTitle: A shorter title for sharing` (up to 160 characters) to frontmatter for particularly long titles; this changes only the card artwork, not the page heading or SEO title. Long titles shrink to fit, and the build fails if text cannot fit rather than silently clipping it. Images must be local files under `public/`.
+
+Open Graph and Twitter large-image tags include absolute URLs, descriptive alt text, PNG type and dimensions. The common 1200 × 630 format is close to [LinkedIn’s 1200 × 627 preview frame](https://www.linkedin.com/help/linkedin/answer/a525301/sharing-articles-or-links?lang=en); generous margins accommodate small platform crops. Platforms control their final display and may cache previews. After deployment, use LinkedIn’s Post Inspector to refresh a changed URL. Local builds verify the files and tags, not live platform rendering.
+
+Preview cards locally at `http://127.0.0.1:4322/sharing/relative-imitation-learning-uav.png` (or another entry ID). Design lives in `src/lib/sharing.ts`, and the static endpoint in `src/pages/sharing/[id].png.ts`. Generated images stay in `dist/`, not Git. The Satori-specific fflate override keeps its 0.7-series dependency on the patched release.
