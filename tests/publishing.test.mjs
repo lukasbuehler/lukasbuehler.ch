@@ -86,6 +86,13 @@ test("published output, MD/MDX maths, backlinks, and draft boundaries", () => {
     }
     assert.ok(!existsSync("dist/notes/authoring-example/index.html"));
     const sitemap = read("dist/sitemap-0.xml");
+    assert.equal(read("dist/sitemap.xml"), read("dist/sitemap-index.xml"));
+    assert.match(
+      read("dist/robots.txt"),
+      /Sitemap: https:\/\/lukasbuehler.ch\/sitemap.xml/,
+    );
+    assert.match(read("dist/llms.txt"), /^# Lukas Bühler/);
+    assert.ok(!read("dist/llms.txt").includes("authoring-example"));
     assert.ok(!sitemap.includes("authoring-example"));
     assert.ok(!sitemap.includes("/workspace"));
     const header = (title) =>
@@ -134,6 +141,11 @@ A [[projects/pk-spot|wiki link]].
     assert.ok(!existsSync("dist/notes/garden-check-private/index.html"));
     assert.ok(!existsSync("dist/sharing/garden-check-private.png"));
     assert.ok(!read("dist/sitemap-0.xml").includes("garden-check-private"));
+    const llms = read("dist/llms.txt");
+    assert.ok(!llms.includes("garden-check-private"));
+    assert.ok(!llms.includes("PRIVATE_FIXTURE_MARKER"));
+    assert.ok(llms.includes("https://lukasbuehler.ch/notes/garden-check-md/"));
+    assert.ok(read("dist/sitemap-0.xml").includes("/notes/garden-check-md/"));
     assert.match(read("dist/projects/pk-spot/index.html"), /Markdown fixture/);
     assert.match(read("dist/projects/pk-spot/index.html"), /MDX fixture/);
     writeFileSync(

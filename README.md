@@ -134,6 +134,8 @@ The previous mobile failures came from fixed screen dimensions, absolute placeme
 
 Canonical URLs, Open Graph tags, the sitemap, and robots.txt target `https://lukasbuehler.ch`. `SITE_URL` can override the origin for a deliberate alternate build. There are no guarantees of indexing until the site is deployed and crawled.
 
+Every build generates `/sitemap.xml` (an alias of Astro's `/sitemap-index.xml`, pointing to its generated sitemap files), `/robots.txt` with the sitemap location, and `/llms.txt` with links and descriptions for published projects and notes. New entries appear automatically when `draft: false`; drafts stay out. `llms.txt` is an optional guide for AI tools, not a crawler permission policy or a guarantee of discovery. Cloudflare's optional managed robots setting may prepend its rules to our deployed file.
+
 ## Before deployment
 
 Gather imagery, review the starter copy, add any desired project links/contact details, and confirm permission for academic material. The September 12 dependency audit reports 15 advisories (2 low, 12 high, 1 critical) in the existing Astro 5 toolchain and its dependency graph. The critical report includes Astro image optimization; the site currently outputs static HTML and does not use that feature. A framework/dependency upgrade and fresh audit remain release work, separate from this design change. Do not expose the development server publicly.
