@@ -5,6 +5,7 @@ import AvizModel from "../components/media/AvizModel.astro";
 import EntryList from "../components/EntryList.astro";
 import { sharingUrl } from "../lib/sharing";
 import EntryDate from "../components/EntryDate.astro";
+import NoteLinks from "../components/NoteLinks.astro";
 import { backlinks, type Entry } from "../lib/entries";
 interface Props {
   entry: Entry;
@@ -59,6 +60,7 @@ const parent = data.kind === "project" ? "projects" : "notes";
             <EntryDate date={data.published} />
           </div>
         )}
+        {data.kind === "note" && <NoteLinks entries={entries} />}
         {data.topics.length > 0 && (
           <div>
             <p class="meta-label">Topics</p>

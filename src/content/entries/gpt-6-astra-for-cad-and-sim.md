@@ -3,6 +3,7 @@ title: GPT-6 Astra is crazy good at CAD and simulation
 description: I got stuck building a custom drone in CAD. With GPT-6 Astra, I got the CAD working and took it into simulation.
 kind: note
 draft: false
+featured: 1
 published: 2026-09-13
 ---
 

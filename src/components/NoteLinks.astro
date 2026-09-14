@@ -1,0 +1,141 @@
+---
+import { entryUrl, type Entry } from "../lib/entries";
+interface Props {
+  entries: Entry[];
+}
+const entries = Astro.props.entries.map((entry) => ({
+  url: entryUrl(entry),
+  title: entry.data.title,
+  kind: entry.data.kind,
+}));
+---
+
+<note-links data-entries={JSON.stringify(entries)} hidden>
+  <nav aria-label="Links in this note"></nav>
+</note-links>
+
+<script>
+  class NoteLinks extends HTMLElement {
+    private initialized = false;
+    connectedCallback() {
+      if (this.initialized) return;
+      const article = this.closest("article");
+      const prose = article?.querySelector(".prose");
+      if (!prose) return;
+      this.initialized = true;
+      const origin = new URL(
+        document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href,
+      ).origin;
+      const entries = JSON.parse(this.dataset.entries!) as {
+        url: string;
+        title: string;
+        kind: string;
+      }[];
+      const groups = new Map<
+        string,
+        Map<string, { href: string; label: string }>
+      >([
+        ["Mentioned Projects", new Map()],
+        ["Other notes", new Map()],
+        ["External links", new Map()],
+      ]);
+      for (const link of prose.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+        const url = new URL(
+          link.getAttribute("href")!,
+          origin + location.pathname,
+        );
+        if (!["http:", "https:"].includes(url.protocol)) continue;
+        const internal =
+          url.origin === origin || url.origin === location.origin;
+        const entry =
+          internal &&
+          entries.find(
+            (entry) => entry.url === url.pathname.replace(/\/?$/, "/"),
+          );
+        if (internal && (!entry || url.pathname === location.pathname))
+          continue;
+        const group = internal
+          ? entry && entry.kind === "project"
+            ? "Mentioned Projects"
+            : "Other notes"
+          : "External links";
+        const href = internal && entry ? entry.url : url.href;
+        groups
+          .get(group)!
+          .set(href, {
+            href,
+            label: entry
+              ? entry.title
+              : link.textContent?.trim() || url.hostname,
+          });
+      }
+      const nav = this.querySelector("nav")!;
+      nav.replaceChildren();
+      for (const [title, links] of groups) {
+        if (!links.size) continue;
+        const section = document.createElement("div");
+        const heading = document.createElement("h2");
+        heading.className = "meta-label";
+        heading.textContent = title;
+        const list = document.createElement("ul");
+        for (const { href, label } of links.values()) {
+          const item = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = href;
+          a.textContent = label;
+          a.className = "text-link";
+          if (title === "External links") {
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+          }
+          item.append(a);
+          list.append(item);
+        }
+        section.append(heading, list);
+        nav.append(section);
+      }
+      this.hidden = !nav.children.length;
+      const marker = document.createComment("Note links sidebar position");
+      this.before(marker);
+      const mobile = matchMedia("(max-width: 600px)");
+      const place = () =>
+        mobile.matches ? prose.after(this) : marker.after(this);
+      mobile.addEventListener("change", place);
+      place();
+    }
+  }
+  if (!customElements.get("note-links"))
+    customElements.define("note-links", NoteLinks);
+</script>
+
+<style>
+  :global(note-links:not([hidden])) {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 26px;
+  }
+  :global(note-links nav) {
+    display: grid;
+    gap: 2rem;
+  }
+  :global(note-links ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+  :global(note-links li) {
+    overflow-wrap: anywhere;
+  }
+  :global(note-links .meta-label) {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 600px) {
+    :global(note-links) {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+    }
+  }
+</style>

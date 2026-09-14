@@ -3,6 +3,7 @@ title: The start of a digital garden
 description: I like to build things, and I want to share more. So I decided to create a place away from social media.
 kind: note
 draft: false
+featured: 3
 published: 2026-09-12
 ---
 
