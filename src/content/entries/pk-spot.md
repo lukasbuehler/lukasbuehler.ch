@@ -11,7 +11,7 @@ status: Live on web, iOS and Android
 featured: 1
 topics: [Software, Parkour]
 links:
-  - label: Open PK Spot
+  - label: PK Spot Website
     url: https://pkspot.app
 ---
 
