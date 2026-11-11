@@ -1,6 +1,6 @@
 ---
 title: I don't want to be a Gardener
-description: 
+description: Reflections on AI coding agents, software gardening, and finding hard problems in robotics.
 kind: note
 draft: true
 published: 2026-11-12

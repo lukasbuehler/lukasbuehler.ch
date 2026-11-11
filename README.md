@@ -17,6 +17,8 @@ npm run preview
 
 `npm run format` formats the source. The build output is `dist/`. `public/_redirects` preserves the former Workspace and Hobbies URLs on Cloudflare.
 
+`npm install` and `npm ci` set up the tracked `.githooks/pre-push` hook locally (skipped in CI). Every push runs `npm run build` and stops if it fails. For an existing checkout, run `npm run prepare` once to enable the hook. This sets the repository's `core.hooksPath` to `.githooks`.
+
 ## Cloudflare deployment
 
 The `lukasbuehler-ch` Worker serves Astro's static output using `wrangler.jsonc`; no server adapter is needed. Cloudflare's Git integration should build `main` from repository root with `npm run build`, then deploy with `npx wrangler deploy`. `.node-version` selects Node 24. Keep working on `development` and merge reviewed changes into `main` to publish.
